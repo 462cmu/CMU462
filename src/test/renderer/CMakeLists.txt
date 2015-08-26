@@ -6,7 +6,7 @@ add_executable(
 
 target_link_libraries(
     renderer_test
-    CSD462Shared
+    CSD462
 )
 
-install(TARGETS renderer_test DESTINATION bin/renderer_test)
+install(TARGETS renderer_test DESTINATION bin)

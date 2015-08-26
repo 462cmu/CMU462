@@ -6,7 +6,7 @@ add_executable(
 
 target_link_libraries(
     text_test
-    CSD462Shared
+    CSD462
 )
 
-install(TARGETS text_test DESTINATION bin/text_test)
+install(TARGETS text_test DESTINATION bin)

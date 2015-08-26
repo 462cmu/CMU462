@@ -1,6 +1,7 @@
 #include "color.h"
 #include "osdtext.h"
 
+#include <stdlib.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
@@ -14,7 +15,7 @@ int main(int argc, char *argv[]) {
   // init glfw
   if( !glfwInit() ) {
     fprintf(stderr, "Error: could not initialize GLFW!");
-    exit( 1 );
+    exit( EXIT_FAILURE );
   }
 
   // create window
@@ -22,7 +23,7 @@ int main(int argc, char *argv[]) {
   if (!window) {
     fprintf(stderr, "Error: could not create window!");
     glfwTerminate();
-    exit( 1 );
+    exit( EXIT_FAILURE );
   }
 
   // set context

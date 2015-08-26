@@ -3,6 +3,9 @@
 #include <iostream>
 #include <GL/glew.h>
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 #include "console.h"
 
 using namespace std;
@@ -17,25 +20,33 @@ struct point {
 };
 
 OSDText::OSDText() {
-  next_id = 0;
-  lines = vector<OSDLine>();
+  
+  ft   = new FT_Library;
+  face = new FT_Face;
+
+  lines = vector<OSDLine>(); next_id = 0;
 }
 
 OSDText::~OSDText() {
+
+  delete ft;
+  delete face;
+
   lines.clear();
+  
   glDeleteProgram(program);
 }
 
 int OSDText::init() {
 
   // initialize font library
-  if(FT_Init_FreeType(&ft)) {
+  if(FT_Init_FreeType(ft)) {
     out_err("Could not init freetype library");
     return -1;
   }
 
   // initialize font face
-  if(FT_New_Memory_Face(ft, (const FT_Byte*) osdfont, osdfont_size, 0, &face)) {
+  if(FT_New_Memory_Face(*ft, (const FT_Byte*) osdfont, osdfont_size, 0, face)) {
     out_err("Could not open font");
     return -1;
   }
@@ -155,14 +166,14 @@ void OSDText::set_color(int line_id, Color color) {
 void OSDText::draw_line(OSDLine line) {
 
   // set font size
-  FT_Set_Pixel_Sizes(face, 0, line.size);
+  FT_Set_Pixel_Sizes(*face, 0, line.size);
 
   // set font color
   glUniform4fv(uniform_color, 1, (GLfloat*) &line.color);
 
   // get glyph
   const char *p;
-  FT_GlyphSlot g = face->glyph;
+  FT_GlyphSlot g = (*face)->glyph;
 
   // gen texture
   GLuint tex;
@@ -192,7 +203,7 @@ void OSDText::draw_line(OSDLine line) {
   for (p = text; *p; p++) {
 
     // Try to load and render the character
-    if (FT_Load_Char(face, *p, FT_LOAD_RENDER)) continue;
+    if (FT_Load_Char(*face, *p, FT_LOAD_RENDER)) continue;
 
     // Upload the glyph bitmap as an alpha texture
     glTexImage2D(GL_TEXTURE_2D, 

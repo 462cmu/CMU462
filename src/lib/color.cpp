@@ -7,7 +7,7 @@ using namespace std;
 
 namespace CSD462 {
 
-// Constants.
+// Constants
 const Color Color::White  = Color(1,1,1,1);
 const Color Color::Black  = Color(0,0,0,1);
 

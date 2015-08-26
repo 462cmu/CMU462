@@ -29,46 +29,30 @@ set(CSD462_HEADER
 
 # build static library
 add_library(
-    CSD462Static STATIC 
+    CSD462 STATIC 
     ${CSD462_SOURCE} 
     ${CSD462_HEADER}
 )
 
-# build shared library
-add_library(
-    CSD462Shared SHARED 
-    ${CSD462_SOURCE} 
-    ${CSD462_HEADER}
-)
-
-# link targets
+# link static library
+set_target_properties(CSD462 PROPERTIES LINK_SEARCH_START_STATIC 1)
+set_target_properties(CSD462 PROPERTIES LINK_SEARCH_END_STATIC   1)
 target_link_libraries(
-    CSD462Static
+    CSD462
     ${OPENGL_LIBRARIES}
     ${GLEW_LIBRARIES}
     ${GLFW_LIBRARIES}
     ${FREETYPE_LIBRARIES}
 )
 
-target_link_libraries(
-    CSD462Shared
-    ${OPENGL_LIBRARIES}
-    ${GLEW_LIBRARIES}
-    ${GLFW_LIBRARIES}
-    ${FREETYPE_LIBRARIES}
-)
-
-# compiler flags
+# clang options
 IF(APPLE)
-    target_compile_options(CSD462Static PRIVATE -Wno-constant-conversion)
-    target_compile_options(CSD462Shared PRIVATE -Wno-constant-conversion)
+    target_compile_options(CSD462 PRIVATE -Wno-constant-conversion)
 ENDIF(APPLE)
 
 # install libraries
-set_target_properties(CSD462Static PROPERTIES OUTPUT_NAME CSD462)
-set_target_properties(CSD462Shared PROPERTIES OUTPUT_NAME CSD462)
-install(TARGETS CSD462Static DESTINATION lib)
-install(TARGETS CSD462Shared DESTINATION lib)
+set_target_properties(CSD462 PROPERTIES OUTPUT_NAME CSD462)
+install(TARGETS CSD462 DESTINATION lib)
 
 # install headers 
 install(FILES ${CSD462_HEADER} DESTINATION include)

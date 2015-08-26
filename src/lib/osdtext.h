@@ -4,13 +4,18 @@
 #include <string>
 #include <vector>
 #include <GL/glew.h>
-#include <ft2build.h>
-#include FT_FREETYPE_H
 
 #include "color.h"
 
+// forward declare freetype stuff 
+struct FT_LibraryRec_; 
+typedef struct FT_LibraryRec_* FT_Library; 
+struct FT_FaceRec_; 
+typedef struct FT_FaceRec_*  FT_Face;
+
 namespace CSD462 {
 
+// embeded font
 extern "C" const char   osdfont[];
 extern "C" const size_t osdfont_size;
 
@@ -142,7 +147,7 @@ class OSDText {
   int next_id;
 
   // freetype font
-  FT_Library ft; FT_Face face;
+  FT_Library* ft; FT_Face* face;
 
   // lines to draw
   std::vector<OSDLine> lines;

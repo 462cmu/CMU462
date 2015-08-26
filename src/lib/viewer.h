@@ -65,16 +65,16 @@ class Viewer {
    * Main update loop.
    */
   static void update();
-  
-  /**
-   * Draw zoom view.
-   */
-  static void drawZoom();
-  
+    
   /**
    * Draw information view.
    */
   static void drawInfo();
+
+  /**
+   * Draw zoom view.
+   */
+  static void drawZoom();
 
   // window event callbacks
   static void err_callback( int error, const char* description );
