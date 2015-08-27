@@ -60,9 +60,17 @@ if (APPLE)
 
 endif(APPLE)
 
-# install libraries
+# install libCSD462
 set_target_properties(CSD462 PROPERTIES OUTPUT_NAME CSD462)
 install(TARGETS CSD462 DESTINATION lib)
 
 # install headers 
 install(FILES ${CSD462_HEADER} DESTINATION include)
+
+# install external libs
+install(FILES ${GLEW_LIBRARIES} DESTINATION lib)
+install(FILES ${GLFW_LIBRARIES} DESTINATION lib)
+
+# install external headers
+install(DIRECTORY ${GLEW_INCLUDE_DIRS} DESTINATION include)
+install(DIRECTORY ${GLFW_INCLUDE_DIRS} DESTINATION include)
