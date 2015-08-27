@@ -3,7 +3,7 @@
 
 #include <iosfwd>
 
-#include "Vector3D.h"
+#include "vector3D.h"
 
 namespace CSD462 {  
 

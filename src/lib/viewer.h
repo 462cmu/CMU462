@@ -5,7 +5,8 @@
 #include "osdtext.h"
 
 #include <chrono>
-#include <GLFW/glfw3.h>
+
+#include "glfw.h"
 
 namespace CSD462 {
 

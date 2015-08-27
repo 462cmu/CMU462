@@ -6,7 +6,7 @@
 #include <iostream>
 #include <algorithm>
 
-#include <GL/glew.h>
+#include "glew.h"
 
 #include "console.h"
 

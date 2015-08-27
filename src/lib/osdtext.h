@@ -3,7 +3,8 @@
 
 #include <string>
 #include <vector>
-#include <GL/glew.h>
+
+#include "glew.h"
 
 #include "color.h"
 

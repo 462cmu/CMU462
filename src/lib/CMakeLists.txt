@@ -30,7 +30,7 @@ set(CSD462_HEADER
 # build static library
 add_library(
     CSD462 STATIC 
-    ${CSD462_SOURCE} 
+    ${CSD462_SOURCE}
     ${CSD462_HEADER}
 )
 
@@ -39,16 +39,26 @@ set_target_properties(CSD462 PROPERTIES LINK_SEARCH_START_STATIC 1)
 set_target_properties(CSD462 PROPERTIES LINK_SEARCH_END_STATIC   1)
 target_link_libraries(
     CSD462
-    ${OPENGL_LIBRARIES}
     ${GLEW_LIBRARIES}
     ${GLFW_LIBRARIES}
+    ${OPENGL_LIBRARIES}
     ${FREETYPE_LIBRARIES}
 )
 
-# clang options
-IF(APPLE)
-    target_compile_options(CSD462 PRIVATE -Wno-constant-conversion)
-ENDIF(APPLE)
+# Building on mac
+if (APPLE)
+
+  # clang options
+  target_compile_options(CSD462 PRIVATE -Wno-constant-conversion)
+  
+  # Frameworks required on osx
+  target_link_libraries(CSD462  
+    ${COCOA_LIBRARIES}
+    ${IOKIT_LIBRARIES}
+    ${COREVIDEO_LIBRARIES}
+  )
+
+endif(APPLE)
 
 # install libraries
 set_target_properties(CSD462 PROPERTIES OUTPUT_NAME CSD462)

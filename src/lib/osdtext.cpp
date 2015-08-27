@@ -1,9 +1,8 @@
 #include "osdtext.h"
 
 #include <iostream>
-#include <GL/glew.h>
 
-#include <ft2build.h>
+#include "ft2build.h"
 #include FT_FREETYPE_H
 
 #include "console.h"

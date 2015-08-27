@@ -16,18 +16,31 @@ endif()
 # Add modules
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/modules/")
 
-# Library dependencies
-set (CMAKE_FIND_LIBRARY_SUFFIXES ".a")
-find_package(OPENGL    REQUIRED)
-find_package(FREETYPE  REQUIRED)
-find_package(PKGCONFIG REQUIRED)
-pkg_search_module(GLEW REQUIRED glew )
-pkg_search_module(GLFW REQUIRED glfw3)
+# Find shared dependencies
+find_package(OpenGL   REQUIRED)
+find_package(Freetype REQUIRED)
+find_package(GLEW)
+if(NOT GLEW_FOUND)
+  add_subdirectory(glew)
+endif()
+
+find_package(GLFW)
+if(NOT GLFW_FOUND)
+  add_subdirectory(glfw)
+endif()
 
 # Install settings
 set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/../")
-set(libCSD462_BUILD_LIB  ON)
+set(libCSD462_BUILD_LIBS ON)
 set(libCSD462_BUILD_TEST ON)
+
+# Building on mac
+if(APPLE)
+  include_directories( "/System/Library/Frameworks" )
+  find_library (COCOA_LIBRARIES Cocoa)
+  find_library (IOKIT_LIBRARIES IOkit)
+  find_library (COREVIDEO_LIBRARIES CoreVideo)
+endif(APPLE)
 
 # Set shared include directories
 include_directories(
@@ -44,9 +57,9 @@ link_directories(
 )
 
 # Build libraries
-if (libCSD462_BUILD_LIB)
+if (libCSD462_BUILD_LIBS)
     add_subdirectory(lib)
-endif(libCSD462_BUILD_LIB)
+endif(libCSD462_BUILD_LIBS)
 
 # Build test
 if (libCSD462_BUILD_TEST)

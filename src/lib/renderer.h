@@ -6,6 +6,7 @@
 
 namespace CSD462 {
 
+
 /**
  * Abstract renderer definition.
  * The abstract class defines a general framework for user-space renderers.
@@ -76,6 +77,10 @@ class Renderer {
    * \param key The key being pressed by the user.
    */
   virtual void key_event(char key) = 0;
+
+  //virtual void pan_event(int pan_x, int pan_y) = 0;
+  //virtual void scroll_event(int scroll_u, int scroll_d) = 0;
+  //virtual void zoom_event(int scroll_u, int scroll_d) = 0;
 
 };
 
