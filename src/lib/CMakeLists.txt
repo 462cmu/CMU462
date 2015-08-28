@@ -9,6 +9,7 @@ set(CSD462_SOURCE
     osdtext.cpp
     osdfont.c
     viewer.cpp
+    base64.cpp
     tinyxml2.cpp
 )
 
@@ -24,6 +25,7 @@ set(CSD462_HEADER
     viewport.h
     osdtext.h
     viewer.h
+    base64.h
     tinyxml2.h
 )
 

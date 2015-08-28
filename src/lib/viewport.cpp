@@ -1,5 +1,6 @@
 #include "viewport.h"
 
+#include <stdio.h>
 #include <vector>
 
 namespace CSD462 {

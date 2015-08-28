@@ -6,7 +6,7 @@
 
 #include <chrono>
 
-#include "glfw.h"
+#include "GLFW/glfw.h"
 
 namespace CSD462 {
 

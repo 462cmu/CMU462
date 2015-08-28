@@ -8,15 +8,25 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
     set(CLANG_CXX_FLAGS "${CLANG_CXX_FLAGS} -Wno-deprecated-register")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CLANG_CXX_FLAGS}")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-    set(GCC_CXX_FLAGS "-std=gnu++11 -m64 -O3 -fopenmp -funroll-loops")
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -Wno-narrowing")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_CXX_FLAGS}")
+  
+  # unix
+  if(UNIX)
+    set(GCC_CXX_FLAGS "-std=gnu++11 -m64 -O3 -funroll-loops -fopenmp")
+  endif(UNIX)
+
+  # Windows
+  if(WIN32)
+    set(GCC_CXX_FLAGS "-std=gnu++11 -O3 -funroll-loops -fopenmp")
+  endif(WIN32)
+
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_CXX_FLAGS}")
+
 endif()
 
 # Add modules
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/modules/")
 
-# Find shared dependencies
+# Find dependencies
 find_package(OpenGL   REQUIRED)
 find_package(Freetype REQUIRED)
 find_package(GLEW)

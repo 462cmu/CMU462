@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "glew.h"
+#include "GLEW/glew.h"
 
 #include "color.h"
 
@@ -16,9 +16,8 @@ typedef struct FT_FaceRec_*  FT_Face;
 
 namespace CSD462 {
 
-// embeded font
-extern "C" const char   osdfont[];
-extern "C" const size_t osdfont_size;
+// base64 encoded embeded font
+extern "C" char osdfont_base64[];
 
 struct OSDLine {
   
@@ -147,7 +146,8 @@ class OSDText {
   // line id counter
   int next_id;
 
-  // freetype font
+  // freetype
+  char* font; size_t font_size;
   FT_Library* ft; FT_Face* face;
 
   // lines to draw

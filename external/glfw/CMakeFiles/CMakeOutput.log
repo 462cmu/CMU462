@@ -1,0 +1,275 @@
+The system is: Linux - 3.10.0-229.11.1.el7.x86_64 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/lib64/ccache/cc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/2.8.11/CompilerIdC/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1330201927/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1330201927.dir/build.make CMakeFiles/cmTryCompileExec1330201927.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1330201927.dir/testCCompiler.c.o
+/usr/lib64/ccache/cc    -o CMakeFiles/cmTryCompileExec1330201927.dir/testCCompiler.c.o   -c /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec1330201927
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1330201927.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc         CMakeFiles/cmTryCompileExec1330201927.dir/testCCompiler.c.o  -o cmTryCompileExec1330201927 -rdynamic 
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3434129277/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3434129277.dir/build.make CMakeFiles/cmTryCompileExec3434129277.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3434129277.dir/CMakeCCompilerABI.c.o
+/usr/lib64/ccache/cc    -o CMakeFiles/cmTryCompileExec3434129277.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec3434129277
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3434129277.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc       -v CMakeFiles/cmTryCompileExec3434129277.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3434129277 -rdynamic  
+Using built-in specs.
+COLLECT_GCC=/usr/bin/cc
+COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.3/lto-wrapper
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.3-20140911/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.3-20140911/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux
+Thread model: posix
+gcc version 4.8.3 20140911 (Red Hat 4.8.3-9) (GCC) 
+COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.3/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.3/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.3/:/usr/lib/gcc/x86_64-redhat-linux/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.3/:/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec3434129277' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/libexec/gcc/x86_64-redhat-linux/4.8.3/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec3434129277 /usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.3/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.3 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../.. CMakeFiles/cmTryCompileExec3434129277.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.3/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64/crtn.o
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:/usr/bin/gmake "cmTryCompileExec3434129277/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3434129277.dir/build.make CMakeFiles/cmTryCompileExec3434129277.dir/build]
+  ignore line: [gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec3434129277.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/lib64/ccache/cc    -o CMakeFiles/cmTryCompileExec3434129277.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec3434129277]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3434129277.dir/link.txt --verbose=1]
+  ignore line: [/usr/lib64/ccache/cc       -v CMakeFiles/cmTryCompileExec3434129277.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3434129277 -rdynamic  ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.3/lto-wrapper]
+  ignore line: [Target: x86_64-redhat-linux]
+  ignore line: [Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.3-20140911/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.3-20140911/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.8.3 20140911 (Red Hat 4.8.3-9) (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.8.3/:/usr/libexec/gcc/x86_64-redhat-linux/4.8.3/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.8.3/:/usr/lib/gcc/x86_64-redhat-linux/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.8.3/:/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec3434129277' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.8.3/collect2 --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec3434129277 /usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.8.3/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.8.3 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../.. CMakeFiles/cmTryCompileExec3434129277.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.8.3/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64/crtn.o]
+    arg [/usr/libexec/gcc/x86_64-redhat-linux/4.8.3/collect2] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--no-add-needed] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec3434129277] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.3/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.3] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.3]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../..]
+    arg [CMakeFiles/cmTryCompileExec3434129277.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.3/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64/crtn.o] ==> ignore
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.3] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.8.3]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../..] ==> [/usr/lib]
+  implicit libs: [c]
+  implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/4.8.3;/usr/lib64;/lib64;/usr/lib]
+  implicit fwks: []
+
+
+Determining if the function XOpenDisplay exists in the /usr/lib64/libX11.so;/usr/lib64/libXext.so passed with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1995596739/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1995596739.dir/build.make CMakeFiles/cmTryCompileExec1995596739.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1995596739.dir/CheckFunctionExists.c.o
+/usr/lib64/ccache/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTryCompileExec1995596739.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1995596739
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1995596739.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc     -DCHECK_FUNCTION_EXISTS=XOpenDisplay    CMakeFiles/cmTryCompileExec1995596739.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1995596739 -rdynamic -lX11 -lXext 
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+
+Determining if the function gethostbyname exists passed with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3445002545/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3445002545.dir/build.make CMakeFiles/cmTryCompileExec3445002545.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3445002545.dir/CheckFunctionExists.c.o
+/usr/lib64/ccache/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec3445002545.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3445002545
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3445002545.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc     -DCHECK_FUNCTION_EXISTS=gethostbyname    CMakeFiles/cmTryCompileExec3445002545.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3445002545 -rdynamic 
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+
+Determining if the function connect exists passed with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec118123338/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec118123338.dir/build.make CMakeFiles/cmTryCompileExec118123338.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec118123338.dir/CheckFunctionExists.c.o
+/usr/lib64/ccache/cc   -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTryCompileExec118123338.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec118123338
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec118123338.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc     -DCHECK_FUNCTION_EXISTS=connect    CMakeFiles/cmTryCompileExec118123338.dir/CheckFunctionExists.c.o  -o cmTryCompileExec118123338 -rdynamic 
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+
+Determining if the function remove exists passed with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1586842158/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1586842158.dir/build.make CMakeFiles/cmTryCompileExec1586842158.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1586842158.dir/CheckFunctionExists.c.o
+/usr/lib64/ccache/cc   -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTryCompileExec1586842158.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1586842158
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1586842158.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc     -DCHECK_FUNCTION_EXISTS=remove    CMakeFiles/cmTryCompileExec1586842158.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1586842158 -rdynamic 
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+
+Determining if the function shmat exists passed with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1119361232/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1119361232.dir/build.make CMakeFiles/cmTryCompileExec1119361232.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1119361232.dir/CheckFunctionExists.c.o
+/usr/lib64/ccache/cc   -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTryCompileExec1119361232.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1119361232
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1119361232.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc     -DCHECK_FUNCTION_EXISTS=shmat    CMakeFiles/cmTryCompileExec1119361232.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1119361232 -rdynamic 
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+
+Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec550651696/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec550651696.dir/build.make CMakeFiles/cmTryCompileExec550651696.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec550651696.dir/CheckFunctionExists.c.o
+/usr/lib64/ccache/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTryCompileExec550651696.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec550651696
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec550651696.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc     -DCHECK_FUNCTION_EXISTS=IceConnectionNumber    CMakeFiles/cmTryCompileExec550651696.dir/CheckFunctionExists.c.o  -o cmTryCompileExec550651696 -rdynamic -lICE 
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+
+Determining if files pthread.h exist passed with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec949323008/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec949323008.dir/build.make CMakeFiles/cmTryCompileExec949323008.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec949323008.dir/CheckIncludeFiles.c.o
+/usr/lib64/ccache/cc    -o CMakeFiles/cmTryCompileExec949323008.dir/CheckIncludeFiles.c.o   -c /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec949323008
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec949323008.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc         CMakeFiles/cmTryCompileExec949323008.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec949323008 -rdynamic 
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec961053648/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec961053648.dir/build.make CMakeFiles/cmTryCompileExec961053648.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec961053648.dir/CheckFunctionExists.c.o
+/usr/lib64/ccache/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec961053648.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec961053648
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec961053648.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc     -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec961053648.dir/CheckFunctionExists.c.o  -o cmTryCompileExec961053648 -rdynamic -lpthread 
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+
+Determining if the function glXGetProcAddress exists passed with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec637807472/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec637807472.dir/build.make CMakeFiles/cmTryCompileExec637807472.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec637807472.dir/CheckFunctionExists.c.o
+/usr/lib64/ccache/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddress   -o CMakeFiles/cmTryCompileExec637807472.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec637807472
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec637807472.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc     -DCHECK_FUNCTION_EXISTS=glXGetProcAddress    CMakeFiles/cmTryCompileExec637807472.dir/CheckFunctionExists.c.o  -o cmTryCompileExec637807472 -rdynamic -lGL 
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+
+Determining if the function glXGetProcAddressARB exists passed with the following output:
+Change Dir: /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3186280369/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3186280369.dir/build.make CMakeFiles/cmTryCompileExec3186280369.dir/build
+gmake[1]: Entering directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3186280369.dir/CheckFunctionExists.c.o
+/usr/lib64/ccache/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressARB   -o CMakeFiles/cmTryCompileExec3186280369.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3186280369
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3186280369.dir/link.txt --verbose=1
+/usr/lib64/ccache/cc     -DCHECK_FUNCTION_EXISTS=glXGetProcAddressARB    CMakeFiles/cmTryCompileExec3186280369.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3186280369 -rdynamic -lGL 
+gmake[1]: Leaving directory `/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/CMakeFiles/CMakeTmp'
+
+

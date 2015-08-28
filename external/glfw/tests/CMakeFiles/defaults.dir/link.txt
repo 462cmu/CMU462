@@ -1,0 +1,1 @@
+/usr/lib64/ccache/cc      CMakeFiles/defaults.dir/defaults.c.o  -o defaults -rdynamic ../src/libglfw3.a -lX11 -lpthread -lrt -lXrandr -lXinerama -lXi -lXxf86vm -lrt -lm -lXcursor -lGL -lXrandr -lXinerama -lXi -lXxf86vm -lm -lXcursor -lGL 

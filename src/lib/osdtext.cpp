@@ -5,6 +5,7 @@
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
+#include "base64.h"
 #include "console.h"
 
 using namespace std;
@@ -29,6 +30,7 @@ OSDText::OSDText() {
 OSDText::~OSDText() {
 
   delete ft;
+  delete font;
   delete face;
 
   lines.clear();
@@ -44,8 +46,16 @@ int OSDText::init() {
     return -1;
   }
 
+  // decode font and keep in memory
+  string encoded = osdfont_base64;
+  string decoded = base64_decode(encoded);
+  size_t size = decoded.size(); 
+  font = new char[size]; 
+  memcpy(font, decoded.c_str(), size);
+
   // initialize font face
-  if(FT_New_Memory_Face(*ft, (const FT_Byte*) osdfont, osdfont_size, 0, face)) {
+  if(FT_New_Memory_Face(*ft, (const FT_Byte*) font, font_size, 0, face)) {
+    cerr << font;
     out_err("Could not open font");
     return -1;
   }

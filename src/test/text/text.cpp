@@ -3,8 +3,8 @@
 
 #include <stdlib.h>
 
-#include "glew.h"
-#include "glfw.h"
+#include "GLEW/glew.h"
+#include "GLFW/glfw.h"
 
 using namespace CSD462;
 
