@@ -4,10 +4,10 @@ project(libCSD462)
 # Check compiler
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
 
-    set(CLANG_CXX_FLAGS "-std=c++11 -m64 -O3 -funroll-loops")
-    set(CLANG_CXX_FLAGS "${CLANG_CXX_FLAGS} -Wno-narrowing")
-    set(CLANG_CXX_FLAGS "${CLANG_CXX_FLAGS} -Wno-deprecated-register")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CLANG_CXX_FLAGS}")
+  set(CLANG_CXX_FLAGS "-std=c++11 -m64 -O3 -funroll-loops")
+  set(CLANG_CXX_FLAGS "${CLANG_CXX_FLAGS} -Wno-narrowing")
+  set(CLANG_CXX_FLAGS "${CLANG_CXX_FLAGS} -Wno-deprecated-register")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CLANG_CXX_FLAGS}")
 
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   
