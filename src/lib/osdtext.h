@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "GLEW/glew.h"
+#include "glew.h"
 
 #include "color.h"
 

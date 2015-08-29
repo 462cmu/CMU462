@@ -1,7 +1,7 @@
 #ifndef CSD462_VIEWPORT_H
 #define CSD462_VIEWPORT_H
 
-#include "GLEW/glew.h"
+#include "glew.h"
 
 namespace CSD462 {
 

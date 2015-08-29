@@ -7,7 +7,7 @@
 # GLEW_LIBRARY_DIRS      GLEW library directories
 
 if(UNIX)
-  set(GLEW_INC_NAMES GLEW/glew.h)
+  set(GLEW_INC_NAMES glew.h)
   set(GLEW_LIB_NAMES libglew.a)
   if(APPLE)
     set(GLEW_LIB_NAMES libglew_osx.a)
@@ -29,7 +29,7 @@ find_path(GLEW_LIBRARY_DIRS
 # GLEW include dir
 find_path(GLEW_INCLUDE_DIRS
     NAMES ${GLEW_INC_NAMES}
-    PATHS ${PROJECT_SOURCE_DIR}/glew/include/
+    PATHS ${PROJECT_SOURCE_DIR}/glew/include/GLEW
     DOC "GLEW include directories")
 
 # Version

@@ -7,7 +7,7 @@
 # GLFW_LIBRARY_DIRS      GLFW library directories
 
 if(UNIX)
-  set(GLFW_INC_NAMES GLFW/glfw.h)
+  set(GLFW_INC_NAMES glfw.h)
   set(GLFW_LIB_NAMES libglfw.a)
   if(APPLE)
     set(GLFW_LIB_NAMES libglfw_osx.a)
@@ -29,7 +29,7 @@ find_path(GLFW_LIBRARY_DIRS
 # GLFW include dir
 find_path(GLFW_INCLUDE_DIRS
     NAMES ${GLFW_INC_NAMES}
-    PATHS ${PROJECT_SOURCE_DIR}/glfw/include
+    PATHS ${PROJECT_SOURCE_DIR}/glfw/include/GLFW
     DOC "GLFW include directories")
 
 # Version

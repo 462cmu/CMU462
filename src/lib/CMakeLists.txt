@@ -63,7 +63,12 @@ if (APPLE)
 endif(APPLE)
 
 # install libCSD462
-set_target_properties(CSD462 PROPERTIES OUTPUT_NAME CSD462)
+if (UNIX)
+  set_target_properties(CSD462 PROPERTIES OUTPUT_NAME CSD462)
+  if(APPLE)
+    set_target_properties(CSD462 PROPERTIES OUTPUT_NAME CSD462_osx)
+  endif(APPLE)
+endif(UNIX)    
 install(TARGETS CSD462 DESTINATION lib)
 
 # install headers 
