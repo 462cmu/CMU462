@@ -67,7 +67,7 @@ if(UNIX)
     find_library (COCOA_LIBRARIES Cocoa)
     find_library (IOKIT_LIBRARIES IOkit)
     find_library (COREVIDEO_LIBRARIES CoreVideo)
-  else(APPLE)
+  endif(APPLE)
 endif(UNIX)
 
 
