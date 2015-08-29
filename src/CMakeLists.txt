@@ -61,37 +61,35 @@ set(libCSD462_BUILD_TEST ON)
 
 
 # Building on linux
-if(UNIX)
-  if(APPLE)
-    include_directories( "/System/Library/Frameworks" )
-    find_library (COCOA_LIBRARIES Cocoa)
-    find_library (IOKIT_LIBRARIES IOkit)
-    find_library (COREVIDEO_LIBRARIES CoreVideo)
-  endif(APPLE)
-endif(UNIX)
+if(APPLE)
+  include_directories( "/System/Library/Frameworks" )
+  find_library (COCOA_LIBRARIES Cocoa)
+  find_library (IOKIT_LIBRARIES IOkit)
+  find_library (COREVIDEO_LIBRARIES CoreVideo)
+endif(APPLE)
 
 
 # Set shared include directories
 include_directories(
-    ${GLEW_INCLUDE_DIRS}
-    ${GLFW_INCLUDE_DIRS}
-    ${FREETYPE_INCLUDE_DIRS}
+  ${GLEW_INCLUDE_DIRS}
+  ${GLFW_INCLUDE_DIRS}
+  ${FREETYPE_INCLUDE_DIRS}
 )
 
 # Set shared link directories
 link_directories(
-    ${GLEW_LIBRARY_DIRS}
-    ${GLFW_LIBRARY_DIRS}
-    ${FREETYPE_LIBRARY_DIRS}
+  ${GLEW_LIBRARY_DIRS}
+  ${GLFW_LIBRARY_DIRS}
+  ${FREETYPE_LIBRARY_DIRS}
 )
 
 # Build libraries
 if (libCSD462_BUILD_LIBS)
-    add_subdirectory(lib)
+  add_subdirectory(lib)
 endif(libCSD462_BUILD_LIBS)
 
 # Build test
 if (libCSD462_BUILD_TEST)
-    include_directories(lib)
-    add_subdirectory(test)
+  include_directories(lib)
+  add_subdirectory(test)
 endif (libCSD462_BUILD_TEST)
