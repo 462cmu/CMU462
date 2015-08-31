@@ -36,6 +36,10 @@ class TriRenderer : public Renderer {
   }
 
   void resize(size_t w, size_t h) {
+    
+    this->w = w;
+    this->h = h;
+
     return;
   }
 
@@ -44,20 +48,35 @@ class TriRenderer : public Renderer {
     return;
   }
   
-  void pan_event(float x, float y) {
-    // GLFW has down-ward cursor coordinates
-    // flip y for OpenGL coordinate system
-    glTranslatef(x, -y, 0); 
+  void cursor_event(float x, float y, unsigned char keys) {
+
+    // translate when left mouse button is held down
+    if (keys & (1 << 2)) { 
+      float dx = x - cursor_x;
+      float dy = y - cursor_y;
+      glTranslatef(0.5 * dx / w, - 0.5 * dy / h, 0);       
+    }
+
+    // update
+    cursor_x = x;
+    cursor_y = y;
   }
 
-  void zoom_event(float scale) {
+  void scroll_event(float offset_x, float offset_y) {
+    float scale = 1 + 0.1 * offset_x - 0.1 * offset_y;
     glScalef(scale, scale, 1);
   }
 
  private:
 
+  // show draw triangle
   bool shoud_draw;
+  
+  // frame buffer size
+  size_t w, h; 
 
+  // cursor position
+  float cursor_x, cursor_y;
 };
 
 int main( int argc, char** argv ) {

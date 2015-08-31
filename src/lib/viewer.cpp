@@ -28,17 +28,11 @@ time_point<system_clock> Viewer::sys_curr;
 
 // draw toggles
 bool Viewer::showInfo = true;
-bool Viewer::showZoom = false;
 
 // window properties
 GLFWwindow* Viewer::window;
 size_t Viewer::buffer_w;
 size_t Viewer::buffer_h;
-
-// cursor properties
-GLFWcursor* Viewer::cursor;
-double Viewer::cursorX;
-double Viewer::cursorY;
 
 // user space renderer
 Renderer* Viewer::renderer; 
@@ -246,41 +240,30 @@ void Viewer::resize_callback( GLFWwindow* window, int width, int height ) {
 
 void Viewer::cursor_callback( GLFWwindow* window, double xpos, double ypos ) {
 
-  // forward pan event to renderer
-  if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
-    if( HDPI ) {
-      float pan_x = (2 * xpos - cursorX) / buffer_w;
-      float pan_y = (2 * ypos - cursorY) / buffer_h;
-      renderer->pan_event(pan_x, pan_y);
-    } else {
-      float pan_x = (xpos - cursorX) / buffer_w;
-      float pan_y = (ypos - cursorY) / buffer_h;
-      renderer->pan_event(pan_x, pan_y);
-    }
-  }
+  // get keydown bitmask
+  unsigned char keys;
+  keys  |= (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT)   == GLFW_PRESS); 
+  keys <<= 1;
+  keys  |= (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS); 
+  keys <<= 1;
+  keys  |= (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT)  == GLFW_PRESS);
 
+  // forward pan event to renderer
   if( HDPI ) {
-    cursorX = 2*xpos;
-    cursorY = 2*ypos;
+    float cursor_x = 2 * xpos;
+    float cursor_y = 2 * ypos;
+    renderer->cursor_event(cursor_x, cursor_y, keys);
   } else {
-    cursorX = xpos;
-    cursorY = ypos;
+    float cursor_x = xpos;
+    float cursor_y = ypos;
+    renderer->cursor_event(cursor_x, cursor_y, keys);
   }
 
 }
 
 void Viewer::scroll_callback( GLFWwindow* window, double xoffset, double yoffset) {
 
-  // simple mouse wheel scrolls are in the y-axis
-  float scale_factor = 0.1;
-  renderer->zoom_event(1 + yoffset * scale_factor);
-
-  // forward x-axis scrolls as pan events
-  if( HDPI ) {
-    renderer->pan_event(2 * xoffset, 0);
-  } else {
-    renderer->pan_event(-xoffset, 0);
-  }
+  renderer->scroll_event(xoffset, yoffset);
 
 }
 

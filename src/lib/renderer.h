@@ -6,7 +6,6 @@
 
 namespace CSD462 {
 
-
 /**
  * Abstract renderer definition.
  * The abstract class defines a general framework for user-space renderers.
@@ -79,27 +78,28 @@ class Renderer {
   virtual void key_event(char key) = 0;
 
   /**
-   * Respond to pan event.
-   * The viewer will pass mouse events to the renderer in the form of pan 
-   * and zoom events. A pan event is forwarded to the renderer when the user 
-   * moves the cursor while holding down the secondary mouse button. While the
-   * viewer defines the event abstraction, the renderer is free to interpret 
-   * these events from the viewer. For example, a realtime application may want
-   * to respond to these events fast, while a raytracer may not want to deal 
-   * with these events at all.
-   * \param pan_x the x component of the panning vector
-   * \param pan_y the y component of the panning vector
+   * Respond to cursor events.
+   * The viewer itself does not really care about the cursor but it will take 
+   * the GLFW cursor events and forward the ones that matter to  the renderer. 
+   * The arguments are defined in screen space coordinates.
+   * \param pan_x the x coordinate of the cursor
+   * \param pan_y the y coordinate of the cursor
+   * \param keys encodes the current mouse key states in a bitmask
+   *             each bit from the least significant to the most significant
+   *             encodes: right mouse button, middle mouse button, left mouse 
+   *             button.
    */
-  virtual void pan_event(float pan_x, float pan_y) = 0;
+  virtual void cursor_event(float pan_x, float pan_y, unsigned char keys) = 0;
 
   /**
    * Respond to zoom event.
-   * Similar to pan events, the viewer will forward mouse wheel events as zoom
-   * events. Again the renderer is free to interpret events but is expected to
-   * be consistent with the viewer.
-   * \param scale the target scale to zoom to
+   * Like cursor events, the viewer itself does not care about the mouse wheel 
+   * either, but it will take the GLFW wheel events and forward them directly 
+   * to the renderer. 
+   * \param offset_x scroll offset in x direction
+   * \param offset_y scroll offset in y direction
    */
-  virtual void zoom_event(float scale) = 0;
+  virtual void scroll_event(float offset_x, float offset_y) = 0;
 
 };
 

@@ -87,19 +87,13 @@ class Viewer {
   static std::chrono::time_point<std::chrono::system_clock> sys_last; 
   static std::chrono::time_point<std::chrono::system_clock> sys_curr; 
 
-  // draw toggles
-  static bool showZoom;
+  // info toggle
   static bool showInfo;
 
   // window properties
   static GLFWwindow* window;
   static size_t buffer_w;
   static size_t buffer_h;
-
-  // cursor properties
-  static GLFWcursor* cursor;
-  static double cursorX;
-  static double cursorY;
 
   // user space renderer
   static Renderer* renderer; 
