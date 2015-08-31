@@ -68,7 +68,7 @@ class Renderer {
   virtual void resize(size_t w, size_t h) = 0;
 
   /**
-   * Respond to keypress event.
+   * Respond to key event.
    * Renderers are allowed to define their own control keybindings for
    * user interaction but will only do this through the viewer. The viewer 
    * will try to handle all the window events and will inform the renderer
@@ -78,9 +78,28 @@ class Renderer {
    */
   virtual void key_event(char key) = 0;
 
-  //virtual void pan_event(int pan_x, int pan_y) = 0;
-  //virtual void scroll_event(int scroll_u, int scroll_d) = 0;
-  //virtual void zoom_event(int scroll_u, int scroll_d) = 0;
+  /**
+   * Respond to pan event.
+   * The viewer will pass mouse events to the renderer in the form of pan 
+   * and zoom events. A pan event is forwarded to the renderer when the user 
+   * moves the cursor while holding down the secondary mouse button. While the
+   * viewer defines the event abstraction, the renderer is free to interpret 
+   * these events from the viewer. For example, a realtime application may want
+   * to respond to these events fast, while a raytracer may not want to deal 
+   * with these events at all.
+   * \param pan_x the x component of the panning vector
+   * \param pan_y the y component of the panning vector
+   */
+  virtual void pan_event(float pan_x, float pan_y) = 0;
+
+  /**
+   * Respond to zoom event.
+   * Similar to pan events, the viewer will forward mouse wheel events as zoom
+   * events. Again the renderer is free to interpret events but is expected to
+   * be consistent with the viewer.
+   * \param scale the target scale to zoom to
+   */
+  virtual void zoom_event(float scale) = 0;
 
 };
 

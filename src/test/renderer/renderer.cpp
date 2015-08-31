@@ -43,7 +43,17 @@ class TriRenderer : public Renderer {
     if (key == 'R') shoud_draw = !shoud_draw; 
     return;
   }
- 
+  
+  void pan_event(float x, float y) {
+    // GLFW has down-ward cursor coordinates
+    // flip y for OpenGL coordinate system
+    glTranslatef(x, -y, 0); 
+  }
+
+  void zoom_event(float scale) {
+    glScalef(scale, scale, 1);
+  }
+
  private:
 
   bool shoud_draw;

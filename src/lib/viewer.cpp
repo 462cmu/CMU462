@@ -85,11 +85,19 @@ void Viewer::init() {
   glfwMakeContextCurrent( window );
   glfwSwapInterval(1);
 
-  // set event callbacks
-  glfwSetKeyCallback( window, key_callback );
+  // framebuffer event callbacks
   glfwSetFramebufferSizeCallback( window, resize_callback );
+  
+  // key event callbacks
+  glfwSetKeyCallback( window, key_callback );
+  
+  // cursor event callbacks
+  glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, 1);
   glfwSetCursorPosCallback( window, cursor_callback );
 
+  // wheel event callbacks
+  glfwSetScrollCallback(window, scroll_callback);  
+  
   // initialize glew
   if (glewInit() != GLEW_OK) {
     out_err("Error: could not initialize GLEW!");
@@ -263,9 +271,8 @@ void Viewer::drawInfo() {
 
   // udpate renderer OSD
   // TODO: This is done on every update and it shouldn't be!
-  // The renderer needs to be able to inform the viewer about
-  // an info update. And into string should only be set on such
-  // occations.
+  // The viewer should only update when the renderer needs to
+  // update the info text. 
   if (renderer) {
     string renderer_info = renderer->info();
     osd_text->set_text(line_id_renderer, renderer_info);
@@ -277,34 +284,6 @@ void Viewer::drawInfo() {
   // render OSD
   osd_text->render();
 
-//    if( renderer.getRenderMethod() == rasterizeSoftware )
-//    {
-//     Text::draw( 20, buffer_h-40, "RENDERER: software rasterizer" );
-//    }
-//    if( renderer.getRenderMethod() == rasterizeOpenGL )
-//    {
-//     Text::draw( 20, buffer_h-40, "RENDERER: OpenGL" );
-//    }
-//    if( renderer.getRenderMethod() == rasterizeDifference )
-//    {
-//     Text::draw( 20, buffer_h-40, "RENDERER: (difference)" );
-//
-//     int errorCount = renderer.getErrorCount();
-//     char errorCountString[1024];
-//     if( errorCount == 1 )
-//     {
-//        sprintf( errorCountString, "%d pixel differs", errorCount );
-//     }
-//     else
-//     {
-//        sprintf( errorCountString, "%d pixels differ", errorCount );
-//     }
-//     glColor3f( 1., .3, .3 );
-//     Text::draw( 20, buffer_h-80, errorCountString );
-//    }
-//
-//    glMatrixMode( GL_PROJECTION ); glPopMatrix();
-//    glMatrixMode( GL_MODELVIEW ); glPopMatrix();
 }
 
 void Viewer::err_callback( int error, const char* description ) {
@@ -344,6 +323,20 @@ void Viewer::resize_callback( GLFWwindow* window, int width, int height ) {
 }
 
 void Viewer::cursor_callback( GLFWwindow* window, double xpos, double ypos ) {
+
+  // forward pan event to renderer
+  if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
+    if( HDPI ) {
+      float pan_x = (2 * xpos - cursorX) / buffer_w;
+      float pan_y = (2 * ypos - cursorY) / buffer_h;
+      renderer->pan_event(pan_x, pan_y);
+    } else {
+      float pan_x = (xpos - cursorX) / buffer_w;
+      float pan_y = (ypos - cursorY) / buffer_h;
+      renderer->pan_event(pan_x, pan_y);
+    }
+  }
+
   if( HDPI ) {
     cursorX = 2*xpos;
     cursorY = 2*ypos;
@@ -351,6 +344,22 @@ void Viewer::cursor_callback( GLFWwindow* window, double xpos, double ypos ) {
     cursorX = xpos;
     cursorY = ypos;
   }
+
+}
+
+void Viewer::scroll_callback( GLFWwindow* window, double xoffset, double yoffset) {
+
+  // simple mouse wheel scrolls are in the y-axis
+  float scale_factor = 0.1;
+  renderer->zoom_event(1 + yoffset * scale_factor);
+
+  // forward x-axis scrolls as pan events
+  if( HDPI ) {
+    renderer->pan_event(2 * xoffset, 0);
+  } else {
+    renderer->pan_event(-xoffset, 0);
+  }
+
 }
 
 } // namespace CSD462
