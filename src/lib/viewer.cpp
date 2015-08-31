@@ -156,11 +156,6 @@ void Viewer::update() {
     renderer->render();
   }
 
-  // draw zoom
-  if( showZoom ) {
-    drawZoom();
-  }
-
   // draw info
   if( showInfo ) {
     drawInfo();        
@@ -173,77 +168,6 @@ void Viewer::update() {
   glfwPollEvents();
 }
 
-void Viewer::drawZoom() {
-  // size (in pixels) of region of interest
-  const size_t regionSize = 32;
-  
-  // relative size of zoom window
-  size_t zoomFactor = 16;
-  
-  // compute zoom factor---the zoom window should never cover
-  // more than half of the framebuffer, horizontally or vertically
-  size_t bufferSize = min( buffer_w, buffer_h );
-  if( regionSize*zoomFactor > bufferSize/2 ) {
-    zoomFactor = (bufferSize/2)/regionSize;
-  }
-  size_t zoomSize = regionSize * zoomFactor;
-
-  // adjust the cursor coordinates so that the region of
-  // interest never goes outside the bounds of the framebuffer
-  size_t cX = max( regionSize/2, min( buffer_w-regionSize/2-1, (size_t) cursorX ));
-  size_t cY = max( regionSize/2, min( buffer_h-regionSize/2-1, buffer_h - (size_t) cursorY ));
-
-  // grab pixels from the region of interest
-  vector<unsigned char> windowPixels( 3*regionSize*regionSize );
-  glReadPixels( cX - regionSize/2,
-                cY - regionSize/2,
-                regionSize,
-                regionSize,
-                GL_RGB,
-                GL_UNSIGNED_BYTE,
-                &windowPixels[0] );
-
-  // upsample by the zoom factor, highlighting pixel boundaries
-  vector<unsigned char> zoomPixels( 3*zoomSize*zoomSize );
-  unsigned char* wp = &windowPixels[0];
-  // outer loop over pixels in region of interest
-  for( int y = 0; y < regionSize; y++ ) {
-   int y0 = y*zoomFactor;
-   for( int x = 0; x < regionSize; x++ ) {
-      int x0 = x*zoomFactor;
-      unsigned char* zp = &zoomPixels[ ( x0 + y0*zoomSize )*3 ];
-      // inner loop over upsampled block
-      for( int j = 0; j < zoomFactor; j++ ) {
-        for( int i = 0; i < zoomFactor; i++ ) {
-          for( int k = 0; k < 3; k++ ) {
-            // highlight pixel boundaries
-            if( i == 0 || j == 0 ) {
-              const float s = .3;
-              zp[k] = (int)( (1.-2.*s)*wp[k] + s*255. );
-            } else {
-              zp[k] = wp[k];
-            }
-          }
-          zp += 3;
-        }
-        zp += 3*( zoomSize - zoomFactor );
-      }
-      wp += 3;
-    }
-  }
-
-  // copy pixels to the screen using OpenGL
-  glMatrixMode( GL_PROJECTION ); glPushMatrix(); glLoadIdentity(); glOrtho( 0, buffer_w, 0, buffer_h, 0.01, 1000. );
-  glMatrixMode( GL_MODELVIEW  ); glPushMatrix(); glLoadIdentity(); glTranslated( 0., 0., -1. );
-  
-  glRasterPos2i( buffer_w-zoomSize, buffer_h-zoomSize );
-  // Or maybe hover zoom?
-  //glRasterPos2i( cursorX-zoomSize/2, (buffer_h-cursorY)-zoomSize/2 );
-  
-  glDrawPixels( zoomSize, zoomSize, GL_RGB, GL_UNSIGNED_BYTE, &zoomPixels[0] );
-  glMatrixMode( GL_PROJECTION ); glPopMatrix();
-  glMatrixMode( GL_MODELVIEW ); glPopMatrix();
-}
 
 void Viewer::drawInfo() {
 
@@ -295,9 +219,7 @@ void Viewer::key_callback( GLFWwindow* window,
   if( action == GLFW_PRESS ) {
     if( key == GLFW_KEY_ESCAPE ) { 
       glfwSetWindowShouldClose( window, true ); 
-    } else if( key == 'Z' ) { 
-      showZoom = !showZoom; 
-    } else if( key == 'I' ) { 
+    } else if( key == GLFW_KEY_GRAVE_ACCENT ) { 
       showInfo = !showInfo; 
     } else {
       renderer->key_event(key);
