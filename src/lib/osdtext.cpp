@@ -42,7 +42,7 @@ int OSDText::init() {
 
   // initialize font library
   if(FT_Init_FreeType(ft)) {
-    out_err("Could not init freetype library");
+    out_err("Cannot init freetype library");
     return -1;
   }
 
@@ -56,7 +56,7 @@ int OSDText::init() {
   // initialize font face
   if(FT_New_Memory_Face(*ft, (const FT_Byte*) font, font_size - 1, 0, face)) {
     cerr << font;
-    out_err("Could not open font");
+    out_err("Cannot open font");
     return -1;
   }
 
@@ -349,14 +349,14 @@ GLuint OSDText::compile_shaders() {
 GLint OSDText::get_attribu(GLuint program, const char *name) {
   GLint attribute = glGetAttribLocation(program, name);
   if(attribute == -1)
-    fprintf(stderr, "Could not bind attribute %s\n", name);
+    fprintf(stderr, "Cannot bind attribute %s\n", name);
   return attribute;
 }
 
 GLint OSDText::get_uniform(GLuint program, const char *name) {
   GLint uniform = glGetUniformLocation(program, name);
   if(uniform == -1)
-    fprintf(stderr, "Could not bind uniform %s\n", name);
+    fprintf(stderr, "Cannot bind uniform %s\n", name);
   return uniform;
 }
 
