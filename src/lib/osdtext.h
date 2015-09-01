@@ -39,7 +39,7 @@ struct OSDLine {
 };
 
 /**
- * Provides routines for managing on-screen display text. 
+ * Provides an interface for text on-screen display. 
  * Note that this requires GL_BLEND enabled to work. Do note this is a very
  * basic implementation and the cost of all operations increases linearly with 
  * respect to the number of lines and the length of the lines. 

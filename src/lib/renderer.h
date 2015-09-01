@@ -24,22 +24,7 @@ class Renderer {
    * Each renderer implementation should define its own destructor 
    * that takes care of freeing the resources that it uses. 
    */
-  virtual ~Renderer() { }
-
-  /**
-   * Return a name for the renderer.
-   * If the viewer has a renderer set at initialization, it will include 
-   * the renderer name in the window title.
-   */
-  virtual std::string name() = 0;
-
-  /**
-   * Return a brief description of the renderer.
-   * Each renderer can define this differently (return the current render 
-   * method for example) and the viewer will use the returned value in the
-   * renderer section of the on-screen display.
-   */
-  virtual std::string info() = 0;
+  virtual ~Renderer( void ) { }
 
   /**
    * Initialize the renderer.
@@ -47,14 +32,14 @@ class Renderer {
    * to be used. The viewer will call the init function before using the 
    * renderer in drawing. 
    */
-  virtual void init() = 0;
+  virtual void init( void ) = 0;
 
   /**
    * Draw content.
    * Renderers are free to define their own routines for drawing to the 
    * context. The viewer calls this function on every frame update.
    */
-  virtual void render() = 0;
+  virtual void render( void ) = 0;
 
   /**
    * Respond to buffer resize.
@@ -64,7 +49,21 @@ class Renderer {
    * \param w The new width of the context
    * \param h The new height of the context
    */
-  virtual void resize(size_t w, size_t h) = 0;
+  virtual void resize( size_t w, size_t h ) = 0;
+
+ /**
+   * Return a name for the renderer.
+   * If the viewer has a renderer set at initialization, it will include 
+   * the renderer name in the window title.
+   */
+  virtual std::string name( void ) = 0;
+
+  /**
+   * Return a brief description of the renderer.
+   * Each renderer can define this differently. The viewer will use the 
+   * returned value in the renderer section of its on-screen display.
+   */
+  virtual std::string info( void ) = 0;
 
   /**
    * Respond to key event.
@@ -75,21 +74,21 @@ class Renderer {
    * using keybindings that the viewer already uses. (see Viewer for details)
    * \param key The key being pressed by the user.
    */
-  virtual void key_event(char key) = 0;
+  virtual void key_event( char key ) = 0;
 
   /**
    * Respond to cursor events.
    * The viewer itself does not really care about the cursor but it will take 
    * the GLFW cursor events and forward the ones that matter to  the renderer. 
    * The arguments are defined in screen space coordinates.
-   * \param pan_x the x coordinate of the cursor
-   * \param pan_y the y coordinate of the cursor
-   * \param keys encodes the current mouse key states in a bitmask
+   * \param x the x coordinate of the cursor
+   * \param y the y coordinate of the cursor
+   * \param keys encodes the current mouse buttons state in a bitmask
    *             each bit from the least significant to the most significant
    *             encodes: right mouse button, middle mouse button, left mouse 
    *             button.
    */
-  virtual void cursor_event(float pan_x, float pan_y, unsigned char keys) = 0;
+  virtual void cursor_event( float x, float y, unsigned char keys ) = 0;
 
   /**
    * Respond to zoom event.
@@ -99,7 +98,7 @@ class Renderer {
    * \param offset_x scroll offset in x direction
    * \param offset_y scroll offset in y direction
    */
-  virtual void scroll_event(float offset_x, float offset_y) = 0;
+  virtual void scroll_event( float offset_x, float offset_y ) = 0;
 
 };
 

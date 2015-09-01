@@ -54,7 +54,7 @@ int OSDText::init() {
   memcpy(font, decoded.c_str(), size);
 
   // initialize font face
-  if(FT_New_Memory_Face(*ft, (const FT_Byte*) font, font_size - 1, 0, face)) {
+  if(FT_New_Memory_Face(*ft, (const FT_Byte*) font, size, 0, face)) {
     cerr << font;
     out_err("Cannot open font");
     return -1;

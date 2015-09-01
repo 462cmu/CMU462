@@ -11,12 +11,11 @@
 namespace CSD462 {
 
 /**
- * Provides window display and event handling routines. 
+ * Provides OpenGL context, window display, and event handling routines. 
  * A user application may draw to the window's context by providing
- * a user space renderer. The viewer manages other display components
- * such as the zoom views, text OSD, etc. It also takes care of window 
- * event handling and passing, through which the renderer may interact 
- * with user inputs. 
+ * a user renderer. The viewer manages other display components such as the
+ * zoom views, text OSD, etc. It also takes care of window event handling and
+ * event passing, through which the renderer may interact with user inputs. 
  */
 class Viewer {
  public:
@@ -25,52 +24,52 @@ class Viewer {
    * Constructor.
    * Creates a new viewer with the default title (CSD462).
    */
-  Viewer();
+  Viewer( void );
 
   /** 
    * Constructor.
    * Creates a new viweer with the given title.
    */
-  Viewer(const char* title);
+  Viewer( const char* title );
 
   /**
    * Destructor.
    * Destroys the viewer instance and frees memory.
    * Note that this does not change the user space renderer.
    */
-  ~Viewer();
+  ~Viewer( void );
 
   /**
    * Initialize the viewer.
    * This will open up a window and install all the event handlers
    * and make the viewer ready for drawing.
    */
-  void init();
+  void init( void );
   
   /**
    * Start the drawing loop of the viewer.
    * Once called this will block until the viewer is close.
    */
-  void start();
+  void start( void );
 
   /**
    * Set a user space renderer.
    * The viewer will use the given user space renderer in drawing.
    * \param renderer The user space renderer to use in the viewer.
    */
-  void set_renderer(Renderer *renderer);
+  void set_renderer( Renderer *renderer );
 
  private:
 
   /**
    * Main update loop.
    */
-  static void update();
+  static void update( void );
     
   /**
    * Draw information view.
    */
-  static void drawInfo();
+  static void drawInfo( void );
 
   // window event callbacks
   static void err_callback( int error, const char* description );

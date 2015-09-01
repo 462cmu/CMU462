@@ -16,7 +16,7 @@ class Complex : public Vector2D {
    * Constructor.
    * Initializes to 0.
    */
-  Complex( void ) : Vector2D( 0.0, 0.0 ) { }
+  Complex( ) : Vector2D( 0.0, 0.0 ) { }
   
   /**
    * Constructor.
@@ -33,14 +33,14 @@ class Complex : public Vector2D {
   /** 
    * Compute the complex conjugate.
    */
-  inline Complex conj( void ) const {
+  inline Complex conj( ) const {
     return Complex( x, -y );
   }
 
   /** 
    * Compute the inverse.
    */
-  inline Complex inv( void ) const {
+  inline Complex inv( ) const {
     double r = 1.0/norm2();
     return Complex( r*x, -r*y );
   }
@@ -48,14 +48,14 @@ class Complex : public Vector2D {
   /**
    * Return argument.
    */
-  inline double arg( void ) const {
+  inline double arg( ) const {
     return atan2( y, x );
   }
 
   /**
    * Complex exponentiation.
    */
-  inline Complex exponential( void ) const {
+  inline Complex exponential( ) const {
     return exp( x ) * Complex( cos( y ), sin( y ));
   }
 

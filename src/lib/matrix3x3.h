@@ -18,7 +18,7 @@ class Matrix3x3 {
   /** 
    * Sets all elements to val.
    */
-  void zero( double val = 0. );
+  void zero(double val = 0.0 );
 
   /** 
    * Returns the determinant of A.

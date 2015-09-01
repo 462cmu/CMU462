@@ -96,7 +96,7 @@ class Color {
    * Returns a hexadecimal string #rrggbb encoding this color.
    * \return the hexadecimal encoding of the color.
    */
-  std::string toHex( void ) const;
+  std::string toHex( ) const;
 
 
 }; // class Color

@@ -6,7 +6,7 @@
 namespace CSD462 {
 
 /**
- * Draws buffered image data on screen.
+ * Draws buffered image data as texture. (Requires OpenGL core profile)
  * The viewport currently draws a textured quad that fills up the
  * context, with no respect to aspect ratio, etc. Need to make it
  * respect certain constrains.
@@ -17,12 +17,12 @@ class Viewport {
   /**
    * Constructor.
    */
-  Viewport();
+  Viewport( void );
 
   /**
    * Destructor.
    */
-  ~Viewport();
+  ~Viewport( void );
 
   /**
    * Bind the viewport to a bitmap buffer.
@@ -32,12 +32,12 @@ class Viewport {
    * @return 0 if successful
    *        -1 if failed
    */
-  int bind(char *buffer, size_t w, size_t h);
+  int bind( char *buffer, size_t w, size_t h );
 
   /**
    * Update the viewport.
    */    
-  void update();
+  void update( void );
 
 private:
 
@@ -53,7 +53,7 @@ private:
 
   GLuint program;
 
-  GLuint compile_shaders();
+  GLuint compile_shaders( void );
 
   GLuint make_buffer( GLenum target, 
                       GLsizei buffer_size,
