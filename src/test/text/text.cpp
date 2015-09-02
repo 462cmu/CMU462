@@ -6,7 +6,7 @@
 #include "glew.h"
 #include "glfw.h"
 
-using namespace CSD462;
+using namespace CMU462;
 
 int main(int argc, char *argv[]) {
 

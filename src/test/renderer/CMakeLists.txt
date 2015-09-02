@@ -6,7 +6,7 @@ add_executable(
 
 target_link_libraries(
     renderer_test
-    CSD462
+    CMU462
 )
 
 install(TARGETS renderer_test DESTINATION bin)

@@ -1,9 +1,9 @@
-#ifndef CSD462_COLOR_H
-#define CSD462_COLOR_H
+#ifndef CMU462_COLOR_H
+#define CMU462_COLOR_H
 
 #include <string>
 
-namespace CSD462 {
+namespace CMU462 {
 
 /** 
  * Encodes a color via additive red, green, and blue chanel values.
@@ -110,6 +110,6 @@ inline Color operator*( float s, const Color& c ) {
 // Prints components.
 std::ostream& operator<<( std::ostream& os, const Color& c );
    
-} // namespace CSD462
+} // namespace CMU462
 
 #endif

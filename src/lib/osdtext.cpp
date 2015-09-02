@@ -10,7 +10,7 @@
 
 using namespace std;
 
-namespace CSD462 {
+namespace CMU462 {
 
 struct point {
     GLfloat x;
@@ -360,4 +360,4 @@ GLint OSDText::get_uniform(GLuint program, const char *name) {
   return uniform;
 }
 
-} // namespace CSD462
+} // namespace CMU462

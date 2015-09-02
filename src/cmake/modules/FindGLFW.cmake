@@ -1,4 +1,4 @@
-# Find GLFW library and include paths for CSD462
+# Find GLFW library and include paths for CMU462
 # This defines the following:
 #
 # GLFW_FOUND             If GLFW is found
@@ -33,10 +33,10 @@ find_path(GLFW_INCLUDE_DIRS
     DOC "GLFW include directories")
 
 # Version
-set(GLFW_VERSION 1.0)
+set(GLFW_VERSION 3.1.1)
 
 # Set package standard args
 include(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(GLFW 
-    REQUIRED_VARS GLFW_INCLUDE_DIRS GLFW_LIBRARY_DIRS GLFW_LIBRARIES
+    REQUIRED_VARS GLFW_LIBRARIES GLFW_INCLUDE_DIRS GLFW_LIBRARY_DIRS
     VERSION_VAR GLFW_VERSION)

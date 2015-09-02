@@ -1,10 +1,10 @@
-#ifndef CSD462_VECTOR3D_H
-#define CSD462_VECTOR3D_H
+#ifndef CMU462_VECTOR3D_H
+#define CMU462_VECTOR3D_H
 
 #include <ostream>
 #include <cmath>
 
-namespace CSD462 {
+namespace CMU462 {
 
 /** 
  * Defines 3D vectors.
@@ -146,6 +146,6 @@ inline Vector3D cross( const Vector3D& u, const Vector3D& v ) {
 // prints components
 std::ostream& operator<<( std::ostream& os, const Vector3D& v );
 
-} // namespace CSD462
+} // namespace CMU462
 
-#endif // CSD462_VECTOR3D_H
+#endif // CMU462_VECTOR3D_H

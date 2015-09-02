@@ -1,5 +1,5 @@
-#ifndef CSD462_VIEWER_H
-#define CSD462_VIEWER_H
+#ifndef CMU462_VIEWER_H
+#define CMU462_VIEWER_H
 
 #include "renderer.h"
 #include "osdtext.h"
@@ -8,7 +8,7 @@
 
 #include "glfw.h"
 
-namespace CSD462 {
+namespace CMU462 {
 
 /**
  * Provides OpenGL context, window display, and event handling routines. 
@@ -22,7 +22,7 @@ class Viewer {
 
   /**
    * Constructor.
-   * Creates a new viewer with the default title (CSD462).
+   * Creates a new viewer with the default title (CMU462).
    */
   Viewer( void );
 
@@ -105,6 +105,6 @@ class Viewer {
 
 }; // class Viewer
 
-} // namespace CSD462
+} // namespace CMU462
 
-#endif // CSD462_VIEWER_H
+#endif // CMU462_VIEWER_H

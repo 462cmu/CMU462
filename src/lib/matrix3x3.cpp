@@ -5,7 +5,7 @@
 
 using namespace std;
 
-namespace CSD462 {
+namespace CMU462 {
     
   double& Matrix3x3::operator()( int i, int j ) {
     return entries[j][i];

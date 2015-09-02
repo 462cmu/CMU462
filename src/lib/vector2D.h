@@ -1,10 +1,10 @@
-#ifndef CSD462_VECTOR2D_H
-#define CSD462_VECTOR2D_H
+#ifndef CMU462_VECTOR2D_H
+#define CMU462_VECTOR2D_H
 
 #include <ostream>
 #include <cmath>
 
-namespace CSD462 {
+namespace CMU462 {
 
 /** 
  * Defines 2D vectors.
@@ -132,6 +132,6 @@ inline double cross( const Vector2D& v1, const Vector2D& v2 ) {
 // prints components
 std::ostream& operator<<( std::ostream& os, const Vector2D& v );
    
-} // namespace CSD462
+} // namespace CMU462
 
-#endif // CSD462_VECTOR2D_H
+#endif // CMU462_VECTOR2D_H

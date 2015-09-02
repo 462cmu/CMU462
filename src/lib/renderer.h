@@ -1,10 +1,10 @@
-#ifndef CSD462_RENDERER_H
-#define CSD462_RENDERER_H
+#ifndef CMU462_RENDERER_H
+#define CMU462_RENDERER_H
 
 #include <stdio.h>
 #include <string>
 
-namespace CSD462 {
+namespace CMU462 {
 
 /**
  * Abstract renderer definition.
@@ -102,6 +102,6 @@ class Renderer {
 
 };
 
-} // namespace CSD462
+} // namespace CMU462
 
-#endif // CSD462_RENDERER_H
+#endif // CMU462_RENDERER_H

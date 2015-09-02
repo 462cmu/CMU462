@@ -1,11 +1,11 @@
-#ifndef CSD462_MATRIX3X3_H
-#define CSD462_MATRIX3X3_H
+#ifndef CMU462_MATRIX3X3_H
+#define CMU462_MATRIX3X3_H
 
 #include <iosfwd>
 
 #include "vector3D.h"
 
-namespace CSD462 {  
+namespace CMU462 {  
 
 /**
  * Defines a 3x3 matrix.
@@ -101,6 +101,6 @@ Matrix3x3 operator*( double c, const Matrix3x3& A );
 // prints entries
 std::ostream& operator<<( std::ostream& os, const Matrix3x3& A );
     
-} // namespace CSD462
+} // namespace CMU462
 
-#endif // CSD462_MATRIX3X3_H
+#endif // CMU462_MATRIX3X3_H

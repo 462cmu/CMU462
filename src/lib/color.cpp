@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace CSD462 {
+namespace CMU462 {
 
 // Constants
 const Color Color::White  = Color(1,1,1,1);
@@ -73,4 +73,4 @@ std::ostream& operator<<( std::ostream& os, const Color& c ) {
   return os;
 }
 
-} // namespace CSD462
+} // namespace CMU462

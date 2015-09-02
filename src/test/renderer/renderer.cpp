@@ -5,7 +5,7 @@
 #include "renderer.h"
 
 using namespace std;
-using namespace CSD462;
+using namespace CMU462;
 
 class TriRenderer : public Renderer {
  public:

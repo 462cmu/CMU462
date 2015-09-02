@@ -1,5 +1,5 @@
-#ifndef CSD462_TEXTOSD_H
-#define CSD462_TEXTOSD_H
+#ifndef CMU462_TEXTOSD_H
+#define CMU462_TEXTOSD_H
 
 #include <string>
 #include <vector>
@@ -14,7 +14,7 @@ typedef struct FT_LibraryRec_* FT_Library;
 struct FT_FaceRec_; 
 typedef struct FT_FaceRec_*  FT_Face;
 
-namespace CSD462 {
+namespace CMU462 {
 
 // base64 encoded embeded font
 extern "C" char osdfont_base64[];
@@ -167,6 +167,6 @@ class OSDText {
   
 }; // class textOSD
 
-} // namespace CSD462
+} // namespace CMU462
 
-#endif // CSD462_TEXTOSD_H
+#endif // CMU462_TEXTOSD_H

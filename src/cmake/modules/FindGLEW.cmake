@@ -1,4 +1,4 @@
-# Find GLEW library and include paths for CSD462
+# Find GLEW library and include paths for CMU462
 # This defines the following:
 #
 # GLEW_FOUND             If GLEW is found
@@ -33,10 +33,10 @@ find_path(GLEW_INCLUDE_DIRS
     DOC "GLEW include directories")
 
 # Version
-set(GLEW_VERSION 1.0)
+set(GLEW_VERSION 1.13.0)
 
 # Set package standard args
 include(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(GLEW 
-    REQUIRED_VARS GLEW_INCLUDE_DIRS GLEW_LIBRARY_DIRS GLEW_LIBRARIES
+    REQUIRED_VARS GLEW_LIBRARIES GLEW_INCLUDE_DIRS GLEW_LIBRARY_DIRS
     VERSION_VAR GLEW_VERSION)

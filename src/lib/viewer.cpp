@@ -16,7 +16,7 @@ using namespace chrono;
 #define DEFAULT_W 960
 #define DEFAULT_H 640
 
-namespace CSD462 {
+namespace CMU462 {
 
 // HDPI display
 bool Viewer::HDPI;
@@ -67,7 +67,7 @@ void Viewer::init() {
   }
 
   // create window
-  string title = renderer ? "CSD462: " + renderer->name() : "CSD462";
+  string title = renderer ? "CMU462: " + renderer->name() : "CMU462";
   window = glfwCreateWindow( DEFAULT_W, DEFAULT_H, title.c_str(), NULL, NULL );
   if (!window) {
     out_err("Error: could not create window!");
@@ -267,5 +267,5 @@ void Viewer::scroll_callback( GLFWwindow* window, double xoffset, double yoffset
 
 }
 
-} // namespace CSD462
+} // namespace CMU462
 

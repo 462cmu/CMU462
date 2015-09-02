@@ -1,5 +1,5 @@
-#ifndef CSD462_CONSOLE_H
-#define CSD462_CONSOLE_H
+#ifndef CMU462_CONSOLE_H
+#define CMU462_CONSOLE_H
 
 #include <ostream>
 
@@ -11,8 +11,8 @@
 #define ANSI_M "\x1b[35m"
 #define ANSI_Y "\x1b[33m"
 
-#define out_msg(s) std::cout << ANSI_B << "[CSD462] " << ANSI_RESET << s << std::endl << std::flush
-#define out_wrn(s) std::cout << ANSI_Y << "[CSD462] " << ANSI_RESET << s << std::endl << std::flush
-#define out_err(s) std::cout << ANSI_R << "[CSD462] " << ANSI_RESET << s << std::endl << std::flush
+#define out_msg(s) std::cout << ANSI_B << "[CMU462] " << ANSI_RESET << s << std::endl << std::flush
+#define out_wrn(s) std::cout << ANSI_Y << "[CMU462] " << ANSI_RESET << s << std::endl << std::flush
+#define out_err(s) std::cout << ANSI_R << "[CMU462] " << ANSI_RESET << s << std::endl << std::flush
 
-#endif // CSD462_CONSOLE_H
+#endif // CMU462_CONSOLE_H

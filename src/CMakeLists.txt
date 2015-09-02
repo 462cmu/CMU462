@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(libCSD462)
+project(libCMU462)
 
 # Check compiler
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
@@ -56,8 +56,8 @@ endif()
 
 # Install settings
 set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/../")
-set(libCSD462_BUILD_LIBS ON)
-set(libCSD462_BUILD_TEST ON)
+set(libCMU462_BUILD_LIBS ON)
+set(libCMU462_BUILD_TEST ON)
 
 
 # Building on linux
@@ -84,12 +84,12 @@ link_directories(
 )
 
 # Build libraries
-if (libCSD462_BUILD_LIBS)
+if (libCMU462_BUILD_LIBS)
   add_subdirectory(lib)
-endif(libCSD462_BUILD_LIBS)
+endif(libCMU462_BUILD_LIBS)
 
 # Build test
-if (libCSD462_BUILD_TEST)
+if (libCMU462_BUILD_TEST)
   include_directories(lib)
   add_subdirectory(test)
-endif (libCSD462_BUILD_TEST)
+endif (libCMU462_BUILD_TEST)

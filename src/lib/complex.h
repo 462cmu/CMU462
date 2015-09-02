@@ -1,9 +1,9 @@
-#ifndef CSD462_COMPLEX_H
-#define CSD462_COMPLEX_H
+#ifndef CMU462_COMPLEX_H
+#define CMU462_COMPLEX_H
 
 #include "vector2D.h"
 
-namespace CSD462 {
+namespace CMU462 {
 
 /**
 * Represents complex numbers as 2D vectors of their real and 
@@ -99,6 +99,6 @@ inline Complex operator/( const Complex& z1, const Complex& z2 ) {
 // prints components
 std::ostream& operator<<( std::ostream& os, const Complex& z );
 
-} // namespace CSD462
+} // namespace CMU462
 
-#endif // CSD462_COMPLEX_H
+#endif // CMU462_COMPLEX_H

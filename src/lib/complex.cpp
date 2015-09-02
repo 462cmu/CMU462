@@ -1,6 +1,6 @@
 #include "complex.h"
 
-namespace CSD462 {
+namespace CMU462 {
   
   std::ostream& operator<<( std::ostream& os, const Complex& z ) {
     if( z.y > 0 ) {
@@ -13,4 +13,4 @@ namespace CSD462 {
     return os;
   }
 
-} // namespace CSD462
+} // namespace CMU462
