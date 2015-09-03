@@ -6,7 +6,6 @@
 
 #include "color.h"
 #include "renderer.h"
-#include "viewport.h"
 #include "viewer.h"
 
 #include "base64.h"
