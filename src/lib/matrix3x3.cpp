@@ -6,19 +6,19 @@
 using namespace std;
 
 namespace CMU462 {
-    
+
   double& Matrix3x3::operator()( int i, int j ) {
     return entries[j][i];
   }
-   
+
   const double& Matrix3x3::operator()( int i, int j ) const {
     return entries[j][i];
   }
-   
+
   Vector3D& Matrix3x3::operator[]( int j ) {
       return entries[j];
   }
-   
+
   const Vector3D& Matrix3x3::operator[]( int j ) const {
     return entries[j];
   }
@@ -27,15 +27,15 @@ namespace CMU462 {
     // sets all elements to val
     entries[0] = entries[1] = entries[2] = Vector3D( val, val, val );
   }
- 
+
   double Matrix3x3::det( void ) const {
     const Matrix3x3& A( *this );
 
-    return -A(0,2)*A(1,1)*A(2,0) + A(0,1)*A(1,2)*A(2,0) + 
-            A(0,2)*A(1,0)*A(2,1) - A(0,0)*A(1,2)*A(2,1) - 
+    return -A(0,2)*A(1,1)*A(2,0) + A(0,1)*A(1,2)*A(2,0) +
+            A(0,2)*A(1,0)*A(2,1) - A(0,0)*A(1,2)*A(2,1) -
             A(0,1)*A(1,0)*A(2,2) + A(0,0)*A(1,1)*A(2,2) ;
   }
- 
+
   double Matrix3x3::norm( void ) const {
     return sqrt( entries[0].norm2() +
                  entries[1].norm2() +
@@ -71,30 +71,30 @@ namespace CMU462 {
     *Aij++ += *Bij++;
     *Aij++ += *Bij++;
   }
- 
+
   Matrix3x3 Matrix3x3::operator-( const Matrix3x3& B ) const {
     const Matrix3x3& A( *this );
     Matrix3x3 C;
- 
+
     for( int i = 0; i < 3; i++ )
     for( int j = 0; j < 3; j++ )
     {
        C(i,j) = A(i,j) - B(i,j);
     }
- 
+
     return C;
   }
- 
+
   Matrix3x3 Matrix3x3::operator*( double c ) const {
     const Matrix3x3& A( *this );
     Matrix3x3 B;
- 
+
     for( int i = 0; i < 3; i++ )
     for( int j = 0; j < 3; j++ )
     {
        B(i,j) = c*A(i,j);
     }
- 
+
     return B;
   }
 
@@ -116,7 +116,7 @@ namespace CMU462 {
 
     return cA;
   }
-   
+
   Matrix3x3 Matrix3x3::operator*( const Matrix3x3& B ) const {
     const Matrix3x3& A( *this );
     Matrix3x3 C;

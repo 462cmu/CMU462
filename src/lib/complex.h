@@ -6,38 +6,38 @@
 namespace CMU462 {
 
 /**
-* Represents complex numbers as 2D vectors of their real and 
+* Represents complex numbers as 2D vectors of their real and
 * imaginary components.
 */
-class Complex : public Vector2D { 
+class Complex : public Vector2D {
  public:
-  
+
   /**
    * Constructor.
    * Initializes to 0.
    */
   Complex( ) : Vector2D( 0.0, 0.0 ) { }
-  
+
   /**
    * Constructor.
    * Initializes to a+bi.
    */
   Complex( double a, double b ) : Vector2D( a, b ) { }
-  
+
   /**
    * Constructor.
    * Initializes to a+bi from vector v = (a,b)
    */
   Complex( const Vector2D& v ) : Vector2D( v ) { }
-   
-  /** 
+
+  /**
    * Compute the complex conjugate.
    */
   inline Complex conj( ) const {
     return Complex( x, -y );
   }
 
-  /** 
+  /**
    * Compute the inverse.
    */
   inline Complex inv( ) const {

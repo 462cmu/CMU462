@@ -5,37 +5,56 @@
 
 #include "vector3D.h"
 
-namespace CMU462 {  
+namespace CMU462 {
 
 /**
  * Defines a 3x3 matrix.
- * 3x3 matrices are extremely useful in computer graphics. 
+ * 3x3 matrices are extremely useful in computer graphics.
  */
 class Matrix3x3 {
-  
+
   public:
 
-  /** 
+  // The default constructor.
+  Matrix3x3(void) { }
+
+  // Constructor for row major form data.
+  // Transposes to the internal column major form.
+  // REQUIRES: data should be of size 9 for a 3 by 3 matrix..
+  Matrix3x3(double * data)
+  {
+    for( int i = 0; i < 3; i++ )
+    for( int j = 0; j < 3; j++ )
+    {
+	  // Transpostion happens within the () query.
+	  (*this)(i,j) = data[i*3 + j];
+    }
+
+  }
+
+
+
+  /**
    * Sets all elements to val.
    */
   void zero(double val = 0.0 );
 
-  /** 
+  /**
    * Returns the determinant of A.
    */
   double det( void ) const;
 
-  /** 
+  /**
    * Returns the Frobenius norm of A.
    */
   double norm( void ) const;
 
-  /** 
+  /**
    * Returns the 3x3 identity matrix.
    */
   static Matrix3x3 identity( void );
 
-  /** 
+  /**
    * Returns a matrix representing the (left) cross product with u.
    */
   static Matrix3x3 crossProduct( const Vector3D& u );
@@ -46,12 +65,12 @@ class Matrix3x3 {
         Vector3D& column( int i );
   const Vector3D& column( int i ) const;
 
-  /** 
+  /**
    * Returns the transpose of A.
    */
   Matrix3x3 T( void ) const;
 
-  /** 
+  /**
    * Returns the inverse of A.
    */
   Matrix3x3 inv( void ) const;
@@ -60,7 +79,7 @@ class Matrix3x3 {
         double& operator()( int i, int j );
   const double& operator()( int i, int j ) const;
 
-  // accesses the ith column of A   
+  // accesses the ith column of A
         Vector3D& operator[]( int i );
   const Vector3D& operator[]( int i ) const;
 
@@ -83,7 +102,7 @@ class Matrix3x3 {
   Vector3D operator*( const Vector3D& x ) const;
 
   // divides each element by x
-  void operator/=( double x );   
+  void operator/=( double x );
 
   protected:
 
@@ -100,7 +119,7 @@ Matrix3x3 operator*( double c, const Matrix3x3& A );
 
 // prints entries
 std::ostream& operator<<( std::ostream& os, const Matrix3x3& A );
-    
+
 } // namespace CMU462
 
 #endif // CMU462_MATRIX3X3_H

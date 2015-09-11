@@ -2,7 +2,10 @@
 set(CMU462_SOURCE
     vector2D.cpp
     vector3D.cpp
+	vector4D.cpp
     matrix3x3.cpp
+	matrix4x4.cpp
+	quaternion.cpp
     complex.cpp
     color.cpp
     osdtext.cpp
@@ -17,7 +20,10 @@ set(CMU462_HEADER
     CMU462.h
     vector2D.h
     vector3D.h
+	vector4D.h
     matrix3x3.h
+	matrix4x4.h
+	quaternion.h
     complex.h
     color.h
     osdtext.h
@@ -29,7 +35,7 @@ set(CMU462_HEADER
 
 # build static library
 add_library(
-    CMU462 STATIC 
+    CMU462 STATIC
     ${CMU462_SOURCE}
     ${CMU462_HEADER}
 )
@@ -50,9 +56,9 @@ if (APPLE)
 
   # clang options
   target_compile_options(CMU462 PRIVATE -Wno-constant-conversion)
-  
+
   # Frameworks required on osx
-  target_link_libraries(CMU462  
+  target_link_libraries(CMU462
     ${COCOA_LIBRARIES}
     ${IOKIT_LIBRARIES}
     ${COREVIDEO_LIBRARIES}
@@ -66,10 +72,10 @@ if (UNIX)
   if(APPLE)
     set_target_properties(CMU462 PROPERTIES OUTPUT_NAME CMU462_osx)
   endif(APPLE)
-endif(UNIX)    
+endif(UNIX)
 install(TARGETS CMU462 DESTINATION lib)
 
-# install headers 
+# install headers
 install(FILES ${CMU462_HEADER} DESTINATION include)
 
 # install external libs
