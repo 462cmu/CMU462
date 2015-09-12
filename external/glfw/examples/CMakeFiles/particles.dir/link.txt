@@ -1,1 +1,0 @@
-/usr/lib64/ccache/cc      CMakeFiles/particles.dir/particles.c.o CMakeFiles/particles.dir/__/deps/tinycthread.c.o CMakeFiles/particles.dir/__/deps/getopt.c.o  -o particles -rdynamic ../src/libglfw3.a -lGLU -lX11 -lpthread -lrt -lXrandr -lXinerama -lXi -lXxf86vm -lrt -lm -lXcursor -lGL -lpthread -lrt -lXrandr -lXinerama -lXi -lXxf86vm -lm -lXcursor -lGL 

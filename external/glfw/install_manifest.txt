@@ -1,6 +1,0 @@
-/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/lib/cmake/glfw/glfw3Config.cmake
-/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/lib/cmake/glfw/glfw3ConfigVersion.cmake
-/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/lib/cmake/glfw/glfwTargets.cmake
-/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/lib/cmake/glfw/glfwTargets-noconfig.cmake
-/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/lib/pkgconfig/glfw3.pc
-/afs/andrew.cmu.edu/usr20/shuangg/Desktop/462/libCSD462/external/glfw/lib/libglfw3.a
