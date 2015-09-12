@@ -25,7 +25,7 @@ namespace CMU462 {
 
   void Matrix4x4::zero( double val ) {
     // sets all elements to val
-      entries[0] =
+    entries[0] =
 	  entries[1] =
 	  entries[2] =
 	  entries[3] = Vector4D( val, val, val, val );
@@ -54,18 +54,18 @@ namespace CMU462 {
     return sqrt( entries[0].norm2() +
                  entries[1].norm2() +
                  entries[2].norm2() +
-				 entries[3].norm2());
+				         entries[3].norm2());
   }
 
   Matrix4x4 Matrix4x4::operator-( void ) const {
 
-   // returns -A (Negation).
-    const Matrix4x4& A( *this );
-    Matrix4x4 B;
+  // returns -A (Negation).
+  const Matrix4x4& A( *this );
+  Matrix4x4 B;
 
-    B(0,0) = -A(0,0); B(0,1) = -A(0,1); B(0,2) = -A(0,2); B(0,3) = -A(0,3);
-    B(1,0) = -A(1,0); B(1,1) = -A(1,1); B(1,2) = -A(1,2); B(1,3) = -A(1,3);
-    B(2,0) = -A(2,0); B(2,1) = -A(2,1); B(2,2) = -A(2,2); B(2,3) = -A(2,3);
+  B(0,0) = -A(0,0); B(0,1) = -A(0,1); B(0,2) = -A(0,2); B(0,3) = -A(0,3);
+  B(1,0) = -A(1,0); B(1,1) = -A(1,1); B(1,2) = -A(1,2); B(1,3) = -A(1,3);
+  B(2,0) = -A(2,0); B(2,1) = -A(2,1); B(2,2) = -A(2,2); B(2,3) = -A(2,3);
 	B(3,0) = -A(3,0); B(3,1) = -A(3,1); B(3,2) = -A(3,2); B(3,3) = -A(3,3);
 
     return B;
@@ -235,10 +235,10 @@ namespace CMU462 {
   Matrix4x4 Matrix4x4::identity( void ) {
     Matrix4x4 B;
 
-    B(0,0) = 1.; B(0,1) = 0.; B(0,2) = 0.; B(0, 3) = 0.;
-    B(1,0) = 0.; B(1,1) = 1.; B(1,2) = 0.; B(1, 3) = 0.;
-    B(2,0) = 0.; B(2,1) = 0.; B(2,2) = 1.; B(2, 3) = 0.;
-    B(3,0) = 0.; B(3,1) = 0.; B(3,2) = 1.; B(3, 3) = 0.;
+    B(0,0) = 1.; B(0,1) = 0.; B(0,2) = 0.; B(0,3) = 0.;
+    B(1,0) = 0.; B(1,1) = 1.; B(1,2) = 0.; B(1,3) = 0.;
+    B(2,0) = 0.; B(2,1) = 0.; B(2,2) = 1.; B(2,3) = 0.;
+    B(3,0) = 0.; B(3,1) = 0.; B(3,2) = 0.; B(3,3) = 1.;
 
     return B;
   }
@@ -246,7 +246,7 @@ namespace CMU462 {
   Matrix4x4 outer( const Vector4D& u, const Vector4D& v ) {
     Matrix4x4 B;
 
-	// Opposite of an inner product.
+    // Opposite of an inner product.
     for( int i = 0; i < 4; i++ )
     for( int j = 0; j < 4; j++ )
     {
