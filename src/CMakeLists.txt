@@ -1,95 +1,170 @@
 cmake_minimum_required(VERSION 2.8)
-project(libCMU462)
 
-# Check compiler
-if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
+# CMU462 library source files
+set(CMU462_SOURCE
+    vector2D.cpp
+    vector3D.cpp
+    vector4D.cpp
+    matrix3x3.cpp
+    matrix4x4.cpp
+    quaternion.cpp
+    complex.cpp
+    color.cpp
+    osdtext.cpp
+    osdfont.c
+    viewer.cpp
+    base64.cpp
+    tinyxml2.cpp
+)
 
-  set(CLANG_CXX_FLAGS "-std=c++11 -m64 -O3 -funroll-loops")
-  set(CLANG_CXX_FLAGS "${CLANG_CXX_FLAGS} -Wno-narrowing")
-  set(CLANG_CXX_FLAGS "${CLANG_CXX_FLAGS} -Wno-deprecated-register")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CLANG_CXX_FLAGS}")
+# CMU462 library header files
+set(CMU462_HEADER
+    CMU462.h
+    vector2D.h
+    vector3D.h
+    vector4D.h
+    matrix3x3.h
+    matrix4x4.h
+    quaternion.h
+    complex.h
+    color.h
+    osdtext.h
+    viewer.h
+    base64.h
+    tinyxml2.h
+    renderer.h
+)
 
-elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+#-------------------------------------------------------------------------------
+# Building static library (always)
+#-------------------------------------------------------------------------------
+add_library(CMU462 STATIC ${CMU462_SOURCE} ${CMU462_HEADER})
+
+set_target_properties(CMU462 PROPERTIES LINK_SEARCH_START_STATIC 1)
+set_target_properties(CMU462 PROPERTIES LINK_SEARCH_END_STATIC   1)
+target_link_libraries(
+  CMU462
+  ${GLEW_LIBRARIES}
+  ${GLFW_LIBRARIES}
+  ${OPENGL_LIBRARIES}
+  ${FREETYPE_LIBRARIES}
+)
+
+#-------------------------------------------------------------------------------
+# Building shared library
+#-------------------------------------------------------------------------------
+if(CMU462_BUILD_SHARED)
+  add_library(CMU462_SHARED SHARED ${CMU462_SOURCE} ${CMU462_HEADER})
+  target_link_libraries(
+    CMU462_SHARED
+    ${GLEW_LIBRARIES}
+    ${GLFW_LIBRARIES}
+    ${OPENGL_LIBRARIES}
+    ${FREETYPE_LIBRARIES}
+  )
+endif()
+
+#-------------------------------------------------------------------------------
+# Platform-specific target configurations
+#-------------------------------------------------------------------------------
+
+###################
+# Building on OSX #
+###################
+if (APPLE)
+
+  # Clang options
+  target_compile_options(CMU462 PRIVATE -Wno-constant-conversion)
+
+  # Framework dependencies
+  target_link_libraries(CMU462
+    ${COCOA_LIBRARIES}
+    ${IOKIT_LIBRARIES}
+    ${COREVIDEO_LIBRARIES})
+
+  # Output name
+  if(CMU462_BUILD_DEBUG)
+    set_target_properties(CMU462 PROPERTIES OUTPUT_NAME CMU462_osx_d)
+    if(CMU462_BUILD_SHARED)
+      set_target_properties(CMU462_SHARED PROPERTIES OUTPUT_NAME CMU462_osx_d)
+    endif()
+  else(CMU462_BUILD_DEBUG)
+    set_target_properties(CMU462 PROPERTIES OUTPUT_NAME CMU462_osx)
+    if(CMU462_BUILD_SHARED)
+      set_target_properties(CMU462_SHARED PROPERTIES OUTPUT_NAME CMU462_osx)
+    endif()
+  endif(CMU462_BUILD_DEBUG)
   
-  # UNIX
-  if(UNIX)
-    set(GCC_CXX_FLAGS "-std=gnu++11 -m64 -O3 -funroll-loops")
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -fopenmp")
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXi")
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXxf86vm")
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXinerama") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXcursor") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXfixes") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXrandr") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXext")
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXrender") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lX11")
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lpthread") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lxcb") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXau") 
-  endif(UNIX)
-
-  # Windows
-  # if(WIN32)
-  #   set(GCC_CXX_FLAGS "-std=gnu++11 -O3 -funroll-loops -fopenmp")
-  # endif(WIN32)
-
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_CXX_FLAGS}")
-
-endif()
-
-# Add modules
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/modules/")
-
-# Find dependencies
-find_package(OpenGL   REQUIRED)
-find_package(Freetype REQUIRED)
-find_package(GLEW)
-if(NOT GLEW_FOUND)
-  add_subdirectory(glew)
-endif()
-
-find_package(GLFW)
-if(NOT GLFW_FOUND)
-  add_subdirectory(glfw)
-endif()
-
-# Install settings
-set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/../")
-set(libCMU462_BUILD_LIBS ON)
-set(libCMU462_BUILD_TEST ON)
-
-
-# Building on linux
-if(APPLE)
-  include_directories( "/System/Library/Frameworks" )
-  find_library (COCOA_LIBRARIES Cocoa)
-  find_library (IOKIT_LIBRARIES IOkit)
-  find_library (COREVIDEO_LIBRARIES CoreVideo)
 endif(APPLE)
 
+##################
+# Build on Linux #
+##################
+set(LINUX UNIX AND NOT APPLE)
+if(LINUX)
+  if(CMU462_BUILD_DEBUG)
+    set_target_properties(CMU462 PROPERTIES OUTPUT_NAME CMU462_d)
+    if(CMU462_BUILD_SHARED)
+      set_target_properties(CMU462_SHARED PROPERTIES OUTPUT_NAME CMU462_d)
+    endif()
+  else(CMU462_BUILD_DEBUG)
+    set_target_properties(CMU462 PROPERTIES OUTPUT_NAME CMU462)
+    if(CMU462_BUILD_SHARED)
+      set_target_properties(CMU462_SHARED PROPERTIES OUTPUT_NAME CMU462)
+    endif()
+  endif(CMU462_BUILD_DEBUG)
+endif(LINUX)
 
-# Set shared include directories
-include_directories(
-  ${GLEW_INCLUDE_DIRS}
-  ${GLFW_INCLUDE_DIRS}
-  ${FREETYPE_INCLUDE_DIRS}
-)
+####################
+# Build on Windows #
+####################
+if(WIN32)
+  
+  if(MSVC)
+    if(CMU462_BUILD_DEBUG)
+      set_target_properties(CMU462 PROPERTIES OUTPUT_NAME CMU462_d)
+      if(CMU462_BUILD_SHARED)
+        set_target_properties(CMU462_SHARED PROPERTIES OUTPUT_NAME CMU462_d)
+      endif()
+    else(CMU462_BUILD_DEBUG)
+      set_target_properties(CMU462 PROPERTIES OUTPUT_NAME CMU462)
+      if(CMU462_BUILD_SHARED)
+        set_target_properties(CMU462_SHARED PROPERTIES OUTPUT_NAME CMU462)
+      endif()
+    endif(CMU462_BUILD_DEBUG)
+  endif(MSVC)
 
-# Set shared link directories
-link_directories(
-  ${GLEW_LIBRARY_DIRS}
-  ${GLFW_LIBRARY_DIRS}
-  ${FREETYPE_LIBRARY_DIRS}
-)
+  if(MINGW)
+    if(CMU462_BUILD_DEBUG)
+      set_target_properties(CMU462 PROPERTIES OUTPUT_NAME CMU462_d)
+      if(CMU462_BUILD_SHARED)
+        set_target_properties(CMU462_SHARED PROPERTIES OUTPUT_NAME CMU462_d)
+      endif()
+    else(CMU462_BUILD_DEBUG)
+      set_target_properties(CMU462 PROPERTIES OUTPUT_NAME CMU462)
+      if(CMU462_BUILD_SHARED)
+        set_target_properties(CMU462_SHARED PROPERTIES OUTPUT_NAME CMU462)
+      endif()
+    endif(CMU462_BUILD_DEBUG)
+  endif(MINGW)
 
-# Build libraries
-if (libCMU462_BUILD_LIBS)
-  add_subdirectory(lib)
-endif(libCMU462_BUILD_LIBS)
+endif(WIN32)
 
-# Build test
-if (libCMU462_BUILD_TEST)
-  include_directories(lib)
-  add_subdirectory(test)
-endif (libCMU462_BUILD_TEST)
+#-------------------------------------------------------------------------------
+# Installation configurations
+#-------------------------------------------------------------------------------
+install(TARGETS CMU462 DESTINATION lib)
+if(CMU462_BUILD_SHARED)
+  install(TARGETS CMU462_SHARED DESTINATION lib)
+endif()
+
+# install headers
+install(FILES ${CMU462_HEADER} DESTINATION include/CMU462)
+
+# install compiled external libs
+# install(FILES ${GLEW_LIBRARIES} DESTINATION lib)
+# install(FILES ${GLFW_LIBRARIES} DESTINATION lib)
+
+# install external headers
+# install(DIRECTORY ${GLEW_INCLUDE_DIRS} DESTINATION include)
+# install(DIRECTORY ${GLFW_INCLUDE_DIRS} DESTINATION include)
