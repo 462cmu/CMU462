@@ -1,8 +1,8 @@
 #include <string>
 #include <iostream>
 
-#include "CMU462/viewer.h"
-#include "CMU462/renderer.h"
+#include "viewer.h"
+#include "renderer.h"
 
 using namespace std;
 using namespace CMU462;
@@ -27,10 +27,10 @@ class TriangleDrawer : public Renderer {
   void render() {
     if (shoud_draw) {
       glBegin(GL_TRIANGLES);
-      glColor3f(0.1, 0.2, 0.3);
-      glVertex3f(0  ,  .5, 0);
-      glVertex3f(-.5, -.5, 0);
-      glVertex3f(.5 , -.5, 0);
+      glColor3f( 0.1, 0.2, 0.3);
+      glVertex3f(0.0, 0.5, 0.0);
+      glVertex3f(-.5, -.5, 0.0);
+      glVertex3f(0.5, -.5, 0.0);
       glEnd();
     }
   }
@@ -65,6 +65,17 @@ class TriangleDrawer : public Renderer {
   void scroll_event(float offset_x, float offset_y) {
     float scale = 1 + 0.1 * offset_x - 0.1 * offset_y;
     glScalef(scale, scale, 1);
+  }
+
+  void mouse_button_event(int button, int event) {
+    switch (event) {
+      case MOUSE_BUTTON_PRESS:
+        cerr << "You clicked button " << button << endl; 
+        break;
+      case MOUSE_BUTTON_RELEASE:
+        cerr << "You released button " << button << endl;
+        break; 
+    }
   }
 
  private:

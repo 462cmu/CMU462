@@ -1,5 +1,5 @@
-#include "CMU462/color.h"
-#include "CMU462/osdtext.h"
+#include "color.h"
+#include "osdtext.h"
 
 #include <stdlib.h>
 

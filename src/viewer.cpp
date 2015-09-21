@@ -86,12 +86,15 @@ void Viewer::init() {
   glfwSetKeyCallback( window, key_callback );
   
   // cursor event callbacks
-  glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, 1);
   glfwSetCursorPosCallback( window, cursor_callback );
 
   // wheel event callbacks
   glfwSetScrollCallback(window, scroll_callback);  
   
+  // mouse button callbacks
+  glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, 1);
+  glfwSetMouseButtonCallback(window, mouse_button_callback);
+
   // initialize glew
   if (glewInit() != GLEW_OK) {
     out_err("Error: could not initialize GLEW!");
@@ -264,6 +267,12 @@ void Viewer::cursor_callback( GLFWwindow* window, double xpos, double ypos ) {
 void Viewer::scroll_callback( GLFWwindow* window, double xoffset, double yoffset) {
 
   renderer->scroll_event(xoffset, yoffset);
+
+}
+
+void Viewer::mouse_button_callback( GLFWwindow* window, int button, int action, int mods ) {
+
+  renderer->mouse_button_event( button, action );
 
 }
 

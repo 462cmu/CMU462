@@ -8,8 +8,8 @@ option(CMU462_BUILD_DEBUG    "Build for debug"          ON)
 option(CMU462_BUILD_STATIC   "Build static libraries"   ON)
 option(CMU462_BUILD_SHARED   "Build shared libraries"   OFF)
 option(CMU462_BUILD_DOCS     "Build documentation"      OFF)
-option(CMU462_BUILD_TESTS    "Build tests programs"     OFF)
-option(CMU462_BUILD_EXAMPLES "Build examples"           OFF)
+option(CMU462_BUILD_TESTS    "Build tests programs"     ON)
+option(CMU462_BUILD_EXAMPLES "Build examples"           ON)
 
 #-------------------------------------------------------------------------------
 # CMake modules
@@ -216,4 +216,4 @@ if(CMU462_BUILD_DOCS)
 endif()
 
 # Install settings
-set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/libCMU462")
+set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}")

@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
 # CMU462 library source files
 set(CMU462_SOURCE
     vector2D.cpp
@@ -160,11 +162,3 @@ endif()
 
 # install headers
 install(FILES ${CMU462_HEADER} DESTINATION include/CMU462)
-
-# install compiled external libs
-# install(FILES ${GLEW_LIBRARIES} DESTINATION lib)
-# install(FILES ${GLFW_LIBRARIES} DESTINATION lib)
-
-# install external headers
-# install(DIRECTORY ${GLEW_INCLUDE_DIRS} DESTINATION include)
-# install(DIRECTORY ${GLFW_INCLUDE_DIRS} DESTINATION include)

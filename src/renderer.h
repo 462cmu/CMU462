@@ -6,6 +6,13 @@
 
 namespace CMU462 {
 
+// MOUSE CONTROL MACROS //
+#define MOUSE_BUTTON_LEFT     1
+#define MOUSE_BUTTON_RIGHT    2
+#define MOUSE_BUTTON_MIDDLE   3
+#define MOUSE_BUTTON_RELEASE  0
+#define MOUSE_BUTTON_PRESS    1
+
 /**
  * Abstract renderer definition.
  * The abstract class defines a general framework for user-space renderers.
@@ -74,7 +81,7 @@ class Renderer {
    * using keybindings that the viewer already uses. (see Viewer for details)
    * \param key The key being pressed by the user.
    */
-  virtual void key_event( char key ) = 0;
+  virtual void key_event( char key ) { }
 
   /**
    * Respond to cursor events.
@@ -83,22 +90,33 @@ class Renderer {
    * The arguments are defined in screen space coordinates.
    * \param x the x coordinate of the cursor
    * \param y the y coordinate of the cursor
-   * \param keys encodes the current mouse buttons state in a bitmask
+   * \param keys Encodes the current mouse buttons state in a bitmask
    *             each bit from the least significant to the most significant
    *             encodes: right mouse button, middle mouse button, left mouse 
    *             button.
    */
-  virtual void cursor_event( float x, float y, unsigned char keys ) = 0;
+  virtual void cursor_event( float x, float y, unsigned char keys ) { }
 
   /**
    * Respond to zoom event.
    * Like cursor events, the viewer itself does not care about the mouse wheel 
    * either, but it will take the GLFW wheel events and forward them directly 
    * to the renderer. 
-   * \param offset_x scroll offset in x direction
-   * \param offset_y scroll offset in y direction
+   * \param offset_x Scroll offset in x direction
+   * \param offset_y Scroll offset in y direction
    */
-  virtual void scroll_event( float offset_x, float offset_y ) = 0;
+  virtual void scroll_event( float offset_x, float offset_y ) { }
+
+  /**
+   * Respond to mouse button event.
+   * The viewer will always forward mouse button events to the renderer. 
+   * \param button The button that spawned the event. This uses GLFW's 
+   *        definition where values ranges from 0 to 7, with left, right, 
+   *        and middle being 1, 2, and 3.
+   * \param event The type of event. Possible values are 0, 1 and 2, which
+   *        correspond to release, press, repeat(held down).
+   */
+  virtual void mouse_button_event( int button, int event ) { }
 
 };
 

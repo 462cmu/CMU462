@@ -81,7 +81,7 @@ void OSDText::render() {
   
   glUseProgram(program);
 
-  auto it = lines.begin();
+  vector<OSDLine>::iterator it = lines.begin();
   while(it != lines.end()) {
     draw_line(*it);
     ++it;
@@ -117,7 +117,7 @@ int OSDText::add_line(float x, float y, string text,
 }
 
 void OSDText::del_line(int line_id) {
-  auto it = lines.begin();
+  vector<OSDLine>::iterator it = lines.begin();
   while(it != lines.end()) {
     if(it->id == line_id) { 
       lines.erase(it);
@@ -128,7 +128,7 @@ void OSDText::del_line(int line_id) {
 }
 
 void OSDText::set_anchor(int line_id, float x, float y) {
-  auto it = lines.begin();
+  vector<OSDLine>::iterator it = lines.begin();
   while(it != lines.end()) {
     if(it->id == line_id) { 
       it->x = x;
@@ -140,7 +140,7 @@ void OSDText::set_anchor(int line_id, float x, float y) {
 }
 
 void OSDText::set_text(int line_id, string text) {
-  auto it = lines.begin();
+  vector<OSDLine>::iterator it = lines.begin();
   while(it != lines.end()) {
     if(it->id == line_id) { 
       it->text = text;
@@ -151,7 +151,7 @@ void OSDText::set_text(int line_id, string text) {
 }
 
 void OSDText::set_size(int line_id, size_t size) {
-  auto it = lines.begin();
+  vector<OSDLine>::iterator it = lines.begin();
   while(it != lines.end()) {
     if(it->id == line_id) { 
       it->size = size;
@@ -162,7 +162,7 @@ void OSDText::set_size(int line_id, size_t size) {
 }
 
 void OSDText::set_color(int line_id, Color color) {
-  auto it = lines.begin();
+  vector<OSDLine>::iterator it = lines.begin();
   while(it != lines.end()) {
     if(it->id == line_id) {
       it->color = color;
