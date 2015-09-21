@@ -28,11 +28,13 @@ if(APPLE)
   # Clang only
   if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "CLANG")  
   
-    # Dependency Frameworks
-    include_directories( "/System/Library/Frameworks" )
-    find_library (COCOA_LIBRARIES Cocoa)
-    find_library (IOKIT_LIBRARIES IOkit)
-    find_library (COREVIDEO_LIBRARIES CoreVideo)
+    # OSX Framework dependencies
+    if(NOT CMU462_BUILD_SHARED)
+      include_directories( "/System/Library/Frameworks" )
+      find_library (COCOA_LIBRARIES Cocoa)
+      find_library (IOKIT_LIBRARIES IOkit)
+      find_library (COREVIDEO_LIBRARIES CoreVideo)
+    endif()
 
     # Clang configuration
     if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
@@ -83,20 +85,22 @@ if(LINUX)
 
     set(GCC_CXX_FLAGS "-std=gnu++11 -m64")
 
-    # Library Dependencies
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXi")
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXxf86vm")
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXinerama") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXcursor") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXfixes") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXrandr") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXext")
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXrender") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lX11")
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lpthread") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lxcb") 
-    set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXau") 
-
+    # X11 Dependencies
+    if(NOT CMU462_BUILD_SHARED)
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXi")
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXxf86vm")
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXinerama") 
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXcursor") 
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXfixes") 
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXrandr") 
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXext")
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXrender") 
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lX11")
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lpthread") 
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lxcb") 
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXau") 
+    endif()
+    
     # Debug configuration
     if(CMU462_BUILD_DEBUG)
         set(CMAKE_BUILD_TYPE Debug)
