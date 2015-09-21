@@ -172,6 +172,11 @@ if(NOT GLFW_FOUND)
   set_property( TARGET glfw APPEND_STRING PROPERTY COMPILE_FLAGS -w )
 endif()
 
+# AntTweakBar
+add_subdirectory("${PROJECT_SOURCE_DIR}/deps/atb")
+include_directories("${PROJECT_SOURCE_DIR}/deps/atb/include")
+set_property( TARGET atb APPEND_STRING PROPERTY COMPILE_FLAGS -w )
+
 #-------------------------------------------------------------------------------
 # Set include directories
 #-------------------------------------------------------------------------------

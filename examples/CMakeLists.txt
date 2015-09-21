@@ -9,8 +9,8 @@ link_libraries(
   ${FREETYPE_LIBRARIES}
 )
 
-# Triangle drawer
 add_executable(triangle triangle.cpp)
+add_executable(text text.cpp)
 
 # Install examples
 install(TARGETS triangle DESTINATION bin/examples)
