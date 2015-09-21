@@ -215,5 +215,11 @@ if(CMU462_BUILD_DOCS)
   endif()
 endif()
 
+#-------------------------------------------------------------------------------
+# Export paths
+#-------------------------------------------------------------------------------
+set(CMU462_LIBRARIES CMU462)
+set(CMU462_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include)
+
 # Install settings
 set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}")
