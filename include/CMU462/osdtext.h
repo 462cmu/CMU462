@@ -62,9 +62,10 @@ class OSDText {
   /**
    * Initializes resources required for rendering text.
    * This will load a freetype font and compile shaders, etc.
+   * \param use_hdpi if text is renderer on HDPI displays
    * \return 0 if successful, -1 on error.
    */
-  int init();
+  int init(bool use_hdpi);
 
   /**
    * Draw the text OSD.
@@ -103,7 +104,8 @@ class OSDText {
   void del_line(int line_id);
 
   /**
-   * Set the anchor position of a given line.
+   * Set the anchor position of a given line. Lines are anchored at
+   * the bottom left corner
    * If the given id is not valid, the call has no effect.
    * \param line_id Index of the line to set the text.
    * \param x The new x coordinate to set for the line.
@@ -140,6 +142,9 @@ class OSDText {
   // draw a single line
   void draw_line(OSDLine line);
 
+  // HDPI displays
+  bool use_hdpi;
+  
   // internal scale factors
   float sx, sy;
 

@@ -1,8 +1,8 @@
 #include <string>
 #include <iostream>
 
-#include "viewer.h"
-#include "renderer.h"
+#include "CMU462/viewer.h"
+#include "CMU462/renderer.h"
 
 using namespace std;
 using namespace CMU462;
@@ -22,14 +22,14 @@ class TextDrawer : public Renderer {
 
   void init() {
 
-    text_mgr.init();
+    text_mgr.init(use_hdpi);
 
     size = 16;
-    line0 = text_mgr.add_line(0.0, 0.0, "Hi there!", 16, Color::White);
+    line0 = text_mgr.add_line(0.0, 0.0, "Hi there!", size, Color::White);
 
     return;
   }
-  
+
   void render() {
 
     text_mgr.render();
@@ -37,7 +37,7 @@ class TextDrawer : public Renderer {
   }
 
   void resize(size_t w, size_t h) {
-    
+
     this->w = w;
     this->h = h;
 
@@ -45,10 +45,10 @@ class TextDrawer : public Renderer {
 
     return;
   }
-  
+
   void cursor_event(float x, float y, unsigned char keys) {
-    if (keys & (1 << 2)) { 
-      text_mgr.set_anchor(line0, 2 * (x - .5 * w) / w, 2 * (.5 * h - y) / h);    
+    if (keys & (1 << 2)) {
+      text_mgr.set_anchor(line0, 2 * (x - .5 * w) / w, 2 * (.5 * h - y) / h);
     }
   }
 
@@ -64,13 +64,13 @@ class TextDrawer : public Renderer {
   OSDText text_mgr;
 
   // my line id's
-  int line0; 
+  int line0;
 
   // my line's font size
   size_t size;
 
   // frame buffer size
-  size_t w, h; 
+  size_t w, h;
 
 };
 
@@ -92,4 +92,3 @@ int main( int argc, char** argv ) {
 
   return 0;
 }
-

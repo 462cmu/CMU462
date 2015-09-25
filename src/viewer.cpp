@@ -106,25 +106,31 @@ void Viewer::init() {
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+  // resize components to current window size, get DPI
+  glfwGetFramebufferSize(window, (int*) &buffer_w, (int*) &buffer_h );
+  if( buffer_w > DEFAULT_W ) HDPI = true;
+
+  // initialize renderer if already set
+  if (renderer){
+    if (HDPI) renderer->use_hdpi_reneder_target();
+    renderer->init();
+  } 
+
   // initialize status OSD
   osd_text = new OSDText();
-  if (osd_text->init() < 0) {
+  if (osd_text->init(HDPI) < 0) {
     out_err("Error: could not initialize on-screen display!");
     exit( 1 );
   }
   
-  // initialize renderer if already set
-  if (renderer) renderer->init();
-
-  // resize components to current window size, get DPI
-  resize_callback( window, DEFAULT_W, DEFAULT_H );
-  if( buffer_w > DEFAULT_W ) HDPI = true;
-
   // add lines for renderer and fps
   line_id_renderer  = osd_text->add_line(-0.95,  0.90, "Renderer", 
                                           18, Color(0.15, 0.5, 0.15));
   line_id_framerate = osd_text->add_line(-0.98, -0.96, "Framerate", 
                                           14, Color(0.15, 0.5, 0.15));
+
+  // resize elements to current size
+  resize_callback(window, buffer_w, buffer_h);
 
 }
 

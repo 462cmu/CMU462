@@ -4,17 +4,21 @@ project(CMU462)
 #-------------------------------------------------------------------------------
 # Build options
 #-------------------------------------------------------------------------------
-option(CMU462_BUILD_DEBUG    "Build for debug"          ON)
-option(CMU462_BUILD_STATIC   "Build static libraries"   ON)
+option(CMU462_BUILD_DEBUG    "Build for debug"          OFF)
 option(CMU462_BUILD_SHARED   "Build shared libraries"   OFF)
-option(CMU462_BUILD_DOCS     "Build documentation"      OFF)
+option(CMU462_BUILD_DOCS     "Build documentation"      ON)
 option(CMU462_BUILD_TESTS    "Build tests programs"     ON)
 option(CMU462_BUILD_EXAMPLES "Build examples"           ON)
 
 #-------------------------------------------------------------------------------
 # CMake modules
 #-------------------------------------------------------------------------------
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/modules/")
+list(APPEND CMAKE_MODULE_PATH "${CMU462_SOURCE_DIR}/cmake/modules/")
+
+#-------------------------------------------------------------------------------
+# CMU462 paths 
+#-------------------------------------------------------------------------------
+set(CMU462_INCLUDE_DIRS "${CMU462_SOURCE_DIR}/include")
 
 #-------------------------------------------------------------------------------
 # Platform-specific settings
@@ -156,26 +160,32 @@ endif(WIN32)
 find_package(OpenGL REQUIRED)
 find_package(Freetype REQUIRED)
 
+# Use pkg-config for GLEW & GLFW if available
+find_package(PkgConfig QUIET)
+
 # GLEW
-find_package(GLEW QUIET)
+if(PKGCONFIG_FOUND)
+  pkg_search_module(GLEW QUIET glew)
+else(PKGCONFIG_FOUND)
+  find_package(GLEW QUIET)
+endif()
 if(NOT GLEW_FOUND)
-  add_subdirectory("${PROJECT_SOURCE_DIR}/deps/glew")
-  include_directories("${PROJECT_SOURCE_DIR}/deps/glew/include")
+  add_subdirectory("${CMU462_SOURCE_DIR}/deps/glew")
+  include_directories("${CMU462_SOURCE_DIR}/deps/glew/include")
   set_property( TARGET glew APPEND_STRING PROPERTY COMPILE_FLAGS -w )
 endif()
 
 # GLFW
-find_package(GLFW QUIET)
+if(PKGCONFIG_FOUND)
+  pkg_search_module(GLFW QUIET glfw3)
+else(PKGCONFIG_FOUND)
+  find_package(GLFW QUIET)
+endif()
 if(NOT GLFW_FOUND)
-  add_subdirectory("${PROJECT_SOURCE_DIR}/deps/glfw")
-  include_directories("${PROJECT_SOURCE_DIR}/deps/glfw/include")
+  add_subdirectory("${CMU462_SOURCE_DIR}/deps/glfw")
+  include_directories("${CMU462_SOURCE_DIR}/deps/glfw/include")
   set_property( TARGET glfw APPEND_STRING PROPERTY COMPILE_FLAGS -w )
 endif()
-
-# AntTweakBar
-add_subdirectory("${PROJECT_SOURCE_DIR}/deps/atb")
-include_directories("${PROJECT_SOURCE_DIR}/deps/atb/include")
-set_property( TARGET atb APPEND_STRING PROPERTY COMPILE_FLAGS -w )
 
 #-------------------------------------------------------------------------------
 # Set include directories
@@ -214,17 +224,11 @@ endif()
 
 # CMU462 documentation directory
 if(CMU462_BUILD_DOCS)
-  find_package(DOXYGEN_FOUND)
-  if(DOXYGEN_FOUND AND GLFW_BUILD_DOCS)
+  find_package(DOXYGEN)
+  if(DOXYGEN_FOUND AND CMU462_BUILD_DOCS)
     add_subdirectory(docs)
   endif()
 endif()
 
-#-------------------------------------------------------------------------------
-# Export paths
-#-------------------------------------------------------------------------------
-set(CMU462_LIBRARIES CMU462)
-set(CMU462_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include)
-
 # Install settings
-set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}")
+set(CMAKE_INSTALL_PREFIX "${CMU462_SOURCE_DIR}")

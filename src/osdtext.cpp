@@ -20,7 +20,9 @@ struct point {
 };
 
 OSDText::OSDText() {
-  
+
+  use_hdpi = false;
+
   ft   = new FT_Library;
   face = new FT_Face;
 
@@ -38,7 +40,9 @@ OSDText::~OSDText() {
   glDeleteProgram(program);
 }
 
-int OSDText::init() {
+int OSDText::init(bool use_hdpi) {
+
+  this->use_hdpi = use_hdpi;
 
   // initialize font library
   if(FT_Init_FreeType(ft)) {
@@ -105,6 +109,9 @@ int OSDText::add_line(float x, float y, string text,
   new_line.text = text;
   new_line.size = size;
   new_line.color = color;
+
+  // handle HDPI display
+  if (use_hdpi) new_line.size *= 2;
 
   // update id
   new_line.id = next_id;

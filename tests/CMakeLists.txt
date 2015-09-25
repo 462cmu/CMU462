@@ -1,6 +1,6 @@
 link_libraries(CMU462)
 
-include_directories("${PROJECT_SOURCE_DIR}/src")
+include_directories("${PROJECT_SOURCE_DIR}/include")
 
 link_libraries(
   glfw ${GLFW_LIBRARIES}

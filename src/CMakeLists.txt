@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMU462_INCLUDE_DIRS}/CMU462)
 
 # CMU462 library source files
 set(CMU462_SOURCE
@@ -19,31 +19,11 @@ set(CMU462_SOURCE
     tinyxml2.cpp
 )
 
-# CMU462 library header files
-set(CMU462_HEADER
-    CMU462.h
-    vector2D.h
-    vector3D.h
-    vector4D.h
-    matrix3x3.h
-    matrix4x4.h
-    quaternion.h
-    complex.h
-    color.h
-    osdtext.h
-    viewer.h
-    base64.h
-    tinyxml2.h
-    renderer.h
-)
-
 #-------------------------------------------------------------------------------
 # Building static library (always)
 #-------------------------------------------------------------------------------
-add_library(CMU462 STATIC ${CMU462_SOURCE} ${CMU462_HEADER})
+add_library(CMU462 STATIC ${CMU462_SOURCE})
 
-set_target_properties(CMU462 PROPERTIES LINK_SEARCH_START_STATIC 1)
-set_target_properties(CMU462 PROPERTIES LINK_SEARCH_END_STATIC   1)
 target_link_libraries(
   CMU462
   ${GLEW_LIBRARIES}
@@ -56,7 +36,7 @@ target_link_libraries(
 # Building shared library
 #-------------------------------------------------------------------------------
 if(CMU462_BUILD_SHARED)
-  add_library(CMU462_SHARED SHARED ${CMU462_SOURCE} ${CMU462_HEADER})
+  add_library(CMU462_SHARED SHARED ${CMU462_SOURCE})
   target_link_libraries(
     CMU462_SHARED
     ${GLEW_LIBRARIES}

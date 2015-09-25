@@ -7,9 +7,9 @@
 namespace CMU462 {
 
 // MOUSE CONTROL MACROS //
-#define MOUSE_BUTTON_LEFT     1
-#define MOUSE_BUTTON_RIGHT    2
-#define MOUSE_BUTTON_MIDDLE   3
+#define MOUSE_BUTTON_LEFT     0
+#define MOUSE_BUTTON_RIGHT    1
+#define MOUSE_BUTTON_MIDDLE   2
 #define MOUSE_BUTTON_RELEASE  0
 #define MOUSE_BUTTON_PRESS    1
 
@@ -117,6 +117,16 @@ class Renderer {
    *        correspond to release, press, repeat(held down).
    */
   virtual void mouse_button_event( int button, int event ) { }
+
+  /**
+   * Internal - 
+   * The viewer will tell the renderer if the screen is in HDPI mode.
+   */ 
+  void use_hdpi_reneder_target() { use_hdpi = true; }
+
+ protected:
+
+  bool use_hdpi; ///< if the render target is using HIDPI
 
 };
 

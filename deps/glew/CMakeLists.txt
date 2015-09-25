@@ -1,5 +1,7 @@
-set(GLEW_SOURCE_DIR src)
-set(GLEW_HEADER_DIR include)
+set(GLEW_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+
+set(GLEW_SOURCE_DIR ${GLEW_ROOT_DIR}/src)
+set(GLEW_HEADER_DIR ${GLEW_ROOT_DIR}/include)
 
 include_directories(${GLEW_HEADER_DIR})
 add_library(glew 
