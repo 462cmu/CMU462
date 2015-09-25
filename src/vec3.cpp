@@ -1,8 +1,8 @@
-#include "vector3D.h"
+#include "vec3.h"
 
 namespace CMU462 {
 
-  std::ostream& operator<<( std::ostream& os, const Vector3D& v ) {
+  std::ostream& operator<<( std::ostream& os, const Vec3& v ) {
     os << "{ " << v.x << ", " << v.y << ", " << v.z << " }";
     return os;
   }
