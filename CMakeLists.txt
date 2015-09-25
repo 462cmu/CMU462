@@ -171,7 +171,6 @@ else(PKGCONFIG_FOUND)
 endif()
 if(NOT GLEW_FOUND)
   add_subdirectory("${CMU462_SOURCE_DIR}/deps/glew")
-  list(APPEND CMU462_INCLUDE_DIRS "${CMU462_SOURCE_DIR}/deps/glew/include")
   set_property( TARGET glew APPEND_STRING PROPERTY COMPILE_FLAGS -w )
 endif()
 
@@ -183,7 +182,6 @@ else(PKGCONFIG_FOUND)
 endif()
 if(NOT GLFW_FOUND)
   add_subdirectory("${CMU462_SOURCE_DIR}/deps/glfw")
-  list(APPEND CMU462_INCLUDE_DIRS "${CMU462_SOURCE_DIR}/deps/glfw/include")
   set_property( TARGET glfw APPEND_STRING PROPERTY COMPILE_FLAGS -w )
 endif()
 
@@ -234,9 +232,6 @@ endif()
 #-------------------------------------------------------------------------------
 # Packing
 #-------------------------------------------------------------------------------
-
-# Export include paths
-set(CMU462_INCLUDE_DIRS ${CMU462_INCLUDE_DIRS} PARENT_SCOPE)
 
 # Install settings
 set(CMAKE_INSTALL_PREFIX "${CMU462_SOURCE_DIR}")
