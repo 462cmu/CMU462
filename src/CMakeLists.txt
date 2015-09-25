@@ -4,11 +4,11 @@ include_directories(${PROJECT_SOURCE_DIR}/include/CMU462)
 
 # CMU462 library source files
 set(CMU462_SOURCE
-    vec2.cpp
-    vec3.cpp
-    vec4.cpp
-    mat3.cpp
-    mat4.cpp
+    vector2D.cpp
+    vector3D.cpp
+    vector4D.cpp
+    matrix3x3.cpp
+    matrix4x4.cpp
     quaternion.cpp
     complex.cpp
     color.cpp

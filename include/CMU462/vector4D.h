@@ -1,16 +1,16 @@
-#ifndef CMU462_VEC4_H
-#define CMU462_VEC4_H
+#ifndef CMU462_VECTOR4D_H
+#define CMU462_VECTOR4D_H
 
 #include <ostream>
 #include <cmath>
-#include "vec3.h"
+#include "vector3D.h"
 
 namespace CMU462 {
 
 /**
  * Defines 4D standard vectors.
  */
-class Vec4 {
+class Vector4D {
  public:
 
   // components
@@ -20,38 +20,38 @@ class Vec4 {
    * Constructor.
    * Initializes tp vector (0,0,0, 0).
    */
- Vec4() : x( 0.0 ), y( 0.0 ), z( 0.0 ), w( 0.0 ) { }
+ Vector4D() : x( 0.0 ), y( 0.0 ), z( 0.0 ), w( 0.0 ) { }
 
   /**
    * Constructor.
    * Initializes to vector (x,y,z,w).
    */
- Vec4( double x, double y, double z, double w) : x( x ), y( y ), z( z ), w( w ) { }
+ Vector4D( double x, double y, double z, double w) : x( x ), y( y ), z( z ), w( w ) { }
 
   /**
    * Constructor.
    * Initializes to vector (x,y,z,0).
    */
- Vec4( double x, double y, double z) : x( x ), y( y ), z( z ), w( 0.0 ) { }
+ Vector4D( double x, double y, double z) : x( x ), y( y ), z( z ), w( 0.0 ) { }
 
 
   /**
    * Constructor.
    * Initializes to vector (c,c,c,c)
    */
- Vec4( double c ) : x( c ), y( c ), z( c ), w ( c ) { }
+ Vector4D( double c ) : x( c ), y( c ), z( c ), w ( c ) { }
 
   /**
    * Constructor.
-   * Initializes from existing Vec4.
+   * Initializes from existing vector4D.
    */
- Vec4( const Vec4& v ) : x( v.x ), y( v.y ), z( v.z ), w( v.w ) { }
+ Vector4D( const Vector4D& v ) : x( v.x ), y( v.y ), z( v.z ), w( v.w ) { }
 
   /**
    * Constructor.
-   * Initializes from existing Vec3.
+   * Initializes from existing vector3D.
    */
- Vec4( const Vec3& v ) : x( v.x ), y( v.y ), z( v.z ), w( 0.0 ) { }
+ Vector4D( const Vector3D& v ) : x( v.x ), y( v.y ), z( v.z ), w( 0.0 ) { }
 
   // returns reference to the specified component (0-based indexing: x, y, z)
   inline double& operator[] ( const int& index ) {
@@ -64,38 +64,38 @@ class Vec4 {
   }
 
   // negation
-  inline Vec4 operator-( void ) const {
-    return Vec4( -x, -y, -z, -w);
+  inline Vector4D operator-( void ) const {
+    return Vector4D( -x, -y, -z, -w);
   }
 
   // addition
-  inline Vec4 operator+( const Vec4& v ) const {
-    return Vec4( x + v.x, y + v.y, z + v.z, w + v.w);
+  inline Vector4D operator+( const Vector4D& v ) const {
+    return Vector4D( x + v.x, y + v.y, z + v.z, w + v.w);
   }
 
   // subtraction
-  inline Vec4 operator-( const Vec4& v ) const {
-    return Vec4( x - v.x, y - v.y, z - v.z, w - v.w );
+  inline Vector4D operator-( const Vector4D& v ) const {
+    return Vector4D( x - v.x, y - v.y, z - v.z, w - v.w );
   }
 
   // right scalar multiplication
-  inline Vec4 operator*( const double& c ) const {
-    return Vec4( x * c, y * c, z * c, w * c );
+  inline Vector4D operator*( const double& c ) const {
+    return Vector4D( x * c, y * c, z * c, w * c );
   }
 
   // scalar division
-  inline Vec4 operator/( const double& c ) const {
+  inline Vector4D operator/( const double& c ) const {
     const double rc = 1.0/c;
-    return Vec4( rc * x, rc * y, rc * z, rc * w );
+    return Vector4D( rc * x, rc * y, rc * z, rc * w );
   }
 
   // addition / assignment
-  inline void operator+=( const Vec4& v ) {
+  inline void operator+=( const Vector4D& v ) {
     x += v.x; y += v.y; z += v.z; z += v.w;
   }
 
   // subtraction / assignment
-  inline void operator-=( const Vec4& v ) {
+  inline void operator-=( const Vector4D& v ) {
     x -= v.x; y -= v.y; z -= v.z; w -= v.w;
   }
 
@@ -126,9 +126,9 @@ class Vec4 {
   /**
    * Returns unit vector. (returns the normalized copy of this vector.)
    */
-  inline Vec4 unit( void ) const {
+  inline Vector4D unit( void ) const {
     double rNorm = 1. / sqrt( x*x + y*y + z*z + w*w);
-    return Vec4( rNorm*x, rNorm*y, rNorm*z );
+    return Vector4D( rNorm*x, rNorm*y, rNorm*z );
   }
 
   /**
@@ -142,23 +142,23 @@ class Vec4 {
   /**
    * Converts this vector to a 3D vector ignoring the w component.
    */
-  Vec3 to3D();
+  Vector3D to3D();
 
-}; // class Vec4
+}; // class Vector4D
 
 // left scalar multiplication
-inline Vec4 operator* ( const double& c, const Vec4& v ) {
-  return Vec4( c * v.x, c * v.y, c * v.z, c*v.w );
+inline Vector4D operator* ( const double& c, const Vector4D& v ) {
+  return Vector4D( c * v.x, c * v.y, c * v.z, c*v.w );
 }
 
 // dot product (a.k.a. inner or scalar product)
-inline double dot( const Vec4& u, const Vec4& v ) {
+inline double dot( const Vector4D& u, const Vector4D& v ) {
   return u.x*v.x + u.y*v.y + u.z*v.z + u.w*v.w;;
 }
 
 // prints components
-std::ostream& operator<<( std::ostream& os, const Vec3& v );
+std::ostream& operator<<( std::ostream& os, const Vector3D& v );
 
 } // namespace CMU462
 
-#endif // CMU462_VEC4_H
+#endif // CMU462_VECTOR3D_H

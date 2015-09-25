@@ -1,4 +1,4 @@
-#include "mat4.h"
+#include "matrix4x4.h"
 
 #include <iostream>
 #include <cmath>
@@ -7,32 +7,32 @@ using namespace std;
 
 namespace CMU462 {
 
-  double& Mat4::operator()( int i, int j ) {
+  double& Matrix4x4::operator()( int i, int j ) {
     return entries[j][i];
   }
 
-  const double& Mat4::operator()( int i, int j ) const {
+  const double& Matrix4x4::operator()( int i, int j ) const {
     return entries[j][i];
   }
 
-  Vec4& Mat4::operator[]( int j ) {
+  Vector4D& Matrix4x4::operator[]( int j ) {
       return entries[j];
   }
 
-  const Vec4& Mat4::operator[]( int j ) const {
+  const Vector4D& Matrix4x4::operator[]( int j ) const {
     return entries[j];
   }
 
-  void Mat4::zero( double val ) {
+  void Matrix4x4::zero( double val ) {
     // sets all elements to val
     entries[0] =
 	  entries[1] =
 	  entries[2] =
-	  entries[3] = Vec4( val, val, val, val );
+	  entries[3] = Vector4D( val, val, val, val );
   }
 
-  double Mat4::det( void ) const {
-    const Mat4& A( *this );
+  double Matrix4x4::det( void ) const {
+    const Matrix4x4& A( *this );
 
 	return
 	  A(0,3)*A(1,2)*A(2,1)*A(3,0) - A(0,2)*A(1,3)*A(2,1)*A(3,0) -
@@ -50,18 +50,18 @@ namespace CMU462 {
 
   }
 
-  double Mat4::norm( void ) const {
+  double Matrix4x4::norm( void ) const {
     return sqrt( entries[0].norm2() +
                  entries[1].norm2() +
                  entries[2].norm2() +
 				         entries[3].norm2());
   }
 
-  Mat4 Mat4::operator-( void ) const {
+  Matrix4x4 Matrix4x4::operator-( void ) const {
 
   // returns -A (Negation).
-  const Mat4& A( *this );
-  Mat4 B;
+  const Matrix4x4& A( *this );
+  Matrix4x4 B;
 
   B(0,0) = -A(0,0); B(0,1) = -A(0,1); B(0,2) = -A(0,2); B(0,3) = -A(0,3);
   B(1,0) = -A(1,0); B(1,1) = -A(1,1); B(1,2) = -A(1,2); B(1,3) = -A(1,3);
@@ -71,9 +71,9 @@ namespace CMU462 {
     return B;
   }
 
-  void Mat4::operator+=( const Mat4& B ) {
+  void Matrix4x4::operator+=( const Matrix4x4& B ) {
 
-    Mat4& A( *this );
+    Matrix4x4& A( *this );
     double* Aij = (double*) &A;
     const double* Bij = (const double*) &B;
 
@@ -98,9 +98,9 @@ namespace CMU462 {
 
   }
 
-  Mat4 Mat4::operator-( const Mat4& B ) const {
-    const Mat4& A( *this );
-    Mat4 C;
+  Matrix4x4 Matrix4x4::operator-( const Matrix4x4& B ) const {
+    const Matrix4x4& A( *this );
+    Matrix4x4 C;
 
     for( int i = 0; i < 4; i++ )
     for( int j = 0; j < 4; j++ )
@@ -111,9 +111,9 @@ namespace CMU462 {
     return C;
   }
 
-  Mat4 Mat4::operator*( double c ) const {
-    const Mat4& A( *this );
-    Mat4 B;
+  Matrix4x4 Matrix4x4::operator*( double c ) const {
+    const Matrix4x4& A( *this );
+    Matrix4x4 B;
 
     for( int i = 0; i < 4; i++ )
     for( int j = 0; j < 4; j++ )
@@ -125,9 +125,9 @@ namespace CMU462 {
   }
 
   // Returns c*A.
-  Mat4 operator*( double c, const Mat4& A ) {
+  Matrix4x4 operator*( double c, const Matrix4x4& A ) {
 
-    Mat4 cA;
+    Matrix4x4 cA;
     const double* Aij = (const double*) &A;
     double* cAij = (double*) &cA;
 
@@ -152,9 +152,9 @@ namespace CMU462 {
   }
 
   // Tradiational Grade School Multiplication. N^3
-  Mat4 Mat4::operator*( const Mat4& B ) const {
-    const Mat4& A( *this );
-    Mat4 C;
+  Matrix4x4 Matrix4x4::operator*( const Matrix4x4& B ) const {
+    const Matrix4x4& A( *this );
+    Matrix4x4 C;
 
     for( int i = 0; i < 4; i++ )
     for( int j = 0; j < 4; j++ )
@@ -171,7 +171,7 @@ namespace CMU462 {
   }
 
 
-  Vec4 Mat4::operator*( const Vec4& x ) const {
+  Vector4D Matrix4x4::operator*( const Vector4D& x ) const {
     return x[0]*entries[0] + // Add up products for each matrix column.
            x[1]*entries[1] +
            x[2]*entries[2] +
@@ -179,9 +179,9 @@ namespace CMU462 {
   }
 
   // Naive Transposition.
-  Mat4 Mat4::T( void ) const {
-    const Mat4& A( *this );
-    Mat4 B;
+  Matrix4x4 Matrix4x4::T( void ) const {
+    const Matrix4x4& A( *this );
+    Matrix4x4 B;
 
     for( int i = 0; i < 4; i++ )
     for( int j = 0; j < 4; j++ )
@@ -192,9 +192,9 @@ namespace CMU462 {
     return B;
   }
 
-  Mat4 Mat4::inv( void ) const {
-    const Mat4& A( *this );
-    Mat4 B;
+  Matrix4x4 Matrix4x4::inv( void ) const {
+    const Matrix4x4& A( *this );
+    Matrix4x4 B;
 
 	// Hardcoded in Fully Symbolic computation.
 
@@ -221,8 +221,8 @@ namespace CMU462 {
     return B;
   }
 
-  void Mat4::operator/=( double x ) {
-    Mat4& A( *this );
+  void Matrix4x4::operator/=( double x ) {
+    Matrix4x4& A( *this );
     double rx = 1./x;
 
     for( int i = 0; i < 4; i++ )
@@ -232,8 +232,8 @@ namespace CMU462 {
     }
   }
 
-  Mat4 Mat4::identity( void ) {
-    Mat4 B;
+  Matrix4x4 Matrix4x4::identity( void ) {
+    Matrix4x4 B;
 
     B(0,0) = 1.; B(0,1) = 0.; B(0,2) = 0.; B(0,3) = 0.;
     B(1,0) = 0.; B(1,1) = 1.; B(1,2) = 0.; B(1,3) = 0.;
@@ -243,8 +243,8 @@ namespace CMU462 {
     return B;
   }
 
-  Mat4 outer( const Vec4& u, const Vec4& v ) {
-    Mat4 B;
+  Matrix4x4 outer( const Vector4D& u, const Vector4D& v ) {
+    Matrix4x4 B;
 
     // Opposite of an inner product.
     for( int i = 0; i < 4; i++ )
@@ -256,7 +256,7 @@ namespace CMU462 {
     return B;
   }
 
-  std::ostream& operator<<( std::ostream& os, const Mat4& A ) {
+  std::ostream& operator<<( std::ostream& os, const Matrix4x4& A ) {
     for( int i = 0; i < 4; i++ )
     {
        os << "[ ";
@@ -272,11 +272,11 @@ namespace CMU462 {
     return os;
   }
 
-  Vec4& Mat4::column( int i ) {
+  Vector4D& Matrix4x4::column( int i ) {
     return entries[i];
   }
 
-  const Vec4& Mat4::column( int i ) const {
+  const Vector4D& Matrix4x4::column( int i ) const {
     return entries[i];
   }
 }

@@ -1,8 +1,8 @@
-#include "vec2.h"
+#include "vector2D.h"
 
 namespace CMU462 {
 
-  std::ostream& operator<<( std::ostream& os, const Vec2& v ) {
+  std::ostream& operator<<( std::ostream& os, const Vector2D& v ) {
     os << "( " << v.x << ", " << v.y << " )";
     return os;
   }

@@ -1,5 +1,5 @@
-#ifndef CMU462_VEC2_H
-#define CMU462_VEC2_H
+#ifndef CMU462_VECTOR2D_H
+#define CMU462_VECTOR2D_H
 
 #include <ostream>
 #include <cmath>
@@ -9,7 +9,7 @@ namespace CMU462 {
 /** 
  * Defines 2D vectors.
  */
-class Vec2 { 
+class Vector2D { 
  public:
   
   // components
@@ -19,61 +19,61 @@ class Vec2 {
    * Constructor.
    * Initializes to vector (0,0).
    */
-  Vec2() : x( 0.0 ), y( 0.0 ) { }
+  Vector2D() : x( 0.0 ), y( 0.0 ) { }
 
   /**
    * Constructor.
    * Initializes to vector (a,b).
    */
-  Vec2( double x, double y ) : x( x ), y( y ) { }
+  Vector2D( double x, double y ) : x( x ), y( y ) { }
 
   /**
    * Constructor.
    * Copy constructor. Creates a copy of the given vector.
    */
-  Vec2( const Vec2& v ) : x( v.x ), y( v.y ) { }
+  Vector2D( const Vector2D& v ) : x( v.x ), y( v.y ) { }
 
   // additive inverse
-  inline Vec2 operator-( void ) const {
-    return Vec2( -x, -y );
+  inline Vector2D operator-( void ) const {
+    return Vector2D( -x, -y );
   } 
 
   // addition
-  inline Vec2 operator+( const Vec2& v ) const {
-    Vec2 u = *this;
+  inline Vector2D operator+( const Vector2D& v ) const {
+    Vector2D u = *this;
     u += v;
     return u;
   }
   
   // subtraction
-  inline Vec2 operator-( const Vec2& v ) const {
-    Vec2 u = *this;
+  inline Vector2D operator-( const Vector2D& v ) const {
+    Vector2D u = *this;
     u -= v;
     return u;
   }
 
   // right scalar multiplication
-  inline Vec2 operator*( double r ) const {
-    Vec2 vr = *this;
+  inline Vector2D operator*( double r ) const {
+    Vector2D vr = *this;
     vr *= r;
     return vr;
   }
   
   // scalar division
-  inline Vec2 operator/( double r ) const {
-    Vec2 vr = *this;
+  inline Vector2D operator/( double r ) const {
+    Vector2D vr = *this;
     vr /= r;
     return vr;
   }
 
   // add v
-  inline void operator+=( const Vec2& v ) {
+  inline void operator+=( const Vector2D& v ) {
     x += v.x;
     y += v.y;
   }
 
   // subtract v
-  inline void operator-=( const Vec2& v ) {
+  inline void operator-=( const Vector2D& v ) {
     x -= v.x;
     y -= v.y;
   }
@@ -107,31 +107,31 @@ class Vec2 {
   /** 
    * Returns unit vector parallel to this one.
    */
-  inline Vec2 unit( void ) const {
+  inline Vector2D unit( void ) const {
     return *this / this->norm();
   }
 
 
-}; // clasd Vec2
+}; // clasd Vector2D
 
 // left scalar multiplication
-inline Vec2 operator*( double r, const Vec2& v ) {
+inline Vector2D operator*( double r, const Vector2D& v ) {
    return v*r;
 }
 
 // inner product
-inline double dot( const Vec2& v1, const Vec2& v2 ) {
+inline double dot( const Vector2D& v1, const Vector2D& v2 ) {
   return v1.x*v2.x + v1.y*v2.y;
 }
 
 // cross product
-inline double cross( const Vec2& v1, const Vec2& v2 ) {
+inline double cross( const Vector2D& v1, const Vector2D& v2 ) {
   return v1.x*v2.y - v1.y*v2.x;
 }
 
 // prints components
-std::ostream& operator<<( std::ostream& os, const Vec2& v );
+std::ostream& operator<<( std::ostream& os, const Vector2D& v );
    
 } // namespace CMU462
 
-#endif // CMU462_VEC2_H
+#endif // CMU462_VECTOR2D_H

@@ -1,4 +1,4 @@
-#include "mat3.h"
+#include "matrix3x3.h"
 
 #include <iostream>
 #include <cmath>
@@ -7,46 +7,46 @@ using namespace std;
 
 namespace CMU462 {
 
-  double& Mat3::operator()( int i, int j ) {
+  double& Matrix3x3::operator()( int i, int j ) {
     return entries[j][i];
   }
 
-  const double& Mat3::operator()( int i, int j ) const {
+  const double& Matrix3x3::operator()( int i, int j ) const {
     return entries[j][i];
   }
 
-  Vec3& Mat3::operator[]( int j ) {
+  Vector3D& Matrix3x3::operator[]( int j ) {
       return entries[j];
   }
 
-  const Vec3& Mat3::operator[]( int j ) const {
+  const Vector3D& Matrix3x3::operator[]( int j ) const {
     return entries[j];
   }
 
-  void Mat3::zero( double val ) {
+  void Matrix3x3::zero( double val ) {
     // sets all elements to val
-    entries[0] = entries[1] = entries[2] = Vec3( val, val, val );
+    entries[0] = entries[1] = entries[2] = Vector3D( val, val, val );
   }
 
-  double Mat3::det( void ) const {
-    const Mat3& A( *this );
+  double Matrix3x3::det( void ) const {
+    const Matrix3x3& A( *this );
 
     return -A(0,2)*A(1,1)*A(2,0) + A(0,1)*A(1,2)*A(2,0) +
             A(0,2)*A(1,0)*A(2,1) - A(0,0)*A(1,2)*A(2,1) -
             A(0,1)*A(1,0)*A(2,2) + A(0,0)*A(1,1)*A(2,2) ;
   }
 
-  double Mat3::norm( void ) const {
+  double Matrix3x3::norm( void ) const {
     return sqrt( entries[0].norm2() +
                  entries[1].norm2() +
                  entries[2].norm2() );
   }
 
-  Mat3 Mat3::operator-( void ) const {
+  Matrix3x3 Matrix3x3::operator-( void ) const {
 
    // returns -A
-    const Mat3& A( *this );
-    Mat3 B;
+    const Matrix3x3& A( *this );
+    Matrix3x3 B;
 
     B(0,0) = -A(0,0); B(0,1) = -A(0,1); B(0,2) = -A(0,2);
     B(1,0) = -A(1,0); B(1,1) = -A(1,1); B(1,2) = -A(1,2);
@@ -55,9 +55,9 @@ namespace CMU462 {
     return B;
   }
 
-  void Mat3::operator+=( const Mat3& B ) {
+  void Matrix3x3::operator+=( const Matrix3x3& B ) {
 
-    Mat3& A( *this );
+    Matrix3x3& A( *this );
     double* Aij = (double*) &A;
     const double* Bij = (const double*) &B;
 
@@ -72,9 +72,9 @@ namespace CMU462 {
     *Aij++ += *Bij++;
   }
 
-  Mat3 Mat3::operator-( const Mat3& B ) const {
-    const Mat3& A( *this );
-    Mat3 C;
+  Matrix3x3 Matrix3x3::operator-( const Matrix3x3& B ) const {
+    const Matrix3x3& A( *this );
+    Matrix3x3 C;
 
     for( int i = 0; i < 3; i++ )
     for( int j = 0; j < 3; j++ )
@@ -85,9 +85,9 @@ namespace CMU462 {
     return C;
   }
 
-  Mat3 Mat3::operator*( double c ) const {
-    const Mat3& A( *this );
-    Mat3 B;
+  Matrix3x3 Matrix3x3::operator*( double c ) const {
+    const Matrix3x3& A( *this );
+    Matrix3x3 B;
 
     for( int i = 0; i < 3; i++ )
     for( int j = 0; j < 3; j++ )
@@ -98,9 +98,9 @@ namespace CMU462 {
     return B;
   }
 
-  Mat3 operator*( double c, const Mat3& A ) {
+  Matrix3x3 operator*( double c, const Matrix3x3& A ) {
 
-    Mat3 cA;
+    Matrix3x3 cA;
     const double* Aij = (const double*) &A;
     double* cAij = (double*) &cA;
 
@@ -117,9 +117,9 @@ namespace CMU462 {
     return cA;
   }
 
-  Mat3 Mat3::operator*( const Mat3& B ) const {
-    const Mat3& A( *this );
-    Mat3 C;
+  Matrix3x3 Matrix3x3::operator*( const Matrix3x3& B ) const {
+    const Matrix3x3& A( *this );
+    Matrix3x3 C;
 
     for( int i = 0; i < 3; i++ )
     for( int j = 0; j < 3; j++ )
@@ -135,15 +135,15 @@ namespace CMU462 {
     return C;
   }
 
-  Vec3 Mat3::operator*( const Vec3& x ) const {
+  Vector3D Matrix3x3::operator*( const Vector3D& x ) const {
     return x[0]*entries[0] +
            x[1]*entries[1] +
            x[2]*entries[2] ;
   }
 
-  Mat3 Mat3::T( void ) const {
-    const Mat3& A( *this );
-    Mat3 B;
+  Matrix3x3 Matrix3x3::T( void ) const {
+    const Matrix3x3& A( *this );
+    Matrix3x3 B;
 
     for( int i = 0; i < 3; i++ )
     for( int j = 0; j < 3; j++ )
@@ -154,9 +154,9 @@ namespace CMU462 {
     return B;
   }
 
-  Mat3 Mat3::inv( void ) const {
-    const Mat3& A( *this );
-    Mat3 B;
+  Matrix3x3 Matrix3x3::inv( void ) const {
+    const Matrix3x3& A( *this );
+    Matrix3x3 B;
 
     B(0,0) = -A(1,2)*A(2,1) + A(1,1)*A(2,2); B(0,1) =  A(0,2)*A(2,1) - A(0,1)*A(2,2); B(0,2) = -A(0,2)*A(1,1) + A(0,1)*A(1,2);
     B(1,0) =  A(1,2)*A(2,0) - A(1,0)*A(2,2); B(1,1) = -A(0,2)*A(2,0) + A(0,0)*A(2,2); B(1,2) =  A(0,2)*A(1,0) - A(0,0)*A(1,2);
@@ -167,8 +167,8 @@ namespace CMU462 {
     return B;
   }
 
-  void Mat3::operator/=( double x ) {
-    Mat3& A( *this );
+  void Matrix3x3::operator/=( double x ) {
+    Matrix3x3& A( *this );
     double rx = 1./x;
 
     for( int i = 0; i < 3; i++ )
@@ -178,8 +178,8 @@ namespace CMU462 {
     }
   }
 
-  Mat3 Mat3::identity( void ) {
-    Mat3 B;
+  Matrix3x3 Matrix3x3::identity( void ) {
+    Matrix3x3 B;
 
     B(0,0) = 1.; B(0,1) = 0.; B(0,2) = 0.;
     B(1,0) = 0.; B(1,1) = 1.; B(1,2) = 0.;
@@ -188,8 +188,8 @@ namespace CMU462 {
     return B;
   }
 
-  Mat3 Mat3::crossProduct( const Vec3& u ) {
-    Mat3 B;
+  Matrix3x3 Matrix3x3::crossProduct( const Vector3D& u ) {
+    Matrix3x3 B;
 
     B(0,0) =   0.;  B(0,1) = -u.z;  B(0,2) =  u.y;
     B(1,0) =  u.z;  B(1,1) =   0.;  B(1,2) = -u.x;
@@ -198,8 +198,8 @@ namespace CMU462 {
     return B;
   }
 
-  Mat3 outer( const Vec3& u, const Vec3& v ) {
-    Mat3 B;
+  Matrix3x3 outer( const Vector3D& u, const Vector3D& v ) {
+    Matrix3x3 B;
     double* Bij = (double*) &B;
 
     *Bij++ = u.x*v.x;
@@ -215,7 +215,7 @@ namespace CMU462 {
     return B;
   }
 
-  std::ostream& operator<<( std::ostream& os, const Mat3& A ) {
+  std::ostream& operator<<( std::ostream& os, const Matrix3x3& A ) {
     for( int i = 0; i < 3; i++ )
     {
        os << "[ ";
@@ -231,11 +231,11 @@ namespace CMU462 {
     return os;
   }
 
-  Vec3& Mat3::column( int i ) {
+  Vector3D& Matrix3x3::column( int i ) {
     return entries[i];
   }
 
-  const Vec3& Mat3::column( int i ) const {
+  const Vector3D& Matrix3x3::column( int i ) const {
     return entries[i];
   }
 }

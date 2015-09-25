@@ -1,7 +1,7 @@
 #ifndef CMU462_COMPLEX_H
 #define CMU462_COMPLEX_H
 
-#include "vec2.h"
+#include "vector2D.h"
 
 namespace CMU462 {
 
@@ -9,26 +9,26 @@ namespace CMU462 {
 * Represents complex numbers as 2D vectors of their real and
 * imaginary components.
 */
-class Complex : public Vec2 {
+class Complex : public Vector2D {
  public:
 
   /**
    * Constructor.
    * Initializes to 0.
    */
-  Complex( ) : Vec2( 0.0, 0.0 ) { }
+  Complex( ) : Vector2D( 0.0, 0.0 ) { }
 
   /**
    * Constructor.
    * Initializes to a+bi.
    */
-  Complex( double a, double b ) : Vec2( a, b ) { }
+  Complex( double a, double b ) : Vector2D( a, b ) { }
 
   /**
    * Constructor.
    * Initializes to a+bi from vector v = (a,b)
    */
-  Complex( const Vec2& v ) : Vec2( v ) { }
+  Complex( const Vector2D& v ) : Vector2D( v ) { }
 
   /**
    * Compute the complex conjugate.
