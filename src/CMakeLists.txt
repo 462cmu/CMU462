@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-include_directories(${CMU462_INCLUDE_DIRS}/CMU462)
+include_directories(${PROJECT_SOURCE_DIR}/include/CMU462)
 
 # CMU462 library source files
 set(CMU462_SOURCE

@@ -4,6 +4,7 @@ set(GLEW_SOURCE_DIR ${GLEW_ROOT_DIR}/src)
 set(GLEW_HEADER_DIR ${GLEW_ROOT_DIR}/include)
 
 include_directories(${GLEW_HEADER_DIR})
+
 add_library(glew 
 ${GLEW_SOURCE_DIR}/glew.c
 ${GLEW_SOURCE_DIR}/glewinfo.c
