@@ -2,10 +2,10 @@
 #define CMU462_QUATERNION_H
 
 #include <iosfwd>
-#include "vector4D.h"
-#include "vector3D.h"
-#include "matrix4x4.h"
-#include "matrix3x3.h"
+#include "vec4.h"
+#include "vec3.h"
+#include "mat4.h"
+#include "mat3.h"
 
 /*
  * Quarternion Class
@@ -20,7 +20,7 @@
 
 namespace CMU462 {
 
-class Quaternion : public Vector4D {
+class Quaternion : public Vec4 {
 
  private:
 
@@ -37,20 +37,20 @@ class Quaternion : public Vector4D {
    * Constructor.
    * Initializes to 0,0,0,1
    */
-  Quaternion( ) : Vector4D( 0.0, 0.0, 0.0, 1.0 ) { }
+  Quaternion( ) : Vec4( 0.0, 0.0, 0.0, 1.0 ) { }
 
   /*
    * Construct from 3D vector and w.
    *
    */
-  Quaternion(const Vector3D& v, double w) : Vector4D(v.x, v.y, v.z, w) { }
+  Quaternion(const Vec3& v, double w) : Vec4(v.x, v.y, v.z, w) { }
 
-  Quaternion(const Vector4D& v) : Vector4D(v.x, v.y, v.z, v.w) { }
+  Quaternion(const Vec4& v) : Vec4(v.x, v.y, v.z, v.w) { }
 
-  Quaternion(double x, double y, double z, double w) : Vector4D(x, y, z, w) { }
+  Quaternion(double x, double y, double z, double w) : Vec4(x, y, z, w) { }
 
-  Vector3D complex() const { return Vector3D(x, y, z); }
-  void setComplex(const Vector3D& c)
+  Vec3 complex() const { return Vec3(x, y, z); }
+  void setComplex(const Vec3& c)
   {
 	x = c.x;
 	y = c.y;
@@ -127,7 +127,7 @@ class Quaternion : public Vector4D {
    * Note that this is @e NOT the rotation matrix that may be
    * represented by a unit quaternion.
    */
-  Matrix4x4 matrix() const {
+  Mat4 matrix() const {
 
 	double m[16] = {
 	   w,  -z,  y, x,
@@ -136,7 +136,7 @@ class Quaternion : public Vector4D {
 	  -x,  -y, -z, w
 	};
 
-	return Matrix4x4(m);
+	return Mat4(m);
   }
 
   /**
@@ -151,7 +151,7 @@ class Quaternion : public Vector4D {
    * Note that this is @e NOT the rotation matrix that may be
    * represented by a unit quaternion.
    */
-  Matrix4x4 rightMatrix() const {
+  Mat4 rightMatrix() const {
 	double m[16] = {
 	  +w, -z,  y, -x,
 	  +z,  w, -x, -y,
@@ -159,7 +159,7 @@ class Quaternion : public Vector4D {
 	  +x,  y,  z,  w
 	};
 
-	return Matrix4x4(m);
+	return Mat4(m);
   }
 
   /**
@@ -167,7 +167,7 @@ class Quaternion : public Vector4D {
    *
    * This is simply the vector [x y z w]<sup>T</sup>
    */
-  Vector4D vector() const { return Vector4D(x, y, z, w); }
+  Vec4 vector() const { return Vec4(x, y, z, w); }
 
   /**
    * @brief Computes the rotation matrix represented by a unit
@@ -177,14 +177,14 @@ class Quaternion : public Vector4D {
    * It formulaically returns the matrix, which will not be a
    * rotation if the quaternion is non-unit.
    */
-  Matrix3x3 rotationMatrix() const {
+  Mat3 rotationMatrix() const {
 	double m[9] = {
 	  1-2*y*y-2*z*z, 2*x*y - 2*z*w, 2*x*z + 2*y*w,
 	  2*x*y + 2*z*w, 1-2*x*x-2*z*z, 2*y*z - 2*x*w,
 	  2*x*z - 2*y*w, 2*y*z + 2*x*w, 1-2*x*x-2*y*y
 	};
 
-	return Matrix3x3(m);
+	return Mat3(m);
   }
 
 
@@ -192,7 +192,7 @@ class Quaternion : public Vector4D {
      * @brief Returns the scaled-axis representation of this
      * quaternion rotation.
      */
-  Vector3D scaledAxis(void) const{
+  Vec3 scaledAxis(void) const{
 
 	Quaternion q1 = (Quaternion)unit();
 
@@ -209,12 +209,12 @@ class Quaternion : public Vector4D {
 	  // if s close to zero then direction of axis not important
 	  // if it is important that axis is normalised then replace with x=1; y=z=0;
 
-	  return Vector3D(q1.x, q1.y, q1.z);
+	  return Vec3(q1.x, q1.y, q1.z);
 	}
 	else
 	{
 	  // normalise axis
-	  return Vector3D(q1.x / s, q1.y / s, q1.z / s);
+	  return Vec3(q1.x / s, q1.y / s, q1.z / s);
 	}
 
 	// NEVER getsgg HERE.
@@ -225,7 +225,7 @@ class Quaternion : public Vector4D {
    * @brief Sets quaternion to be same as rotation by scaled axis w.
    * This is the equal and opposite conversion from the scaledAxis(void) function.
    */
-  void scaledAxis(const Vector3D& vec_in)
+  void scaledAxis(const Vec3& vec_in)
   {
 	double theta = vec_in.norm();
 
@@ -233,7 +233,7 @@ class Quaternion : public Vector4D {
 	if (theta > 0.0001)
 	{
 	  double s = sin(theta / 2.0);
-	  Vector3D W(vec_in / theta * s);
+	  Vec3 W(vec_in / theta * s);
 	  x = W.x;
 	  y = W.y;
 	  z = W.z;
@@ -255,7 +255,7 @@ class Quaternion : public Vector4D {
    * @warning conjugate() is used instead of inverse() for better
    * performance, when this quaternion must be normalized.
    */
-  Vector3D rotatedVector(const Vector3D& v) const {
+  Vec3 rotatedVector(const Vec3& v) const {
 	return (((*this) * Quaternion(v, 0)) * conjugate()).complex();
   }
 
@@ -266,7 +266,7 @@ class Quaternion : public Vector4D {
    * euler angle rotation.
    * @param euler A 3-vector in order:  roll-pitch-yaw.
    */
-  void euler(const Vector3D& euler) {
+  void euler(const Vec3& euler) {
 	double c1 = cos(euler[2] * 0.5);
 	double c2 = cos(euler[1] * 0.5);
 	double c3 = cos(euler[0] * 0.5);
@@ -284,9 +284,9 @@ class Quaternion : public Vector4D {
    * this quaternion.
    * @return Euler angles in roll-pitch-yaw order.
    */
-  Vector3D euler(void) const
+  Vec3 euler(void) const
   {
-	Vector3D euler;
+	Vec3 euler;
 	const static double PI_OVER_2 = M_PI * 0.5;
 	const static double EPSILON = 1e-10;
 	double sqw, sqx, sqy, sqz;
@@ -329,9 +329,9 @@ class Quaternion : public Vector4D {
    * so that Q = Qxy * Qz.
    */
   void decoupleZ(Quaternion* Qxy, Quaternion* Qz) const {
-	Vector3D ztt(0,0,1);
-	Vector3D zbt = this->rotatedVector(ztt);
-	Vector3D axis_xy = cross(ztt, zbt);
+	Vec3 ztt(0,0,1);
+	Vec3 zbt = this->rotatedVector(ztt);
+	Vec3 axis_xy = cross(ztt, zbt);
 	double axis_norm = axis_xy.norm();
 
 	// FIXME::Bryce has no clue what saturate is suppose to do...

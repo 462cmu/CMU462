@@ -1,9 +1,9 @@
-#ifndef CMU462_MATRIX3X3_H
-#define CMU462_MATRIX3X3_H
+#ifndef CMU462_MAT3_H
+#define CMU462_MAT3_H
 
 #include <iosfwd>
 
-#include "vector3D.h"
+#include "vec3.h"
 
 namespace CMU462 {
 
@@ -11,17 +11,17 @@ namespace CMU462 {
  * Defines a 3x3 matrix.
  * 3x3 matrices are extremely useful in computer graphics.
  */
-class Matrix3x3 {
+class Mat3 {
 
   public:
 
   // The default constructor.
-  Matrix3x3(void) { }
+  Mat3(void) { }
 
   // Constructor for row major form data.
   // Transposes to the internal column major form.
   // REQUIRES: data should be of size 9 for a 3 by 3 matrix..
-  Matrix3x3(double * data)
+  Mat3(double * data)
   {
     for( int i = 0; i < 3; i++ )
     for( int j = 0; j < 3; j++ )
@@ -52,54 +52,54 @@ class Matrix3x3 {
   /**
    * Returns the 3x3 identity matrix.
    */
-  static Matrix3x3 identity( void );
+  static Mat3 identity( void );
 
   /**
    * Returns a matrix representing the (left) cross product with u.
    */
-  static Matrix3x3 crossProduct( const Vector3D& u );
+  static Mat3 crossProduct( const Vec3& u );
 
   /**
    * Returns the ith column.
    */
-        Vector3D& column( int i );
-  const Vector3D& column( int i ) const;
+        Vec3& column( int i );
+  const Vec3& column( int i ) const;
 
   /**
    * Returns the transpose of A.
    */
-  Matrix3x3 T( void ) const;
+  Mat3 T( void ) const;
 
   /**
    * Returns the inverse of A.
    */
-  Matrix3x3 inv( void ) const;
+  Mat3 inv( void ) const;
 
   // accesses element (i,j) of A using 0-based indexing
         double& operator()( int i, int j );
   const double& operator()( int i, int j ) const;
 
   // accesses the ith column of A
-        Vector3D& operator[]( int i );
-  const Vector3D& operator[]( int i ) const;
+        Vec3& operator[]( int i );
+  const Vec3& operator[]( int i ) const;
 
   // increments by B
-  void operator+=( const Matrix3x3& B );
+  void operator+=( const Mat3& B );
 
   // returns -A
-  Matrix3x3 operator-( void ) const;
+  Mat3 operator-( void ) const;
 
   // returns A-B
-  Matrix3x3 operator-( const Matrix3x3& B ) const;
+  Mat3 operator-( const Mat3& B ) const;
 
   // returns c*A
-  Matrix3x3 operator*( double c ) const;
+  Mat3 operator*( double c ) const;
 
   // returns A*B
-  Matrix3x3 operator*( const Matrix3x3& B ) const;
+  Mat3 operator*( const Mat3& B ) const;
 
   // returns A*x
-  Vector3D operator*( const Vector3D& x ) const;
+  Vec3 operator*( const Vec3& x ) const;
 
   // divides each element by x
   void operator/=( double x );
@@ -107,19 +107,19 @@ class Matrix3x3 {
   protected:
 
   // column vectors
-  Vector3D entries[3];
+  Vec3 entries[3];
 
-}; // class Matrix3x3
+}; // class Mat3
 
 // returns the outer product of u and v
-Matrix3x3 outer( const Vector3D& u, const Vector3D& v );
+Mat3 outer( const Vec3& u, const Vec3& v );
 
 // returns c*A
-Matrix3x3 operator*( double c, const Matrix3x3& A );
+Mat3 operator*( double c, const Mat3& A );
 
 // prints entries
-std::ostream& operator<<( std::ostream& os, const Matrix3x3& A );
+std::ostream& operator<<( std::ostream& os, const Mat3& A );
 
 } // namespace CMU462
 
-#endif // CMU462_MATRIX3X3_H
+#endif // CMU462_MAT3_H
