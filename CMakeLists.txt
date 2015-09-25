@@ -6,9 +6,9 @@ project(CMU462)
 #-------------------------------------------------------------------------------
 option(CMU462_BUILD_DEBUG    "Build for debug"          OFF)
 option(CMU462_BUILD_SHARED   "Build shared libraries"   OFF)
-option(CMU462_BUILD_DOCS     "Build documentation"      ON)
-option(CMU462_BUILD_TESTS    "Build tests programs"     ON)
-option(CMU462_BUILD_EXAMPLES "Build examples"           ON)
+option(CMU462_BUILD_DOCS     "Build documentation"      OFF)
+option(CMU462_BUILD_TESTS    "Build tests programs"     OFF)
+option(CMU462_BUILD_EXAMPLES "Build examples"           OFF)
 
 #-------------------------------------------------------------------------------
 # CMake modules
