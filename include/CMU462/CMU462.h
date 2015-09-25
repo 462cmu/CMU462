@@ -1,13 +1,15 @@
-#include "vec2.h"
+#include "vector2D.h"
 #include "complex.h"
 
-#include "vec3.h"
-#include "mat3.h"
+#include "vector3D.h"
+#include "matrix3x3.h"
 
-#include "vec4.h"
-#include "mat4.h"
+#include "vector4D.h"
+#include "matrix4x4.h"
 
+// quaternions seem pretty cool.
 #include "quaternion.h"
+
 
 #include "color.h"
 #include "renderer.h"
