@@ -65,11 +65,11 @@ string Color::toHex( void ) const {
 }
 
 std::ostream& operator<<( std::ostream& os, const Color& c ) {
-  os << "( r=" << c.r;
-  os << ", g=" << c.g;
-  os << ", b=" << c.b;
-  os << ", a=" << c.a;
-  os << " )" << endl;
+  os << "(r=" << c.r;
+  os << " g=" << c.g;
+  os << " b=" << c.b;
+  os << " a=" << c.a;
+  os << ")";
   return os;
 }
 
