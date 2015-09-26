@@ -264,13 +264,11 @@ void Viewer::mouse_button_callback( GLFWwindow* window, int button, int action, 
 
 void Viewer::key_callback( GLFWwindow* window, 
                            int key, int scancode, int action, int mods ) {
-  if( action == GLFW_PRESS ) {
-    if( key == GLFW_KEY_ESCAPE ) { 
-      glfwSetWindowShouldClose( window, true ); 
-    } else {
-      if( key == GLFW_KEY_GRAVE_ACCENT ) showInfo = !showInfo;
-      renderer->keyboard_event( key, action, mods );
-    }
+  if( key == GLFW_KEY_ESCAPE && action == GLFW_PRESS ) { 
+    glfwSetWindowShouldClose( window, true ); 
+  } else {
+    if( key == GLFW_KEY_GRAVE_ACCENT ) showInfo = !showInfo;
+    renderer->keyboard_event( key, action, mods );
   }
 }
 

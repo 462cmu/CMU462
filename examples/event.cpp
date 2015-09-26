@@ -74,6 +74,9 @@ class EventDisply : public Renderer {
       case EVENT_RELEASE:
         s = "You just released: ";
         break;
+      case EVENT_REPEAT:
+        s = "You are holding: ";
+        break;
     }
 
     if (key == KEYBOARD_ENTER) {
