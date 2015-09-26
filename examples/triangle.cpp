@@ -13,11 +13,11 @@ class TriangleDrawer : public Renderer {
   ~TriangleDrawer() { }
 
   string name() {
-    return "Triangle Renderer";
+    return "Drawing example";
   }
 
   string info() {
-    return "I just draw a blue triangle";
+    return "Drawing example";
   }
 
   void init() {
@@ -43,41 +43,11 @@ class TriangleDrawer : public Renderer {
     return;
   }
 
-  void key_event(char key) {
+  void keyboard_event(int key, int event, unsigned char mods) {
     if (key == 'R') shoud_draw = !shoud_draw; 
     return;
   }
   
-  void cursor_event(float x, float y, unsigned char keys) {
-
-    // translate when left mouse button is held down
-    if (keys & (1 << 2)) { 
-      float dx = x - cursor_x;
-      float dy = y - cursor_y;
-      glTranslatef(0.5 * dx / w, - 0.5 * dy / h, 0);       
-    }
-
-    // update
-    cursor_x = x;
-    cursor_y = y;
-  }
-
-  void scroll_event(float offset_x, float offset_y) {
-    float scale = 1 + 0.1 * offset_x - 0.1 * offset_y;
-    glScalef(scale, scale, 1);
-  }
-
-  void mouse_button_event(int button, int event) {
-    switch (event) {
-      case MOUSE_BUTTON_PRESS:
-        cerr << "You clicked button " << button << endl; 
-        break;
-      case MOUSE_BUTTON_RELEASE:
-        cerr << "You released button " << button << endl;
-        break; 
-    }
-  }
-
  private:
 
   // show draw triangle
@@ -86,8 +56,6 @@ class TriangleDrawer : public Renderer {
   // frame buffer size
   size_t w, h; 
 
-  // cursor position
-  float cursor_x, cursor_y;
 };
 
 int main( int argc, char** argv ) {

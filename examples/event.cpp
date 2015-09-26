@@ -7,17 +7,17 @@
 using namespace std;
 using namespace CMU462;
 
-class TextDrawer : public Renderer {
+class EventDisply : public Renderer {
  public:
 
-  ~TextDrawer() { }
+  ~EventDisply() { }
 
   string name() {
-    return "Text manager example";
+    return "Event handling example";
   }
 
   string info() {
-    return "Text manager example";
+    return "Event handling example";
   }
 
   void init() {
@@ -47,7 +47,9 @@ class TextDrawer : public Renderer {
   }
 
   void cursor_event(float x, float y) {
-    text_mgr.set_anchor(line0, 2 * (x - .5 * w) / w, 2 * (.5 * h - y) / h);      
+    if (left_down) {
+      text_mgr.set_anchor(line0, 2 * (x - .5 * w) / w, 2 * (.5 * h - y) / h);      
+    }
   }
 
   void scroll_event(float offset_x, float offset_y) {
@@ -55,6 +57,34 @@ class TextDrawer : public Renderer {
     text_mgr.set_size(line0, size);
   }
 
+  void mouse_event(int key, int event, unsigned char mods) {
+    if (key == MOUSE_LEFT) {
+      if (event == EVENT_PRESS) left_down = true;
+      if (event == EVENT_RELEASE) left_down = false;
+    }
+  }
+
+  void keyboard_event(int key, int event, unsigned char mods) {
+
+    string s;
+    switch (event) {
+      case EVENT_PRESS:    
+        s = "You just pressed: ";
+        break;
+      case EVENT_RELEASE:
+        s = "You just released: ";
+        break;
+    }
+
+    if (key == KEYBOARD_ENTER) {
+      s += "Enter";
+    } else {
+      char c = key;
+      s += c;      
+    }
+
+    text_mgr.set_text(line0, s);
+  }
 
  private:
 
@@ -70,6 +100,9 @@ class TextDrawer : public Renderer {
   // frame buffer size
   size_t w, h;
 
+  // key states
+  bool left_down;
+
 };
 
 
@@ -79,7 +112,7 @@ int main( int argc, char** argv ) {
   Viewer viewer = Viewer();
 
   // defined a user space renderer
-  Renderer* renderer = new TextDrawer();
+  Renderer* renderer = new EventDisply();
 
   // set user space renderer
   viewer.set_renderer(renderer);

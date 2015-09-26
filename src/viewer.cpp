@@ -217,19 +217,6 @@ void Viewer::err_callback( int error, const char* description ) {
     out_err( "GLFW Error: " << description );
 }
 
-void Viewer::key_callback( GLFWwindow* window, 
-                           int key, int scancode, int action, int mods ) {
-  if( action == GLFW_PRESS ) {
-    if( key == GLFW_KEY_ESCAPE ) { 
-      glfwSetWindowShouldClose( window, true ); 
-    } else if( key == GLFW_KEY_GRAVE_ACCENT ) { 
-      showInfo = !showInfo; 
-    } else {
-      renderer->key_event(key);
-    }
-  }
-}
-
 void Viewer::resize_callback( GLFWwindow* window, int width, int height ) {
 
   // get framebuffer size
@@ -249,23 +236,15 @@ void Viewer::resize_callback( GLFWwindow* window, int width, int height ) {
 
 void Viewer::cursor_callback( GLFWwindow* window, double xpos, double ypos ) {
 
-  // get keydown bitmask
-  unsigned char keys;
-  keys  |= (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT)   == GLFW_PRESS); 
-  keys <<= 1;
-  keys  |= (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS); 
-  keys <<= 1;
-  keys  |= (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT)  == GLFW_PRESS);
-
   // forward pan event to renderer
   if( HDPI ) {
     float cursor_x = 2 * xpos;
     float cursor_y = 2 * ypos;
-    renderer->cursor_event(cursor_x, cursor_y, keys);
+    renderer->cursor_event(cursor_x, cursor_y);
   } else {
     float cursor_x = xpos;
     float cursor_y = ypos;
-    renderer->cursor_event(cursor_x, cursor_y, keys);
+    renderer->cursor_event(cursor_x, cursor_y);
   }
 
 }
@@ -276,11 +255,26 @@ void Viewer::scroll_callback( GLFWwindow* window, double xoffset, double yoffset
 
 }
 
+
 void Viewer::mouse_button_callback( GLFWwindow* window, int button, int action, int mods ) {
 
-  renderer->mouse_button_event( button, action );
+  renderer->mouse_event( button, action, mods );
 
 }
+
+void Viewer::key_callback( GLFWwindow* window, 
+                           int key, int scancode, int action, int mods ) {
+  if( action == GLFW_PRESS ) {
+    if( key == GLFW_KEY_ESCAPE ) { 
+      glfwSetWindowShouldClose( window, true ); 
+    } else {
+      if( key == GLFW_KEY_GRAVE_ACCENT ) showInfo = !showInfo;
+      renderer->keyboard_event( key, action, mods );
+    }
+  }
+}
+
+
 
 } // namespace CMU462
 

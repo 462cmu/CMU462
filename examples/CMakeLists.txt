@@ -11,6 +11,7 @@ link_libraries(
 
 add_executable(triangle triangle.cpp)
 add_executable(text text.cpp)
+add_executable(event event.cpp)
 
 # Install examples
 install(TARGETS triangle DESTINATION bin/examples)

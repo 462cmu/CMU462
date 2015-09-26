@@ -6,12 +6,35 @@
 
 namespace CMU462 {
 
-// MOUSE CONTROL MACROS //
-#define MOUSE_BUTTON_LEFT     0
-#define MOUSE_BUTTON_RIGHT    1
-#define MOUSE_BUTTON_MIDDLE   2
-#define MOUSE_BUTTON_RELEASE  0
-#define MOUSE_BUTTON_PRESS    1
+// MOUSE INPUTS //
+#define MOUSE_LEFT     0
+#define MOUSE_RIGHT    1
+#define MOUSE_MIDDLE   2
+
+// KEYBOARD INPUTS //
+#define KEYBOARD_ENTER           257
+#define KEYBOARD_TAB             258
+#define KEYBOARD_BACKSPACE       259
+#define KEYBOARD_INSERT          260
+#define KEYBOARD_DELETE          261
+#define KEYBOARD_RIGHT           262 
+#define KEYBOARD_LEFT            263
+#define KEYBOARD_DOWN            264
+#define KEYBOARD_UP              265
+#define KEYBOARD_PAGE_UP         266
+#define KEYBOARD_PAGE_DOWN       267
+#define KEYBOARD_PRINT_SCREEN    283
+
+// EVENT TYPES //
+#define EVENT_RELEASE  0
+#define EVENT_PRESS    1
+#define EVENT_REPEAT   2
+
+// MODIFIERS //
+#define MOD_SHIFT   0x0001
+#define MOD_CTRL    0x0002
+#define MOD_ALT     0x0004
+#define MOD_SUPER   0x0008
 
 /**
  * Abstract renderer definition.
@@ -73,29 +96,15 @@ class Renderer {
   virtual std::string info( void ) = 0;
 
   /**
-   * Respond to key event.
-   * Renderers are allowed to define their own control keybindings for
-   * user interaction but will only do this through the viewer. The viewer 
-   * will try to handle all the window events and will inform the renderer
-   * of events that it does not care about. Therefore renderers should avoid
-   * using keybindings that the viewer already uses. (see Viewer for details)
-   * \param key The key being pressed by the user.
-   */
-  virtual void key_event( char key ) { }
-
-  /**
    * Respond to cursor events.
    * The viewer itself does not really care about the cursor but it will take 
    * the GLFW cursor events and forward the ones that matter to  the renderer. 
-   * The arguments are defined in screen space coordinates.
+   * The arguments are defined in screen space coordinates ( (0,0) at top
+   * left corner of the window and (w,h) at the bottom right corner.
    * \param x the x coordinate of the cursor
    * \param y the y coordinate of the cursor
-   * \param keys Encodes the current mouse buttons state in a bitmask
-   *             each bit from the least significant to the most significant
-   *             encodes: right mouse button, middle mouse button, left mouse 
-   *             button.
    */
-  virtual void cursor_event( float x, float y, unsigned char keys ) { }
+  virtual void cursor_event( float x, float y ) { }
 
   /**
    * Respond to zoom event.
@@ -108,15 +117,30 @@ class Renderer {
   virtual void scroll_event( float offset_x, float offset_y ) { }
 
   /**
-   * Respond to mouse button event.
-   * The viewer will always forward mouse button events to the renderer. 
-   * \param button The button that spawned the event. This uses GLFW's 
-   *        definition where values ranges from 0 to 7, with left, right, 
-   *        and middle being 1, 2, and 3.
+   * Respond to mouse click event.
+   * The viewer will always forward mouse click events to the renderer. 
+   * \param key The key that spawned the event. The mapping between the
+   *        key values and the mouse buttons are given by the macros defined
+   *        at the top of this file.  
    * \param event The type of event. Possible values are 0, 1 and 2, which
-   *        correspond to release, press, repeat(held down).
+   *        corresponds to the events defined in macros. 
+   * \param mods if any modifier keys are held down at the time of the event
+   *        modifiers are defined in macros.
    */
-  virtual void mouse_button_event( int button, int event ) { }
+  virtual void mouse_event( int key, int event, unsigned char mods ) { }
+
+  /**
+   * Respond to keyboard event.
+   * The viewer will always forward mouse key events to the renderer. 
+   * \param key The key that spawned the event. ASCII numbers are used for
+   *        letter characters. Non-letter keys are selectively supported 
+   *        and are defined in macros.
+   * \param event The type of event. Possible values are 0, 1 and 2, which
+   *        corresponds to the events defined in macros. 
+   * \param mods if any modifier keys are held down at the time of the event
+   *        modifiers are defined in macros.
+   */
+  virtual void keyboard_event( int key, int event, unsigned char mods ) { }
 
   /**
    * Internal - 
