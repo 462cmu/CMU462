@@ -7,9 +7,9 @@
 #include "vector4D.h"
 #include "matrix4x4.h"
 
-// quaternions seem pretty cool.
-#include "quaternion.h"
+#include "math.h"
 
+#include "quaternion.h"
 
 #include "color.h"
 #include "renderer.h"

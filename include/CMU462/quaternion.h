@@ -4,6 +4,7 @@
 #include <iosfwd>
 #include "vector4D.h"
 #include "vector3D.h"
+#include "misc_math.h"
 #include "matrix4x4.h"
 #include "matrix3x3.h"
 
@@ -21,16 +22,6 @@
 namespace CMU462 {
 
 class Quaternion : public Vector4D {
-
- private:
-
-  // A clamp function.
-  static inline double saturate(double x, double min_val, double max_val)
-  {
-	return std::max(min_val, std::min(max_val, x));
-  }
-
-
  public:
 
   /**
@@ -288,7 +279,6 @@ class Quaternion : public Vector4D {
   {
 	Vector3D euler;
 	const static double PI_OVER_2 = M_PI * 0.5;
-	const static double EPSILON = 1e-10;
 	double sqw, sqx, sqy, sqz;
 
 	// quick conversion to Euler angles to give tilt to user
@@ -298,7 +288,7 @@ class Quaternion : public Vector4D {
 	sqz = z*z;
 
 	euler[1] = asin(2.0 * (w*y - x*z));
-	if (PI_OVER_2 - fabs(euler[1]) > EPSILON) {
+	if (PI_OVER_2 - fabs(euler[1]) > EPS_D) {
 	  euler[2] = atan2(2.0 * (x*y + w*z),
 					   sqx - sqy - sqz + sqw);
 	  euler[0] = atan2(2.0 * (w*x + y*z),
@@ -334,8 +324,7 @@ class Quaternion : public Vector4D {
 	Vector3D axis_xy = cross(ztt, zbt);
 	double axis_norm = axis_xy.norm();
 
-	// FIXME::Bryce has no clue what saturate is suppose to do...
-	double axis_theta = acos(saturate(zbt.z, -1,+1));
+	double axis_theta = acos(clamp(zbt.z, -1.0, 1.0));
 	if (axis_norm > 0.00001)
 	{
 	  axis_xy = axis_xy * (axis_theta/axis_norm); // limit is *1
@@ -357,10 +346,10 @@ class Quaternion : public Vector4D {
   /// Returns quaternion that is slerped by fraction 't' between q0 and q1.
   static Quaternion slerp(const Quaternion& q0, const Quaternion& q1, double t) {
 
-    double omega = acos(saturate(q0.x*q1.x +
-								 q0.y*q1.y +
-								 q0.z*q1.z +
-								 q0.w*q1.w, -1,1));
+    double omega = acos(clamp(q0.x*q1.x +
+                              q0.y*q1.y +
+                              q0.z*q1.z +
+                              q0.w*q1.w, -1.0, 1.0));
     if (fabs(omega) < 1e-10)
 	{
       omega = 1e-10;
