@@ -101,7 +101,7 @@ class Vector4D {
 
   // scalar multiplication / assignment
   inline void operator*=( const double& c ) {
-    x *= c; y *= c; z *= c; z *= c;
+    x *= c; y *= c; z *= c; w *= c;
   }
 
   // scalar division / assignment
@@ -157,7 +157,7 @@ inline double dot( const Vector4D& u, const Vector4D& v ) {
 }
 
 // prints components
-std::ostream& operator<<( std::ostream& os, const Vector3D& v );
+std::ostream& operator<<( std::ostream& os, const Vector4D& v );
 
 } // namespace CMU462
 
