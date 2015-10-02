@@ -52,6 +52,12 @@ class Vector4D {
    * Initializes from existing vector3D.
    */
  Vector4D( const Vector3D& v ) : x( v.x ), y( v.y ), z( v.z ), w( 0.0 ) { }
+  
+ /**
+   * Constructor.
+   * Initializes from existing vector3D and w value.
+   */
+ Vector4D( const Vector3D& v, double w ) : x( v.x ), y( v.y ), z( v.z ), w( w ) { }
 
   // returns reference to the specified component (0-based indexing: x, y, z)
   inline double& operator[] ( const int& index ) {
