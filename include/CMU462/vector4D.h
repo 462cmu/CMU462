@@ -150,6 +150,11 @@ class Vector4D {
    */
   Vector3D to3D();
 
+  /**
+   * Converts this vector to a 3D vector by dividing x, y, and z by w.
+   */
+  Vector3D projectTo3D();
+
 }; // class Vector4D
 
 // left scalar multiplication
