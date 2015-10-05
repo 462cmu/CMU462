@@ -40,6 +40,21 @@ class Quaternion : public Vector4D {
 
   Quaternion(double x, double y, double z, double w) : Vector4D(x, y, z, w) { }
 
+  /**
+   * Initializes a quaternion that represents a rotation about the given axis
+   * and angle.
+   */
+  void from_axis_angle(const Vector3D& axis, double radians) {
+    radians /= 2;
+    const Vector3D& nAxis = axis.unit();
+    double sinTheta = sin(radians);
+    x = sinTheta * nAxis.x;
+    y = sinTheta * nAxis.y;
+    z = sinTheta * nAxis.z;
+    w = cos(radians);
+    this->normalize(); 
+  }
+
   Vector3D complex() const { return Vector3D(x, y, z); }
   void setComplex(const Vector3D& c)
   {
