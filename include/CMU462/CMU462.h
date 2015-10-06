@@ -8,6 +8,7 @@
 #include "matrix4x4.h"
 
 #include "math.h"
+#include "random.h"
 
 #include "quaternion.h"
 
