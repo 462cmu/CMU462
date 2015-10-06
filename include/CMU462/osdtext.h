@@ -8,10 +8,10 @@
 
 #include "color.h"
 
-// forward declare freetype stuff 
-struct FT_LibraryRec_; 
-typedef struct FT_LibraryRec_* FT_Library; 
-struct FT_FaceRec_; 
+// forward declare freetype stuff
+struct FT_LibraryRec_;
+typedef struct FT_LibraryRec_* FT_Library;
+struct FT_FaceRec_;
 typedef struct FT_FaceRec_*  FT_Face;
 
 namespace CMU462 {
@@ -20,7 +20,7 @@ namespace CMU462 {
 extern "C" char osdfont_base64[];
 
 struct OSDLine {
-  
+
   // UID of the line
   int id;
 
@@ -28,25 +28,25 @@ struct OSDLine {
   float x, y;
 
   // line content
-  std::string text; 
+  std::string text;
 
   // font size
   size_t size;
 
   // font color
   Color color;
-  
+
 };
 
 /**
- * Provides an interface for text on-screen display. 
+ * Provides an interface for text on-screen display.
  * Note that this requires GL_BLEND enabled to work. Do note this is a very
- * basic implementation and the cost of all operations increases linearly with 
- * respect to the number of lines and the length of the lines. 
+ * basic implementation and the cost of all operations increases linearly with
+ * respect to the number of lines and the length of the lines.
  */
 class OSDText {
  public:
-  
+
   /**
    * Constructor.
    * Creates an empty text OSD.
@@ -73,6 +73,11 @@ class OSDText {
    */
   void render();
 
+	/**
+	 * Clear all the lines.
+	 */
+	void clear();
+
   /**
    * Resize internal scales when context size has changed.
    * This should be called on a window resize, etc.
@@ -84,13 +89,13 @@ class OSDText {
    * This uses GL's screen space standard and maps the horizontal space
    * to [-1, 1] from left to right and the vertical space to [-1, 1] from
    * bottom to top.
-   * \param x Horizontal coordinate of the anchor. 
+   * \param x Horizontal coordinate of the anchor.
    * \param y Vertical coordinate of the anchor.
    * \param text The text to add.
    * \param size The font size of the text.
    * \param color The color of the text.
    * \return the line index if successfully added. A valid line index
-   *         is non-negative. If the line was not successfully added, 
+   *         is non-negative. If the line was not successfully added,
    *         -1 is returned.
    */
   int add_line(float x, float y, std::string text = "",
@@ -99,7 +104,7 @@ class OSDText {
   /**
    * Deletes a line.
    * If the given id is not valid, the call has no effect.
-   * \param line_id Index of the line to be removed. 
+   * \param line_id Index of the line to be removed.
    */
   void del_line(int line_id);
 
@@ -144,7 +149,7 @@ class OSDText {
 
   // HDPI displays
   bool use_hdpi;
-  
+
   // internal scale factors
   float sx, sy;
 
@@ -164,12 +169,12 @@ class OSDText {
   GLint attribute_coord;
   GLint uniform_tex;
   GLint uniform_color;
-  
+
   // GL helpers
   GLuint compile_shaders();
   GLint  get_attribu(GLuint program, const char *name);
   GLint  get_uniform(GLuint program, const char *name);
-  
+
 }; // class textOSD
 
 } // namespace CMU462
