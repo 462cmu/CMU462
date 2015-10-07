@@ -5,12 +5,12 @@
 
 namespace CMU462 {
 
-/** 
+/**
  * Encodes a color via additive red, green, and blue chanel values.
- * Each color chanel value is in the range [0,1]. The alpha value 
+ * Each color chanel value is in the range [0,1]. The alpha value
  * defines the transparency of the color and is also in [0,1].
  */
-class Color { 
+class Color {
  public:
 
   // Components.
@@ -81,18 +81,18 @@ class Color {
     return !operator==( rhs );
   }
 
-  /** 
+  /**
    * Construct a Color object from a hexadecimal (8-bit per
-   * component) ASCII string. 
-   * Since hexademical strings are typically not used to encode 
-   * alpha values, the alpha is set to 1 (opaque) by default.  
-   * This method also accepts the string "none", in which case 
+   * component) ASCII string.
+   * Since hexademical strings are typically not used to encode
+   * alpha values, the alpha is set to 1 (opaque) by default.
+   * This method also accepts the string "none", in which case
    * it returns a color value with alpha zero (transparent).
    * \return Color constructed from the input hex encoding.
    */
   static Color fromHex( const char* s );
 
-  /** 
+  /**
    * Returns a hexadecimal string #rrggbb encoding this color.
    * \return the hexadecimal encoding of the color.
    */
@@ -109,7 +109,7 @@ inline Color operator*( float s, const Color& c ) {
 
 // Prints components.
 std::ostream& operator<<( std::ostream& os, const Color& c );
-   
+
 } // namespace CMU462
 
 #endif

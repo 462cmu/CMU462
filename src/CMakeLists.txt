@@ -12,6 +12,7 @@ set(CMU462_SOURCE
     quaternion.cpp
     complex.cpp
     color.cpp
+    spectrum.cpp
     osdtext.cpp
     osdfont.c
     viewer.cpp
@@ -77,7 +78,7 @@ if (APPLE)
       set_target_properties(CMU462_SHARED PROPERTIES OUTPUT_NAME CMU462_osx)
     endif()
   endif(CMU462_BUILD_DEBUG)
-  
+
 endif(APPLE)
 
 ##################
@@ -102,7 +103,7 @@ endif(LINUX)
 # Build on Windows #
 ####################
 if(WIN32)
-  
+
   if(MSVC)
     if(CMU462_BUILD_DEBUG)
       set_target_properties(CMU462 PROPERTIES OUTPUT_NAME CMU462_d)
