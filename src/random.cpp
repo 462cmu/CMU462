@@ -2,7 +2,7 @@
 
 #include <random>
 
-#include "misc_math.h"
+#include "misc.h"
 
 namespace CMU462 {
 

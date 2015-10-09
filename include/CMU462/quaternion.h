@@ -2,11 +2,12 @@
 #define CMU462_QUATERNION_H
 
 #include <iosfwd>
+#include "vector3D.h"
 #include "vector4D.h"
 #include "vector3D.h"
-#include "misc_math.h"
-#include "matrix4x4.h"
 #include "matrix3x3.h"
+#include "matrix4x4.h"
+#include "misc.h"
 
 /*
  * Quarternion Class
@@ -52,7 +53,7 @@ class Quaternion : public Vector4D {
     y = sinTheta * nAxis.y;
     z = sinTheta * nAxis.z;
     w = cos(radians);
-    this->normalize(); 
+    this->normalize();
   }
 
   Vector3D complex() const { return Vector3D(x, y, z); }

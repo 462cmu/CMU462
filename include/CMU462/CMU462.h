@@ -1,18 +1,19 @@
 #include "vector2D.h"
-#include "complex.h"
-
 #include "vector3D.h"
+#include "vector4D.h"
+
+#include "matrix4x4.h"
 #include "matrix3x3.h"
 
-#include "vector4D.h"
-#include "matrix4x4.h"
-
-#include "math.h"
-#include "random.h"
-
 #include "quaternion.h"
+#include "complex.h"
 
 #include "color.h"
+#include "spectrum.h"
+
+#include "misc.h"
+#include "random.h"
+
 #include "renderer.h"
 #include "viewer.h"
 

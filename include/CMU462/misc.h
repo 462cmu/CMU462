@@ -1,5 +1,5 @@
-#ifndef CMU462_MISCMATH_H
-#define CMU462_MISCMATH_H
+#ifndef CMU462_MISC_H
+#define CMU462_MISC_H
 
 #include <cmath>
 #include <limits>
