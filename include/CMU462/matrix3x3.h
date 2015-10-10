@@ -1,9 +1,10 @@
 #ifndef CMU462_MATRIX3X3_H
 #define CMU462_MATRIX3X3_H
 
-#include <iosfwd>
-
+#include "CMU462.h"
 #include "vector3D.h"
+
+#include <iosfwd>
 
 namespace CMU462 {
 
@@ -23,16 +24,13 @@ class Matrix3x3 {
   // REQUIRES: data should be of size 9 for a 3 by 3 matrix..
   Matrix3x3(double * data)
   {
-    for( int i = 0; i < 3; i++ )
-    for( int j = 0; j < 3; j++ )
-    {
-	  // Transpostion happens within the () query.
-	  (*this)(i,j) = data[i*3 + j];
+    for( int i = 0; i < 3; i++ ) {
+      for( int j = 0; j < 3; j++ ) {
+	        // Transpostion happens within the () query.
+	        (*this)(i,j) = data[i*3 + j];
+      }
     }
-
   }
-
-
 
   /**
    * Sets all elements to val.

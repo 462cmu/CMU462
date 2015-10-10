@@ -18,7 +18,6 @@ set(CMU462_SOURCE
     viewer.cpp
     base64.cpp
     tinyxml2.cpp
-    random.cpp
 )
 
 #-------------------------------------------------------------------------------

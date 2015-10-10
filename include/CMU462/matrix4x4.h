@@ -1,9 +1,10 @@
 #ifndef CMU462_MATRIX4X4_H
 #define CMU462_MATRIX4X4_H
 
-#include <iosfwd>
-
+#include "CMU462.h"
 #include "vector4D.h"
+
+#include <iosfwd>
 
 namespace CMU462 {
 

@@ -1,17 +1,19 @@
 #ifndef CMU462_VECTOR2D_H
 #define CMU462_VECTOR2D_H
 
+#include "CMU462.h"
+
 #include <ostream>
 #include <cmath>
 
 namespace CMU462 {
 
-/** 
+/**
  * Defines 2D vectors.
  */
-class Vector2D { 
+class Vector2D {
  public:
-  
+
   // components
   double x, y;
 
@@ -36,7 +38,7 @@ class Vector2D {
   // additive inverse
   inline Vector2D operator-( void ) const {
     return Vector2D( -x, -y );
-  } 
+  }
 
   // addition
   inline Vector2D operator+( const Vector2D& v ) const {
@@ -44,7 +46,7 @@ class Vector2D {
     u += v;
     return u;
   }
-  
+
   // subtraction
   inline Vector2D operator-( const Vector2D& v ) const {
     Vector2D u = *this;
@@ -58,7 +60,7 @@ class Vector2D {
     vr *= r;
     return vr;
   }
-  
+
   // scalar division
   inline Vector2D operator/( double r ) const {
     Vector2D vr = *this;
@@ -104,7 +106,7 @@ class Vector2D {
     return x*x + y*y;
   }
 
-  /** 
+  /**
    * Returns unit vector parallel to this one.
    */
   inline Vector2D unit( void ) const {
@@ -131,7 +133,7 @@ inline double cross( const Vector2D& v1, const Vector2D& v2 ) {
 
 // prints components
 std::ostream& operator<<( std::ostream& os, const Vector2D& v );
-   
+
 } // namespace CMU462
 
 #endif // CMU462_VECTOR2D_H

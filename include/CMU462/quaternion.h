@@ -1,24 +1,11 @@
 #ifndef CMU462_QUATERNION_H
 #define CMU462_QUATERNION_H
 
-#include <iosfwd>
-#include "vector3D.h"
-#include "vector4D.h"
-#include "vector3D.h"
+#include "CMU462.h"
 #include "matrix3x3.h"
 #include "matrix4x4.h"
-#include "misc.h"
 
-/*
- * Quarternion Class
- *
- * Written By Bryce Summers on 9/10/2015.
- *
- * Adapted from a stanford researcher's quaternion class found at:
- * http://www.cs.stanford.edu/~acoates/quaternion.h
- * 15-462 at Carnegie Mellon University.
- */
-
+#include <iosfwd>
 
 namespace CMU462 {
 
@@ -31,9 +18,8 @@ class Quaternion : public Vector4D {
    */
   Quaternion( ) : Vector4D( 0.0, 0.0, 0.0, 1.0 ) { }
 
-  /*
+  /**
    * Construct from 3D vector and w.
-   *
    */
   Quaternion(const Vector3D& v, double w) : Vector4D(v.x, v.y, v.z, w) { }
 

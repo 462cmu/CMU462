@@ -11,11 +11,11 @@
 namespace CMU462 {
 
 /**
- * Provides OpenGL context, window display, and event handling routines. 
+ * Provides OpenGL context, window display, and event handling routines.
  * A user application may draw to the window's context by providing
  * a user renderer. The viewer manages other display components such as the
  * zoom views, text OSD, etc. It also takes care of window event handling and
- * event passing, through which the renderer may interact with user inputs. 
+ * event passing, through which the renderer may interact with user inputs.
  */
 class Viewer {
  public:
@@ -26,7 +26,7 @@ class Viewer {
    */
   Viewer( void );
 
-  /** 
+  /**
    * Constructor.
    * Creates a new viweer with the given title.
    */
@@ -45,7 +45,7 @@ class Viewer {
    * and make the viewer ready for drawing.
    */
   void init( void );
-  
+
   /**
    * Start the drawing loop of the viewer.
    * Once called this will block until the viewer is close.
@@ -65,7 +65,7 @@ class Viewer {
    * Main update loop.
    */
   static void update( void );
-    
+
   /**
    * Draw information view.
    */
@@ -83,9 +83,9 @@ class Viewer {
   static bool HDPI;
 
   // framerate related timeers
-  static int framecount; 
-  static std::chrono::time_point<std::chrono::system_clock> sys_last; 
-  static std::chrono::time_point<std::chrono::system_clock> sys_curr; 
+  static int framecount;
+  static std::chrono::time_point<std::chrono::system_clock> sys_last;
+  static std::chrono::time_point<std::chrono::system_clock> sys_curr;
 
   // info toggle
   static bool showInfo;
@@ -96,7 +96,7 @@ class Viewer {
   static size_t buffer_h;
 
   // user space renderer
-  static Renderer* renderer; 
+  static Renderer* renderer;
 
   // on-screen display
   static OSDText* osd_text;

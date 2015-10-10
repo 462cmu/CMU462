@@ -1,6 +1,7 @@
 #ifndef CMU462_COMPLEX_H
 #define CMU462_COMPLEX_H
 
+#include "CMU462.h"
 #include "vector2D.h"
 
 namespace CMU462 {

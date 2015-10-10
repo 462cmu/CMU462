@@ -1,21 +1,30 @@
-#include "vector2D.h"
-#include "vector3D.h"
-#include "vector4D.h"
-
-#include "matrix4x4.h"
-#include "matrix3x3.h"
-
-#include "quaternion.h"
-#include "complex.h"
-
-#include "color.h"
-#include "spectrum.h"
+#ifndef CMU462_H
+#define CMU462_H
 
 #include "misc.h"
-#include "random.h"
 
-#include "renderer.h"
-#include "viewer.h"
+// CMU462 Forward Declarations //
 
-#include "base64.h"
-#include "tinyxml2.h"
+namespace CMU462 {
+
+class Vector2D;
+class Vector3D;
+class Vector4D;
+
+class Matrix3x3;
+class Matrix4x4;
+
+class Quaternion;
+class Complex;
+
+class Color;
+class Spectrum;
+
+class Renderer;
+class OSDText;
+class Viewer;
+class Timer;
+
+} // namespace CMU462
+
+#endif // CMU462_H

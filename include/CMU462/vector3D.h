@@ -1,12 +1,14 @@
 #ifndef CMU462_VECTOR3D_H
 #define CMU462_VECTOR3D_H
 
+#include "CMU462.h"
+
 #include <ostream>
 #include <cmath>
 
 namespace CMU462 {
 
-/** 
+/**
  * Defines 3D vectors.
  */
 class Vector3D {
@@ -38,12 +40,12 @@ class Vector3D {
    * Initializes from existing vector
    */
   Vector3D( const Vector3D& v ) : x( v.x ), y( v.y ), z( v.z ) { }
-   
+
   // returns reference to the specified component (0-based indexing: x, y, z)
   inline double& operator[] ( const int& index ) {
     return ( &x )[ index ];
   }
-  
+
   // returns const reference to the specified component (0-based indexing: x, y, z)
   inline const double& operator[] ( const int& index ) const {
     return ( &x )[ index ];
@@ -125,7 +127,7 @@ class Vector3D {
    * Divides by Euclidean length.
    */
   inline void normalize( void ) {
-    (*this) /= norm();  
+    (*this) /= norm();
   }
 
 }; // class Vector3D

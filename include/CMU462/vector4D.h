@@ -1,9 +1,11 @@
 #ifndef CMU462_VECTOR4D_H
 #define CMU462_VECTOR4D_H
 
+#include "CMU462.h"
+#include "vector3D.h"
+
 #include <ostream>
 #include <cmath>
-#include "vector3D.h"
 
 namespace CMU462 {
 
@@ -52,7 +54,7 @@ class Vector4D {
    * Initializes from existing vector3D.
    */
  Vector4D( const Vector3D& v ) : x( v.x ), y( v.y ), z( v.z ), w( 0.0 ) { }
-  
+
  /**
    * Constructor.
    * Initializes from existing vector3D and w value.

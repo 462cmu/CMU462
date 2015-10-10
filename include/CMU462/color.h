@@ -1,6 +1,8 @@
 #ifndef CMU462_COLOR_H
 #define CMU462_COLOR_H
 
+#include "CMU462.h"
+
 #include <string>
 
 namespace CMU462 {
