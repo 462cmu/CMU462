@@ -6,9 +6,9 @@ project(CMU462)
 #-------------------------------------------------------------------------------
 option(CMU462_BUILD_DEBUG    "Build for debug"          OFF)
 option(CMU462_BUILD_SHARED   "Build shared libraries"   OFF)
-option(CMU462_BUILD_DOCS     "Build documentation"      ON)
-option(CMU462_BUILD_TESTS    "Build tests programs"     ON)
-option(CMU462_BUILD_EXAMPLES "Build examples"           ON)
+option(CMU462_BUILD_DOCS     "Build documentation"      OFF)
+option(CMU462_BUILD_TESTS    "Build tests programs"     OFF)
+option(CMU462_BUILD_EXAMPLES "Build examples"           OFF)
 
 #-------------------------------------------------------------------------------
 # CMake modules
@@ -16,7 +16,7 @@ option(CMU462_BUILD_EXAMPLES "Build examples"           ON)
 list(APPEND CMAKE_MODULE_PATH "${CMU462_SOURCE_DIR}/cmake/modules/")
 
 #-------------------------------------------------------------------------------
-# CMU462 paths 
+# CMU462 paths
 #-------------------------------------------------------------------------------
 set(CMU462_INCLUDE_DIRS "${CMU462_SOURCE_DIR}/include")
 
@@ -30,8 +30,8 @@ set(CMU462_INCLUDE_DIRS "${CMU462_SOURCE_DIR}/include")
 if(APPLE)
 
   # Clang only
-  if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "CLANG")  
-  
+  if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "CLANG")
+
     # OSX Framework dependencies
     if(NOT CMU462_BUILD_SHARED)
       include_directories( "/System/Library/Frameworks" )
@@ -60,9 +60,9 @@ if(APPLE)
 
     # GCC configuration
     if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-      
+
       set(GCC_CXX_FLAGS "-std=gnu++11 -m64")
-      
+
       if(CMU462_BUILD_DEBUG)
         set(CMAKE_BUILD_TYPE Debug)
       else(CMU462_BUILD_DEBUG)
@@ -73,7 +73,7 @@ if(APPLE)
       set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_CXX_FLAGS}")
 
     endif()
-    
+
   endif()
 
 endif(APPLE)
@@ -83,7 +83,7 @@ endif(APPLE)
 ##################
 set(LINUX UNIX AND NOT APPLE)
 if(LINUX)
-  
+
   # GCC only
   if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 
@@ -93,18 +93,18 @@ if(LINUX)
     if(NOT CMU462_BUILD_SHARED)
       set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXi")
       set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXxf86vm")
-      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXinerama") 
-      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXcursor") 
-      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXfixes") 
-      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXrandr") 
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXinerama")
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXcursor")
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXfixes")
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXrandr")
       set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXext")
-      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXrender") 
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXrender")
       set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lX11")
-      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lpthread") 
-      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lxcb") 
-      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXau") 
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lpthread")
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lxcb")
+      set(GCC_CXX_FLAGS "${GCC_CXX_FLAGS} -lXau")
     endif()
-    
+
     # Debug configuration
     if(CMU462_BUILD_DEBUG)
         set(CMAKE_BUILD_TYPE Debug)
@@ -123,9 +123,9 @@ endif(LINUX)
 # Build on Windows #
 ####################
 if(WIN32)
-  
+
   if(MSVC)
-  
+
     set(MSVC_CXX_FLAGS "-std=gnu++11")
 
     if(CMU462_BUILD_DEBUG)
@@ -134,7 +134,7 @@ if(WIN32)
     endif(CMU462_BUILD_DEBUG)
 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${MSVC_CXX_FLAGS}")
-  
+
   endif(MSVC)
 
   if(MINGW)
