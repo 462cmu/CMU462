@@ -17,9 +17,9 @@ class Camera {
 
   Camera() {
     r = 5;
+    phi   = PI / 4;
     theta = PI / 4;
-    phi = PI / 4;
-    dir = -Vector3D(sin(theta),cos(phi),cos(theta)).unit();
+    dir = -Vector3D(sin(phi),cos(theta),cos(phi)).unit();
     up = cross(dir,cross(Vector3D(0,1,0),dir)).unit();
     pos = -dir * r;
   }
@@ -40,8 +40,8 @@ class Camera {
   Vector3D dir;
   Vector3D up;
   float r;
-  float theta;
   float phi;
+  float theta;
 };
 
 void draw_coordinates() {
@@ -114,9 +114,9 @@ class Template : public Renderer {
 
   void cursor_event(float x, float y) {
     if (left_down) {
-      camera.theta += (x - mouse_x) / w * PI;
-      camera.phi -= (y - mouse_y) / w * PI;
-      camera.dir = -Vector3D(sin(camera.theta),cos(camera.phi),cos(camera.theta)).unit();
+      camera.phi += (x - mouse_x) / w * PI;
+      camera.theta -= (y - mouse_y) / w * PI;
+      camera.dir = -Vector3D(sin(camera.phi),cos(camera.theta),cos(camera.phi)).unit();
       camera.up = cross(camera.dir,cross(Vector3D(0,1,0), camera.dir)).unit();
       camera.pos = -camera.dir * camera.r;
     }
@@ -129,7 +129,7 @@ class Template : public Renderer {
 
   void scroll_event(float offset_x, float offset_y) {
     camera.r += (offset_x + offset_y) * camera.r * 0.1;
-    camera.dir = -Vector3D(sin(camera.theta),cos(camera.phi),cos(camera.theta)).unit();
+    camera.dir = -Vector3D(sin(camera.phi),cos(camera.theta),cos(camera.phi)).unit();
     camera.up = cross(camera.dir,cross(Vector3D(0,1,0), camera.dir)).unit();
     camera.pos = -camera.dir * camera.r;
   }
