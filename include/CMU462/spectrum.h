@@ -77,11 +77,18 @@ class Spectrum {
     return !operator==(rhs);
   }
 
-  inline Color toColor() const { return Color(r, g, b, 1); }
+  inline Color toColor() const {
+    return Color(r, g, b, 1); 
+  }
+
+  inline float illum() const { 
+    return 0.2126f * r + 0.7152f * g + 0.0722f * b;
+  }
 
   static Spectrum fromColor(const Color &c) {
     return Spectrum(c.a * c.r, c.a * c.g, c.a * c.b);
   }
+
 
 };  // class Spectrum
 
