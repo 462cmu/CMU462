@@ -104,6 +104,9 @@ class Matrix3x3 {
   // returns -A
   Matrix3x3 operator-( void ) const;
 
+  // returns A+B
+  Matrix3x3 operator+( const Matrix3x3& B ) const;
+
   // returns A-B
   Matrix3x3 operator-( const Matrix3x3& B ) const;
 

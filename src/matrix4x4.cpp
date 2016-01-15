@@ -90,23 +90,34 @@ void Matrix4x4::operator+=(const Matrix4x4 &B) {
   const double *Bij = (const double *)&B;
 
   // Add the 16 contigous vector packed double values.
-  *Aij++ += *Bij++; // 0
   *Aij++ += *Bij++;
   *Aij++ += *Bij++;
   *Aij++ += *Bij++;
-  *Aij++ += *Bij++; // 4
   *Aij++ += *Bij++;
   *Aij++ += *Bij++;
   *Aij++ += *Bij++;
-  *Aij++ += *Bij++; // 8
   *Aij++ += *Bij++;
   *Aij++ += *Bij++;
   *Aij++ += *Bij++;
-  *Aij++ += *Bij++; // 12
   *Aij++ += *Bij++;
   *Aij++ += *Bij++;
-  *Aij++ += *Bij++; // 15
-  // 16.
+  *Aij++ += *Bij++;
+  *Aij++ += *Bij++;
+  *Aij++ += *Bij++;
+  *Aij++ += *Bij++;
+  *Aij++ += *Bij++;
+}
+
+Matrix4x4 Matrix4x4::operator+(const Matrix4x4 &B) const {
+  const Matrix4x4 &A(*this);
+  Matrix4x4 C;
+
+  for (int i = 0; i < 4; i++)
+    for (int j = 0; j < 4; j++) {
+      C(i, j) = A(i, j) + B(i, j);
+    }
+
+  return C;
 }
 
 Matrix4x4 Matrix4x4::operator-(const Matrix4x4 &B) const {
@@ -140,23 +151,22 @@ Matrix4x4 operator*(double c, const Matrix4x4 &A) {
   const double *Aij = (const double *)&A;
   double *cAij = (double *)&cA;
 
-  *cAij++ = c *(*Aij++); // 0
   *cAij++ = c *(*Aij++);
   *cAij++ = c *(*Aij++);
   *cAij++ = c *(*Aij++);
-  *cAij++ = c *(*Aij++); // 4
   *cAij++ = c *(*Aij++);
   *cAij++ = c *(*Aij++);
   *cAij++ = c *(*Aij++);
-  *cAij++ = c *(*Aij++); // 8
   *cAij++ = c *(*Aij++);
   *cAij++ = c *(*Aij++);
   *cAij++ = c *(*Aij++);
-  *cAij++ = c *(*Aij++); // 12
   *cAij++ = c *(*Aij++);
   *cAij++ = c *(*Aij++);
-  *cAij++ = c *(*Aij++); // 15
-  // 16
+  *cAij++ = c *(*Aij++);
+  *cAij++ = c *(*Aij++);
+  *cAij++ = c *(*Aij++);
+  *cAij++ = c *(*Aij++);
+  *cAij++ = c *(*Aij++);
   return cA;
 }
 

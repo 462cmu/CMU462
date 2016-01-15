@@ -70,6 +70,18 @@ void Matrix3x3::operator+=(const Matrix3x3 &B) {
   *Aij++ += *Bij++;
 }
 
+Matrix3x3 Matrix3x3::operator+(const Matrix3x3 &B) const {
+  const Matrix3x3 &A(*this);
+  Matrix3x3 C;
+
+  for (int i = 0; i < 3; i++)
+    for (int j = 0; j < 3; j++) {
+      C(i, j) = A(i, j) + B(i, j);
+    }
+
+  return C;
+}
+
 Matrix3x3 Matrix3x3::operator-(const Matrix3x3 &B) const {
   const Matrix3x3 &A(*this);
   Matrix3x3 C;
