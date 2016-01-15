@@ -13,10 +13,10 @@ namespace CMU462 {
  * a particular wavelengths.
  */
 class Spectrum {
- public:
-  float r;  ///< intensity of red spectrum
-  float g;  ///< intensity of green spectrum
-  float b;  ///< intensity of blue spectrum
+public:
+  float r; ///< intensity of red spectrum
+  float g; ///< intensity of green spectrum
+  float b; ///< intensity of blue spectrum
 
   /**
    * Parameterized Constructor.
@@ -73,17 +73,17 @@ class Spectrum {
     return r == rhs.r && g == rhs.g && b == rhs.b;
   }
 
-  inline bool operator!=(const Spectrum &rhs) const {
-    return !operator==(rhs);
-  }
+  inline bool operator!=(const Spectrum &rhs) const { return !operator==(rhs); }
 
   inline Color toColor() const { return Color(r, g, b, 1); }
+
+  inline float illum() const { return 0.2126f * r + 0.7152f * g + 0.0722f * b; }
 
   static Spectrum fromColor(const Color &c) {
     return Spectrum(c.a * c.r, c.a * c.g, c.a * c.b);
   }
 
-};  // class Spectrum
+}; // class Spectrum
 
 // Commutable scalar multiplication
 inline Spectrum operator*(float s, const Spectrum &c) { return c * s; }
@@ -91,6 +91,6 @@ inline Spectrum operator*(float s, const Spectrum &c) { return c * s; }
 // Prints components
 std::ostream &operator<<(std::ostream &os, const Spectrum &c);
 
-}  // namespace CMU462
+} // namespace CMU462
 
-#endif  // CMU462_SPECTRUM_H
+#endif // CMU462_SPECTRUM_H

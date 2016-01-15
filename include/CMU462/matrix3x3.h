@@ -2,6 +2,7 @@
 #define CMU462_MATRIX3X3_H
 
 #include "CMU462.h"
+#include "vector2D.h"
 #include "vector3D.h"
 
 #include <iosfwd>
@@ -53,9 +54,25 @@ class Matrix3x3 {
   static Matrix3x3 identity( void );
 
   /**
+   * Returns matrix encoding a 2D counter-clockwise rotation by the angle theta in homogeneous coordinates. The angle is given in Radians.
+   */
+  static Matrix3x3 rotation( double theta );
+
+  /**
+   * Returns matrix encoding 2D translation by the vector t in homogeneous coordinates.
+   */
+  static Matrix3x3 translation( Vector2D t );
+
+  /**
    * Returns a matrix representing the (left) cross product with u.
    */
   static Matrix3x3 crossProduct( const Vector3D& u );
+
+  /**
+   * Assuming this matrix represents a 2D homogeneous transformation,
+   * returns the rotation it encodes as an angle in radians.
+   */
+  double getRotation( void ) const;
 
   /**
    * Returns the ith column.

@@ -10,9 +10,9 @@
 
 // forward declare freetype stuff
 struct FT_LibraryRec_;
-typedef struct FT_LibraryRec_* FT_Library;
+typedef struct FT_LibraryRec_ *FT_Library;
 struct FT_FaceRec_;
-typedef struct FT_FaceRec_*  FT_Face;
+typedef struct FT_FaceRec_ *FT_Face;
 
 namespace CMU462 {
 
@@ -35,7 +35,6 @@ struct OSDLine {
 
   // font color
   Color color;
-
 };
 
 /**
@@ -45,8 +44,7 @@ struct OSDLine {
  * respect to the number of lines and the length of the lines.
  */
 class OSDText {
- public:
-
+public:
   /**
    * Constructor.
    * Creates an empty text OSD.
@@ -62,7 +60,7 @@ class OSDText {
   /**
    * Initializes resources required for rendering text.
    * This will load a freetype font and compile shaders, etc.
-   * \param use_hdpi if text is renderer on HDPI displays
+   * \param use_hdpi if text is rendered on HDPI displays
    * \return 0 if successful, -1 on error.
    */
   int init(bool use_hdpi);
@@ -73,10 +71,10 @@ class OSDText {
    */
   void render();
 
-	/**
-	 * Clear all the lines.
-	 */
-	void clear();
+  /**
+   * Clear all the lines.
+   */
+  void clear();
 
   /**
    * Resize internal scales when context size has changed.
@@ -98,8 +96,8 @@ class OSDText {
    *         is non-negative. If the line was not successfully added,
    *         -1 is returned.
    */
-  int add_line(float x, float y, std::string text = "",
-               size_t size = 16, Color color = Color::White);
+  int add_line(float x, float y, std::string text = "", size_t size = 16,
+               Color color = Color::White);
 
   /**
    * Deletes a line.
@@ -142,8 +140,7 @@ class OSDText {
    */
   void set_color(int line_id, Color color);
 
- private:
-
+private:
   // draw a single line
   void draw_line(OSDLine line);
 
@@ -157,8 +154,10 @@ class OSDText {
   int next_id;
 
   // freetype
-  char* font; size_t font_size;
-  FT_Library* ft; FT_Face* face;
+  char *font;
+  size_t font_size;
+  FT_Library *ft;
+  FT_Face *face;
 
   // lines to draw
   std::vector<OSDLine> lines;
@@ -172,8 +171,8 @@ class OSDText {
 
   // GL helpers
   GLuint compile_shaders();
-  GLint  get_attribu(GLuint program, const char *name);
-  GLint  get_uniform(GLuint program, const char *name);
+  GLint get_attribu(GLuint program, const char *name);
+  GLint get_uniform(GLuint program, const char *name);
 
 }; // class textOSD
 

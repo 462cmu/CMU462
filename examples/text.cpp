@@ -2,15 +2,15 @@
 #include <iostream>
 
 #include "CMU462/viewer.h"
-#include "CMU462/renderer.h"
+#include "CMU462/application.h"
 
 using namespace std;
 using namespace CMU462;
 
-class TextDrawer : public Renderer {
+class TextDemo : public Application {
  public:
 
-  ~TextDrawer() { }
+  ~TextDemo() { }
 
   string name() {
     return "Text manager example";
@@ -47,7 +47,7 @@ class TextDrawer : public Renderer {
   }
 
   void cursor_event(float x, float y) {
-    text_mgr.set_anchor(line0, 2 * (x - .5 * w) / w, 2 * (.5 * h - y) / h);      
+    text_mgr.set_anchor(line0, 2 * (x - .5 * w) / w, 2 * (.5 * h - y) / h);
   }
 
   void scroll_event(float offset_x, float offset_y) {
@@ -78,11 +78,11 @@ int main( int argc, char** argv ) {
   // create viewer
   Viewer viewer = Viewer();
 
-  // defined a user space renderer
-  Renderer* renderer = new TextDrawer();
+  // create user application
+  Application* text_demo = new TextDemo();
 
-  // set user space renderer
-  viewer.set_renderer(renderer);
+  // set user application
+  viewer.set_application(text_demo);
 
   // start the viewer
   viewer.init();

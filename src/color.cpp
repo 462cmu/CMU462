@@ -10,10 +10,10 @@ using namespace std;
 namespace CMU462 {
 
 // Constants
-const Color Color::White  = Color(1,1,1,1);
-const Color Color::Black  = Color(0,0,0,1);
+const Color Color::White = Color(1, 1, 1, 1);
+const Color Color::Black = Color(0, 0, 0, 1);
 
-Color::Color( const unsigned char* arr ) {
+Color::Color(const unsigned char *arr) {
   float inv = 1.0 / 255.0;
   r = arr[0] * inv;
   g = arr[1] * inv;
@@ -21,16 +21,16 @@ Color::Color( const unsigned char* arr ) {
   a = 1.0;
 }
 
-Color Color::fromHex( const char* s ) {
+Color Color::fromHex(const char *s) {
   // If the color is "none", return any color
   // with alpha zero (completely transparent).
-  if( !strcmp(s, "none") ) {
-      return Color(0,0,0,0);
+  if (!strcmp(s, "none")) {
+    return Color(0, 0, 0, 0);
   }
 
   // Ignore leading hashmark.
-  if( s[0] == '#' ) {
-      s++;
+  if (s[0] == '#') {
+    s++;
   }
 
   // Set stream formatting to hexadecimal.
@@ -44,18 +44,18 @@ Color Color::fromHex( const char* s ) {
 
   // Extract 8-byte chunks and normalize.
   Color c;
-  c.r = (float)( ( rgb & 0xFF0000 ) >> 16 ) / 255.0;
-  c.g = (float)( ( rgb & 0x00FF00 ) >>  8 ) / 255.0;
-  c.b = (float)( ( rgb & 0x0000FF ) >>  0 ) / 255.0;
+  c.r = (float)((rgb & 0xFF0000) >> 16) / 255.0;
+  c.g = (float)((rgb & 0x00FF00) >> 8) / 255.0;
+  c.b = (float)((rgb & 0x0000FF) >> 0) / 255.0;
   c.a = 1.0; // set alpha to 1 (opaque) by default
 
   return c;
 }
 
-string Color::toHex( void ) const {
-  int R = (unsigned char) max( 0., min( 255.0, 255.0 * r ));
-  int G = (unsigned char) max( 0., min( 255.0, 255.0 * g ));
-  int B = (unsigned char) max( 0., min( 255.0, 255.0 * b ));
+string Color::toHex(void) const {
+  int R = (unsigned char)max(0., min(255.0, 255.0 * r));
+  int G = (unsigned char)max(0., min(255.0, 255.0 * g));
+  int B = (unsigned char)max(0., min(255.0, 255.0 * b));
 
   stringstream ss;
   ss << hex;
@@ -64,7 +64,25 @@ string Color::toHex( void ) const {
   return ss.str();
 }
 
-std::ostream& operator<<( std::ostream& os, const Color& c ) {
+Color Color::fromPickIndex(int i) {
+  unsigned char R, G, B;
+  R = (i & 0x000000FF) >> 0;
+  G = (i & 0x0000FF00) >> 8;
+  B = (i & 0x00FF0000) >> 16;
+
+  return Color((float)R / 255., (float)G / 255., (float)B / 255., 1.);
+}
+
+int Color::toPickIndex(void) const {
+  int R, G, B;
+  R = (int)(r * 255.);
+  G = (int)(g * 255.);
+  B = (int)(b * 255.);
+
+  return R + G * 256 + 256 * 256 * B;
+}
+
+std::ostream &operator<<(std::ostream &os, const Color &c) {
   os << "(r=" << c.r;
   os << " g=" << c.g;
   os << " b=" << c.b;

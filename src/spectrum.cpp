@@ -9,7 +9,7 @@ using namespace std;
 
 namespace CMU462 {
 
-std::ostream& operator<<(std::ostream& os, const Spectrum& c) {
+std::ostream &operator<<(std::ostream &os, const Spectrum &c) {
   os << "(r=" << c.r;
   os << " g=" << c.g;
   os << " b=" << c.b;
@@ -17,4 +17,4 @@ std::ostream& operator<<(std::ostream& os, const Spectrum& c) {
   return os;
 }
 
-}  // namespace CMU462
+} // namespace CMU462

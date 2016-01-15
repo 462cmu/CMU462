@@ -10,21 +10,16 @@ namespace CMU462 {
  * A basic timer class.
  */
 class Timer {
- public:
-
+public:
   /**
    * Starts the timer
    */
-  inline void start() {
-    t0 = std::chrono::steady_clock::now();
-  }
+  inline void start() { t0 = std::chrono::steady_clock::now(); }
 
   /**
    * Stops the timer
    */
-  inline void stop() {
-    t1 = std::chrono::steady_clock::now();
-  }
+  inline void stop() { t1 = std::chrono::steady_clock::now(); }
 
   /**
    * Return duration between the last call to start and last call to stop
@@ -33,13 +28,11 @@ class Timer {
     return (std::chrono::duration<double>(t1 - t0)).count();
   }
 
- private:
-
+private:
   std::chrono::time_point<std::chrono::steady_clock> t0;
   std::chrono::time_point<std::chrono::steady_clock> t1;
-
 };
 
 } // namespace CMU462
 
-#endif //CMU462_TIMER_H
+#endif // CMU462_TIMER_H

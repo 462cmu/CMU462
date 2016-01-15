@@ -2,12 +2,12 @@
 #include <iostream>
 
 #include "CMU462/viewer.h"
-#include "CMU462/renderer.h"
+#include "CMU462/application.h"
 
 using namespace std;
 using namespace CMU462;
 
-class TriangleDrawer : public Renderer {
+class TriangleDrawer : public Application {
  public:
 
   ~TriangleDrawer() { }
@@ -23,7 +23,7 @@ class TriangleDrawer : public Renderer {
   void init() {
     return;
   }
-  
+
   void render() {
     if (shoud_draw) {
       glBegin(GL_TRIANGLES);
@@ -36,7 +36,7 @@ class TriangleDrawer : public Renderer {
   }
 
   void resize(size_t w, size_t h) {
-    
+
     this->w = w;
     this->h = h;
 
@@ -44,17 +44,17 @@ class TriangleDrawer : public Renderer {
   }
 
   void keyboard_event(int key, int event, unsigned char mods) {
-    if (key == 'R') shoud_draw = !shoud_draw; 
+    if (key == 'R') shoud_draw = !shoud_draw;
     return;
   }
-  
+
  private:
 
   // show draw triangle
   bool shoud_draw;
-  
+
   // frame buffer size
-  size_t w, h; 
+  size_t w, h;
 
 };
 
@@ -63,11 +63,11 @@ int main( int argc, char** argv ) {
   // create viewer
   Viewer viewer = Viewer();
 
-  // defined a user space renderer
-  Renderer* renderer = new TriangleDrawer();
+  // create user application
+  Application* renderer = new TriangleDrawer();
 
-  // set user space renderer
-  viewer.set_renderer(renderer);
+  // set user application
+  viewer.set_application(renderer);
 
   // start the viewer
   viewer.init();
@@ -75,4 +75,3 @@ int main( int argc, char** argv ) {
 
   return 0;
 }
-

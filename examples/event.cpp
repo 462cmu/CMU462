@@ -2,15 +2,15 @@
 #include <iostream>
 
 #include "CMU462/viewer.h"
-#include "CMU462/renderer.h"
+#include "CMU462/application.h"
 
 using namespace std;
 using namespace CMU462;
 
-class EventDisply : public Renderer {
+class EventDemo : public Application {
  public:
 
-  ~EventDisply() { }
+  ~EventDemo() { }
 
   string name() {
     return "Event handling example";
@@ -48,7 +48,7 @@ class EventDisply : public Renderer {
 
   void cursor_event(float x, float y) {
     if (left_down) {
-      text_mgr.set_anchor(line0, 2 * (x - .5 * w) / w, 2 * (.5 * h - y) / h);      
+      text_mgr.set_anchor(line0, 2 * (x - .5 * w) / w, 2 * (.5 * h - y) / h);
     }
   }
 
@@ -68,7 +68,7 @@ class EventDisply : public Renderer {
 
     string s;
     switch (event) {
-      case EVENT_PRESS:    
+      case EVENT_PRESS:
         s = "You just pressed: ";
         break;
       case EVENT_RELEASE:
@@ -83,7 +83,7 @@ class EventDisply : public Renderer {
       s += "Enter";
     } else {
       char c = key;
-      s += c;      
+      s += c;
     }
 
     text_mgr.set_text(line0, s);
@@ -114,11 +114,11 @@ int main( int argc, char** argv ) {
   // create viewer
   Viewer viewer = Viewer();
 
-  // defined a user space renderer
-  Renderer* renderer = new EventDisply();
+  // create user application
+  Application* event_demo = new EventDemo();
 
-  // set user space renderer
-  viewer.set_renderer(renderer);
+  // set user application
+  viewer.set_application(event_demo);
 
   // start the viewer
   viewer.init();

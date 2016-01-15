@@ -20,7 +20,7 @@ class Complex;
 class Color;
 class Spectrum;
 
-class Renderer;
+class Application;
 class OSDText;
 class Viewer;
 class Timer;

@@ -3,9 +3,9 @@
 
 #include "CMU462/CMU462.h"
 #include "CMU462/vector3D.h"
-#include "CMU462/viewer.h"
-#include "CMU462/renderer.h"
 #include "CMU462/misc.h"
+#include "CMU462/viewer.h"
+#include "CMU462/application.h"
 
 #include "GL/glew.h"
 
@@ -13,14 +13,13 @@ using namespace std;
 using namespace CMU462;
 
 class Camera {
- public:
-
+public:
   Camera() {
     r = 5;
-    theta = PI / 4;
     phi = PI / 4;
-    dir = -Vector3D(sin(theta),cos(phi),cos(theta)).unit();
-    up = cross(dir,cross(Vector3D(0,1,0),dir)).unit();
+    theta = PI / 4;
+    dir = -Vector3D(sin(phi), cos(theta), cos(phi)).unit();
+    up = cross(dir, cross(Vector3D(0, 1, 0), dir)).unit();
     pos = -dir * r;
   }
 
@@ -31,59 +30,52 @@ class Camera {
     gluPerspective(50.0, 1.0, 0.01f, 100.0f);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(pos.x, pos.y, pos.z,
-              obj.x, obj.y, obj.z,
-               up.x,  up.y,  up.z);
+    gluLookAt(pos.x, pos.y, pos.z, obj.x, obj.y, obj.z, up.x, up.y, up.z);
   }
 
   Vector3D pos;
   Vector3D dir;
   Vector3D up;
   float r;
-  float theta;
   float phi;
+  float theta;
 };
 
 void draw_coordinates() {
 
   glBegin(GL_LINES);
   glColor3f(1.0f, 0.0f, 0.0f);
-  glVertex3i(0,0,0); 
-  glVertex3i(1,0,0);
-   
+  glVertex3i(0, 0, 0);
+  glVertex3i(1, 0, 0);
+
   glColor3f(0.0f, 1.0f, 0.0f);
-  glVertex3i(0,0,0); 
-  glVertex3i(0,1,0); 
+  glVertex3i(0, 0, 0);
+  glVertex3i(0, 1, 0);
 
   glColor3f(0.0f, 0.0f, 1.0f);
-  glVertex3i(0,0,0); 
-  glVertex3i(0,0,1); 
+  glVertex3i(0, 0, 0);
+  glVertex3i(0, 0, 1);
 
   glColor4f(0.5f, 0.5f, 0.5f, 0.5f);
   for (int x = 0; x <= 8; ++x) {
     glVertex3f(x - 4, 0, -4);
-    glVertex3f(x - 4, 0,  4);
+    glVertex3f(x - 4, 0, 4);
   }
   for (int z = 0; z <= 8; ++z) {
     glVertex3f(-4, 0, z - 4);
-    glVertex3f( 4, 0, z - 4);
+    glVertex3f(4, 0, z - 4);
   }
 
   glEnd();
 }
 
-class Template : public Renderer {
- public:
+class Template : public Application {
+public:
+  ~Template() {}
 
-  ~Template() { }
+  string name() { return "Template Application"; }
 
-  string name() {
-    return "Template Renderer";
-  }
-
-  string info() {
-    return "Template Renderer";
-  }
+  string info() { return "Template Application"; }
 
   void init() {
 
@@ -99,7 +91,6 @@ class Template : public Renderer {
     camera.set_projection();
     draw_coordinates();
     text_mgr.render();
-
   }
 
   void resize(size_t w, size_t h) {
@@ -107,17 +98,19 @@ class Template : public Renderer {
     this->w = w;
     this->h = h;
 
-    text_mgr.resize(w,h);
+    text_mgr.resize(w, h);
 
     return;
   }
 
   void cursor_event(float x, float y) {
     if (left_down) {
-      camera.theta += (x - mouse_x) / w * PI;
-      camera.phi -= (y - mouse_y) / w * PI;
-      camera.dir = -Vector3D(sin(camera.theta),cos(camera.phi),cos(camera.theta)).unit();
-      camera.up = cross(camera.dir,cross(Vector3D(0,1,0), camera.dir)).unit();
+      camera.phi += (x - mouse_x) / w * PI;
+      camera.theta -= (y - mouse_y) / w * PI;
+      camera.dir =
+          -Vector3D(sin(camera.phi), cos(camera.theta), cos(camera.phi)).unit();
+      camera.up =
+          cross(camera.dir, cross(Vector3D(0, 1, 0), camera.dir)).unit();
       camera.pos = -camera.dir * camera.r;
     }
     mouse_x = x;
@@ -129,15 +122,18 @@ class Template : public Renderer {
 
   void scroll_event(float offset_x, float offset_y) {
     camera.r += (offset_x + offset_y) * camera.r * 0.1;
-    camera.dir = -Vector3D(sin(camera.theta),cos(camera.phi),cos(camera.theta)).unit();
-    camera.up = cross(camera.dir,cross(Vector3D(0,1,0), camera.dir)).unit();
+    camera.dir =
+        -Vector3D(sin(camera.phi), cos(camera.theta), cos(camera.phi)).unit();
+    camera.up = cross(camera.dir, cross(Vector3D(0, 1, 0), camera.dir)).unit();
     camera.pos = -camera.dir * camera.r;
   }
 
   void mouse_event(int key, int event, unsigned char mods) {
     if (key == MOUSE_LEFT) {
-      if (event == EVENT_PRESS) left_down = true;
-      if (event == EVENT_RELEASE) left_down = false;
+      if (event == EVENT_PRESS)
+        left_down = true;
+      if (event == EVENT_RELEASE)
+        left_down = false;
     }
   }
 
@@ -145,29 +141,28 @@ class Template : public Renderer {
 
     string s;
     switch (event) {
-      case EVENT_PRESS:    
-        s = "You just pressed: ";
-        break;
-      case EVENT_RELEASE:
-        s = "You just released: ";
-        break;
-      case EVENT_REPEAT:
-        s = "You are holding: ";
-        break;
+    case EVENT_PRESS:
+      s = "You just pressed: ";
+      break;
+    case EVENT_RELEASE:
+      s = "You just released: ";
+      break;
+    case EVENT_REPEAT:
+      s = "You are holding: ";
+      break;
     }
 
     if (key == KEYBOARD_ENTER) {
       s += "Enter";
     } else {
       char c = key;
-      s += c;      
+      s += c;
     }
 
     text_mgr.set_text(line0, s);
   }
 
- private:
-
+private:
   // OSD text manager
   OSDText text_mgr;
 
@@ -186,19 +181,18 @@ class Template : public Renderer {
   // mouse location
   float mouse_x;
   float mouse_y;
-
 };
 
-int main( int argc, char** argv ) {
+int main(int argc, char **argv) {
 
   // create viewer
   Viewer viewer = Viewer();
 
-  // defined a user space renderer
-  Renderer* renderer = new Template();
+  // create user application
+  Application *demo = new Template();
 
-  // set user space renderer
-  viewer.set_renderer(renderer);
+  // set user application
+  viewer.set_application(demo);
 
   // start the viewer
   viewer.init();

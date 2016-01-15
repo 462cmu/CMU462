@@ -4,11 +4,11 @@ project(CMU462)
 #-------------------------------------------------------------------------------
 # Build options
 #-------------------------------------------------------------------------------
-option(CMU462_BUILD_DEBUG    "Build for debug"          OFF)
-option(CMU462_BUILD_SHARED   "Build shared libraries"   OFF)
-option(CMU462_BUILD_DOCS     "Build documentation"      OFF)
-option(CMU462_BUILD_TESTS    "Build tests programs"     OFF)
-option(CMU462_BUILD_EXAMPLES "Build examples"           OFF)
+option(CMU462_BUILD_SHARED   "Build shared libraries"     OFF)
+option(CMU462_BUILD_DEBUG    "Build with debug symbols"   OFF)
+option(CMU462_BUILD_DOCS     "Build documentation"        ON)
+option(CMU462_BUILD_TESTS    "Build tests programs"       ON)
+option(CMU462_BUILD_EXAMPLES "Build examples"             ON)
 
 #-------------------------------------------------------------------------------
 # CMake modules
@@ -160,27 +160,18 @@ endif(WIN32)
 find_package(OpenGL REQUIRED)
 find_package(Freetype REQUIRED)
 
-# Use pkg-config for GLEW & GLFW if available
-find_package(PkgConfig QUIET)
-
 # GLEW
-if(PKGCONFIG_FOUND)
-  pkg_search_module(GLEW QUIET glew)
-else(PKGCONFIG_FOUND)
-  find_package(GLEW QUIET)
-endif()
+find_package(GLEW QUIET)
 if(NOT GLEW_FOUND)
+  message("-- GLEW not found on system, compiling from source")
   add_subdirectory("${CMU462_SOURCE_DIR}/deps/glew")
   set_property( TARGET glew APPEND_STRING PROPERTY COMPILE_FLAGS -w )
 endif()
 
 # GLFW
-if(PKGCONFIG_FOUND)
-  pkg_search_module(GLFW QUIET glfw3)
-else(PKGCONFIG_FOUND)
-  find_package(GLFW QUIET)
-endif()
+find_package(GLFW QUIET)
 if(NOT GLFW_FOUND)
+  message("-- GLFW not found on system, compiling from source")
   add_subdirectory("${CMU462_SOURCE_DIR}/deps/glfw")
   set_property( TARGET glfw APPEND_STRING PROPERTY COMPILE_FLAGS -w )
 endif()
