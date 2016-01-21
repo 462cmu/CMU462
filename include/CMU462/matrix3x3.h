@@ -11,7 +11,6 @@ namespace CMU462 {
 
 /**
  * Defines a 3x3 matrix.
- * 3x3 matrices are extremely useful in computer graphics.
  */
 class Matrix3x3 {
 

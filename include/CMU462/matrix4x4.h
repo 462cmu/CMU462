@@ -10,16 +10,6 @@ namespace CMU462 {
 
 /**
  * Defines a 4x4 matrix.
- * 4x4 matrices are also extremely useful in computer graphics.
- * Written by Bryce Summers on 9/10/2015.
- * Adapted from the Matrix3x3 class.
- *
- * EXTEND_ME : It might be nice to add some combined operations
- *             such as multiplying then adding,
- *             etc to increase arithmetic intensity.
- *
- * I have taken the liberty of removing cross product functionality form 4D
- * Matrices and Vectors.
  */
 class Matrix4x4 {
 
@@ -110,6 +100,7 @@ public:
   void operator/=(double x);
 
 protected:
+
   // 4 by 4 matrices are represented by an array of 4 column vectors.
   Vector4D entries[4];
 

@@ -50,8 +50,9 @@ public:
   /**
    * Constructor.
    * Initializes from existing vector3D.
+   * Note that the w component is initialied to 1.
    */
-  Vector4D(const Vector3D &v) : x(v.x), y(v.y), z(v.z), w(0.0) {}
+  Vector4D(const Vector3D &v) : x(v.x), y(v.y), z(v.z), w(1.0) {}
 
   /**
     * Constructor.
